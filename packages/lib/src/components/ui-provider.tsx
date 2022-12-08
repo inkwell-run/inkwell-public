@@ -1,32 +1,24 @@
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import { Provider } from "jotai";
-import React from "react";
-import { createInitialValues } from "../lib";
-import { getSystemTheme, ITheme, themeAtom, useTheme } from "../lib/use-theme";
+import React, { useEffect } from "react";
+import { ITheme, useTheme } from "../lib/use-theme";
 
 interface UIProviderProps {
   children: React.ReactNode;
-  initialTheme?: ITheme;
+  _themeOverride?: ITheme;
 }
 
 export const UIProvider = (props: UIProviderProps) => {
-  const { children, initialTheme } = props;
-  const systemTheme = getSystemTheme();
+  const { children, _themeOverride } = props;
+  const { theme, toggleTheme, setTheme } = useTheme();
 
-  // https://jotai.org/docs/guides/initialize-atom-on-render
-  const initialValues = createInitialValues();
-  initialValues.set(themeAtom, initialTheme ?? systemTheme);
+  // not recommended for anything but testing or use with ladle sandbox as it will cause flash
+  useEffect(() => {
+    if (_themeOverride) {
+      console.info("Applying theme override");
+      setTheme(_themeOverride);
+    }
+  }, [_themeOverride]);
 
-  return (
-    <Provider initialValues={initialValues.get()}>
-      <UIProviderInner>{children}</UIProviderInner>
-    </Provider>
-  );
-};
-
-const UIProviderInner = (props: UIProviderProps) => {
-  const { children } = props;
-  const { theme, toggleTheme } = useTheme();
   return (
     <ColorSchemeProvider colorScheme={theme} toggleColorScheme={toggleTheme}>
       <MantineProvider

@@ -50,11 +50,11 @@ export interface ISchema {
 export interface IManuscriptStudioProps {
   accessToken: string;
   schemas: ISchema[];
-  initialTheme?: ITheme;
+  _themeOverride?: ITheme;
 }
 
 export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
-  const { accessToken, initialTheme } = props;
+  const { accessToken, _themeOverride } = props;
   ManuscriptApi.OpenAPI.TOKEN = accessToken;
 
   // set globals
@@ -71,7 +71,7 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
   return (
     <RouterProvider router={router}>
       <QueryClientProvider client={queryClient}>
-        <UIProvider initialTheme={initialTheme}>
+        <UIProvider _themeOverride={_themeOverride}>
           <Shell>
             <Sidebar />
             <Content>
