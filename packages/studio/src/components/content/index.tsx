@@ -1,3 +1,4 @@
+import { Box } from "@manuscript/lib";
 import React from "react";
 
 interface ContentProps {
@@ -5,7 +6,15 @@ interface ContentProps {
 }
 const Content = (props: ContentProps) => {
   const { children } = props;
-  return <div className="overflow-y-auto">{children}</div>;
+  return (
+    <Box
+      sx={{
+        overflowY: "auto",
+      }}
+    >
+      {children}
+    </Box>
+  );
 };
 
 export default Content;

@@ -1,4 +1,4 @@
-import { UIProvider } from "@manuscript/lib";
+import { ITheme, UIProvider } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createMemoryHistory,
@@ -50,10 +50,11 @@ export interface ISchema {
 export interface IManuscriptStudioProps {
   accessToken: string;
   schemas: ISchema[];
+  initialTheme?: ITheme;
 }
 
 export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
-  const { accessToken } = props;
+  const { accessToken, initialTheme } = props;
   ManuscriptApi.OpenAPI.TOKEN = accessToken;
 
   // set globals
@@ -70,7 +71,7 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
   return (
     <RouterProvider router={router}>
       <QueryClientProvider client={queryClient}>
-        <UIProvider>
+        <UIProvider initialTheme={initialTheme}>
           <Shell>
             <Sidebar />
             <Content>

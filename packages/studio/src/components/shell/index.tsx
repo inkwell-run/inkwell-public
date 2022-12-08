@@ -1,5 +1,5 @@
+import { Box } from "@manuscript/lib";
 import React from "react";
-import style from "./index.module.css";
 
 interface ShellProps {
   children: React.ReactNode;
@@ -7,5 +7,16 @@ interface ShellProps {
 
 export const Shell = (props: ShellProps) => {
   const { children } = props;
-  return <div className={style.shell}>{children}</div>;
+  return (
+    <Box
+      sx={(t) => ({
+        display: "flex",
+        gap: t.spacing.md,
+        border: "1px solid black",
+        height: "100%",
+      })}
+    >
+      {children}
+    </Box>
+  );
 };

@@ -1,4 +1,4 @@
-import { Title } from "@manuscript/lib";
+import { Box, Title } from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
@@ -14,11 +14,19 @@ const PostsPage = () => {
   });
 
   return (
-    <div className="flex flex-col w-full gap-4 p-4">
+    <Box
+      sx={(t) => ({
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        gap: t.spacing.sm,
+        padding: t.spacing.sm,
+      })}
+    >
       <Title order={1} m={0}>
         Posts
       </Title>
-      <p>These are all of your dfew</p>
+      <p>These are all of your posts</p>
       <button
         onClick={() => {
           // const toastId = toast.loading("Creating post");
@@ -43,7 +51,7 @@ const PostsPage = () => {
       {posts.data?.map((p) => (
         <PostDisplay post={p} key={p.id} />
       ))}
-    </div>
+    </Box>
   );
 };
 
@@ -55,11 +63,17 @@ interface IPostDisplayProps {
 const PostDisplay = (props: IPostDisplayProps) => {
   const { post } = props;
   return (
-    <div className="p-4 border rounded-md border-color">
+    <Box
+      sx={(t) => ({
+        padding: t.spacing.sm,
+        borderRadius: t.radius.sm,
+        backgroundColor: t.colors.blue[6],
+      })}
+    >
       {/* slug */}
       <div>{post.slug}</div>
       {JSON.stringify(post)}
-    </div>
+    </Box>
   );
 };
 
