@@ -27,6 +27,17 @@
     "zx": "^7.1.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.9.2",
+    "@mantine/dates": "^5.9.2",
+    "@mantine/dropzone": "^5.9.2",
+    "@mantine/form": "^5.9.2",
+    "@mantine/hooks": "^5.9.2",
+    "@mantine/modals": "^5.9.2",
+    "@mantine/notifications": "^5.9.2",
+    "@mantine/spotlight": "^5.9.2",
+    "dayjs": "^1.11.7",
+    "jotai": "^1.11.0",
     "react": "18.2.0",
     "zod": "^3.19.1"
   }

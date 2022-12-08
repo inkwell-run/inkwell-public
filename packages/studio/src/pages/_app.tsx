@@ -14,8 +14,9 @@ import PostsPage from "./posts";
 import SchemasPage from "./schemas";
 import Sidebar from "../components/sidebar";
 import { GlobalStateAtom } from "../lib/store";
-import { Toaster } from "react-hot-toast";
 import Content from "../components/content";
+import { UIProvider } from "@manuscript/lib";
+import style from "./_app.module.css";
 
 const rootRoute = createRouteConfig();
 
@@ -69,13 +70,14 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
   return (
     <RouterProvider router={router}>
       <QueryClientProvider client={queryClient}>
-        <div className="flex w-full h-full dark:bg-gray-800 dark:text-slate-50">
-          <Sidebar />
-          <Content>
-            <Outlet />
-          </Content>
-          <Toaster />
-        </div>
+        <UIProvider>
+          <div className={style.shell}>
+            <Sidebar />
+            <Content>
+              <Outlet />
+            </Content>
+          </div>
+        </UIProvider>
       </QueryClientProvider>
     </RouterProvider>
   );

@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
-import toast from "react-hot-toast";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -19,7 +18,7 @@ const PostsPage = () => {
       <p>These are all of your posts</p>
       <button
         onClick={() => {
-          const toastId = toast.loading("Creating post");
+          // const toastId = toast.loading("Creating post");
           postCreate.mutate(
             {
               slug: "ewfer",
@@ -28,9 +27,9 @@ const PostsPage = () => {
             {
               onSuccess: async () => {
                 await posts.refetch();
-                toast.success("Created post", {
-                  id: toastId,
-                });
+                // toast.success("Created post", {
+                //   id: toastId,
+                // });
               },
             }
           );

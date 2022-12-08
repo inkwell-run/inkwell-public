@@ -29,25 +29,22 @@
   "devDependencies": {
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
-    "autoprefixer": "^10.4.13",
+    "esbuild-css-modules-plugin": "^2.6.2",
     "openapi-typescript-codegen": "^0.23.0",
-    "postcss": "^8.4.19",
     "rimraf": "^3.0.2",
-    "tailwind": "^4.0.0",
-    "tailwindcss": "^3.2.4",
     "tsup": "^6.2.3",
     "typescript": "4.7.4",
     "wait-on": "^6.0.1",
     "zx": "^7.1.1"
   },
   "dependencies": {
+    "@manuscript/lib": "workspace:*",
     "@markdoc/markdoc": "^0.1.6",
     "@tanstack/react-query": "^4.7.1",
     "@tanstack/react-router": "0.0.1-beta.28",
     "gray-matter": "^4.0.3",
     "jotai": "^1.11.0",
     "react": "18.2.0",
-    "react-hot-toast": "^2.4.0",
     "zod": "^3.19.1"
   }
 }

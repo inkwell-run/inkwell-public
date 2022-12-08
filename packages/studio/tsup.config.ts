@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 import { $ } from "zx";
+import cssModulesPlugin from "esbuild-css-modules-plugin";
 
 export default defineConfig({
   entry: ["src/index.ts"],
@@ -10,4 +11,5 @@ export default defineConfig({
   onSuccess: async () => {
     $`tsc`;
   },
+  esbuildPlugins: [cssModulesPlugin()],
 });
