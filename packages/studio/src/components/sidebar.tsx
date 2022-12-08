@@ -1,3 +1,4 @@
+import { Box } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import React from "react";
@@ -5,13 +6,27 @@ import * as ManuscriptApi from "../api-client";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col gap-4 p-4 border-r border-color">
+    <Box
+      sx={(t) => ({
+        display: "flex",
+        flexDirection: "column",
+        gap: t.spacing.sm,
+        padding: t.spacing.sm,
+        borderRight: "1px solid",
+      })}
+    >
       <ConnectionStatus />
-      <div className="flex flex-col gap-2">
+      <Box
+        sx={(t) => ({
+          display: "flex",
+          flexDirection: "column",
+          gap: t.spacing.sm,
+        })}
+      >
         <Link to="/">Posts</Link>
         <Link to="/schemas">Schemas</Link>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
@@ -33,8 +48,14 @@ const ConnectionStatus = () => {
   });
 
   return (
-    <div className="p-2 border rounded-md border-color">
+    <Box
+      sx={(t) => ({
+        padding: t.spacing.sm,
+        border: "1px solid",
+        borderRadius: t.radius.md,
+      })}
+    >
       Connected to <strong>{organization.data?.clerkOrganizationName}</strong>
-    </div>
+    </Box>
   );
 };

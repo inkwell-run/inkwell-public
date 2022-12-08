@@ -1,4 +1,11 @@
-import { Box, Title } from "@manuscript/lib";
+import {
+  Box,
+  Title,
+  showNotification,
+  updateNotification,
+  Button,
+  IconCheck,
+} from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
@@ -27,9 +34,15 @@ const PostsPage = () => {
         Posts
       </Title>
       <p>These are all of your posts</p>
-      <button
+      <Button
         onClick={() => {
-          // const toastId = toast.loading("Creating post");
+          showNotification({
+            id: "create-post",
+            title: "Creating post",
+            message: "Hang tight...",
+            loading: true,
+            autoClose: false,
+          });
           postCreate.mutate(
             {
               slug: "ewfer",
@@ -38,16 +51,21 @@ const PostsPage = () => {
             {
               onSuccess: async () => {
                 await posts.refetch();
-                // toast.success("Created post", {
-                //   id: toastId,
-                // });
+                updateNotification({
+                  id: "create-post",
+                  title: "Created post",
+                  message: "Your post has been created successfully.",
+                  loading: false,
+                  icon: <IconCheck />,
+                  autoClose: 2000,
+                });
               },
             }
           );
         }}
       >
-        create new
-      </button>
+        Create new post
+      </Button>
       {posts.data?.map((p) => (
         <PostDisplay post={p} key={p.id} />
       ))}

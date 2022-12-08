@@ -48,6 +48,7 @@ importers:
       '@mantine/modals': ^5.9.2
       '@mantine/notifications': ^5.9.2
       '@mantine/spotlight': ^5.9.2
+      '@tabler/icons': ^1.116.1
       '@types/node': 18.0.0
       '@types/react': 18.0.14
       dayjs: ^1.11.7
@@ -67,6 +68,7 @@ importers:
       '@mantine/modals': 5.9.2_2pltzneqv4wv27mewoeyrtq5am
       '@mantine/notifications': 5.9.2_2pltzneqv4wv27mewoeyrtq5am
       '@mantine/spotlight': 5.9.2_2pltzneqv4wv27mewoeyrtq5am
+      '@tabler/icons': 1.116.1_react@18.2.0
       dayjs: 1.11.7
       jotai: 1.11.1_react@18.2.0
       react: 18.2.0
@@ -2306,6 +2308,20 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.4.1
+    dev: false
+
+  /@tabler/icons/1.116.1_react@18.2.0:
+    resolution: {integrity: sha512-Ge/UZLhkuvr6G9wJNuFBf9WX0gt8v/3nZxBOz+Od6Yj5vE7fF6ViNBcPEPBw0Y+mzuy/g+h78nwpPLVPv4yGGg==}
+    peerDependencies:
+      react: ^16.x || 17.x || 18.x
+      react-dom: ^16.x || 17.x || 18.x
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@tanstack/query-core/4.19.1:

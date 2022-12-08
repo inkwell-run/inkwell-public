@@ -1,6 +1,7 @@
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import React, { useEffect } from "react";
 import { ITheme, useTheme } from "../lib/use-theme";
+import { NotificationsProvider } from "@mantine/notifications";
 
 interface UIProviderProps {
   children: React.ReactNode;
@@ -27,7 +28,7 @@ export const UIProvider = (props: UIProviderProps) => {
         withCSSVariables
         theme={{ colorScheme: theme }}
       >
-        {children}
+        <NotificationsProvider>{children}</NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );
