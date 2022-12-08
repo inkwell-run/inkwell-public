@@ -1,11 +1,11 @@
-# ManuscriptCMS Studio
+# ManuscriptCMS Monorepo
 
-- [ManuscriptCMS Studio](#manuscriptcms-studio)
+- [ManuscriptCMS Monorepo](#manuscriptcms-monorepo)
   - [Setup](#setup)
 
 ## Setup
 
-1. Clone the repo https://github.com/manuscriptcms/manuscript-studio
+1. Clone the repo https://github.com/sarimabbas/manuscript-mono
 2. Run `pnpm i` to install all dependencies
 3. Note that we can't run `dev` processes in topological order because they are infinite-running. Therefore, run `pnpm setup-project` once first from the workspace root (which just calls `pnpm build`).
 4. Run `pnpm dev` from the workspace root to run everything
