@@ -10,11 +10,12 @@ import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { AnyZodObject } from "zod";
 import * as ManuscriptApi from "../api-client";
-import PostsPage from "./pages/posts";
-import SchemasPage from "./pages/schemas";
-import Sidebar from "./sidebar";
-import { GlobalStateAtom } from "./store";
+import PostsPage from "./posts";
+import SchemasPage from "./schemas";
+import Sidebar from "../components/sidebar";
+import { GlobalStateAtom } from "../lib/store";
 import { Toaster } from "react-hot-toast";
+import Content from "../components/content";
 
 const rootRoute = createRouteConfig();
 
@@ -70,7 +71,9 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
       <QueryClientProvider client={queryClient}>
         <div className="flex w-full h-full dark:bg-gray-800 dark:text-slate-50">
           <Sidebar />
-          <Outlet />
+          <Content>
+            <Outlet />
+          </Content>
           <Toaster />
         </div>
       </QueryClientProvider>

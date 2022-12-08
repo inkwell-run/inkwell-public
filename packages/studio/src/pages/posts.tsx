@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
-import * as ManuscriptApi from "../../api-client";
+import * as ManuscriptApi from "../api-client";
 import toast from "react-hot-toast";
 
 const PostsPage = () => {

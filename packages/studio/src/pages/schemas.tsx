@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
 import React from "react";
-import { ISchema } from "..";
-import { GlobalStateAtom } from "../store";
+import { ISchema } from "./_app";
+import { GlobalStateAtom } from "../lib/store";
 
 const SchemasPage = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
