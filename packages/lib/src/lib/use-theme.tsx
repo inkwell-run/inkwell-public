@@ -29,3 +29,14 @@ export const useTheme = () => {
     toggleTheme,
   };
 };
+
+export const getSystemTheme = (): ITheme => {
+  if (
+    typeof window !== "undefined" &&
+    window?.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    return "dark";
+  }
+  return "light";
+};

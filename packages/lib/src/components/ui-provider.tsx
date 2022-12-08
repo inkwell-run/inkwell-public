@@ -2,8 +2,7 @@ import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { Provider } from "jotai";
 import React from "react";
 import { createInitialValues } from "../lib";
-import { ITheme, themeAtom, useTheme } from "../lib/use-theme";
-import { useColorScheme as useSystemTheme } from "@mantine/hooks";
+import { getSystemTheme, ITheme, themeAtom, useTheme } from "../lib/use-theme";
 
 interface UIProviderProps {
   children: React.ReactNode;
@@ -12,7 +11,7 @@ interface UIProviderProps {
 
 export const UIProvider = (props: UIProviderProps) => {
   const { children, initialTheme } = props;
-  const systemTheme = useSystemTheme();
+  const systemTheme = getSystemTheme();
 
   // https://jotai.org/docs/guides/initialize-atom-on-render
   const initialValues = createInitialValues();
