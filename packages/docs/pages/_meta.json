@@ -1,0 +1,18 @@
+{
+  "index": "Home",
+  "api_reference": {
+    "title": "OpenAPI Reference",
+    "href": "/reference"
+  },
+  "---": {
+    "type": "separator"
+  },
+  "dashboard": {
+    "title": "Go to app dashboard",
+    "href": "https://dashboard.manuscriptcms.com"
+  },
+  "feedback": {
+    "title": "Give feedback",
+    "href": "https://feedback.manuscriptcms.com"
+  }
+}
