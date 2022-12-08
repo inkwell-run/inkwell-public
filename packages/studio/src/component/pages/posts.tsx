@@ -2,8 +2,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../../api-client";
 import toast from "react-hot-toast";
-import DataGrid from "react-data-grid";
-import { Pill } from "@manuscript/glue";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -57,7 +55,7 @@ const PostDisplay = (props: IPostDisplayProps) => {
   return (
     <div className="p-4 border rounded-md border-color">
       {/* slug */}
-      <Pill>{post.slug}</Pill>
+      <div>{post.slug}</div>
       {JSON.stringify(post)}
     </div>
   );
