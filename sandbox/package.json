@@ -1,0 +1,23 @@
+{
+  "name": "@manuscript/sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm ladle serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@manuscript/studio": "workspace:*",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@ladle/react": "^2.4.5",
+    "@types/react": "18.0.14",
+    "vite": "^3.2.5"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@manuscript/studio",
+  "version": "1.0.0",
+  "description": "Studio component",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/index.css": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css"
+    }
+  },
+  "scripts": {
+    "build": "pnpm codegen-prod && pnpm transpile",
+    "dev": "pnpm codegen-dev && pnpm transpile --watch src",
+    "transpile": "tsup --config tsup.config.ts",
+    "codegen-dev": "wait-on http://localhost:3001/api/openapi.json && rimraf ./src/api-client && openapi --input http://localhost:3001/api/openapi.json --output ./src/api-client",
+    "codegen-prod": "wait-on https://dashboard.manuscriptcms.com/api/openapi.json && rimraf ./src/api-client && openapi --input https://dashboard.manuscriptcms.com/api/openapi.json --output ./src/api-client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "@types/react": "18.0.14",
+    "autoprefixer": "^10.4.8",
+    "openapi-typescript-codegen": "^0.23.0",
+    "postcss": "^8.4.16",
+    "rimraf": "^3.0.2",
+    "tailwind": "^4.0.0",
+    "tsup": "^6.2.3",
+    "typescript": "4.7.4",
+    "wait-on": "^6.0.1"
+  },
+  "dependencies": {
+    "@markdoc/markdoc": "^0.1.6",
+    "@tanstack/react-query": "^4.7.1",
+    "@tanstack/react-router": "0.0.1-beta.28",
+    "gray-matter": "^4.0.3",
+    "jotai": "^1.11.0",
+    "react": "18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "zod": "^3.19.1"
+  }
+}
