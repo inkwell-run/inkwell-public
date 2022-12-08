@@ -1,3 +1,4 @@
+import { UIProvider } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createMemoryHistory,
@@ -10,13 +11,12 @@ import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { AnyZodObject } from "zod";
 import * as ManuscriptApi from "../api-client";
-import PostsPage from "./posts";
-import SchemasPage from "./schemas";
+import Content from "../components/content";
+import { Shell } from "../components/shell";
 import Sidebar from "../components/sidebar";
 import { GlobalStateAtom } from "../lib/store";
-import Content from "../components/content";
-import { UIProvider } from "@manuscript/lib";
-import style from "./_app.module.css";
+import PostsPage from "./posts";
+import SchemasPage from "./schemas";
 
 const rootRoute = createRouteConfig();
 
@@ -71,12 +71,12 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
     <RouterProvider router={router}>
       <QueryClientProvider client={queryClient}>
         <UIProvider>
-          <div className={style.shell}>
+          <Shell>
             <Sidebar />
             <Content>
               <Outlet />
             </Content>
-          </div>
+          </Shell>
         </UIProvider>
       </QueryClientProvider>
     </RouterProvider>
