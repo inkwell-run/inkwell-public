@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm ladle serve"
+    "dev": "pnpm ladle serve",
+    "build": "pnpm ladle build"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,9 @@
   "devDependencies": {
     "@ladle/react": "^2.4.5",
     "@types/react": "18.0.14",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
     "vite": "^3.2.5"
   }
 }
