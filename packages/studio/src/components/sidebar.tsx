@@ -1,32 +1,27 @@
-import { Box } from "@manuscript/lib";
+import { Box, Navbar, NavLink } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
+import { Link, linkProps } from "@tanstack/react-router";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
 
 const Sidebar = () => {
+  const p = linkProps({
+    to: "/",
+  });
   return (
-    <Box
-      sx={(t) => ({
-        display: "flex",
-        flexDirection: "column",
-        gap: t.spacing.sm,
-        padding: t.spacing.sm,
-        borderRight: "1px solid",
-      })}
-    >
-      <ConnectionStatus />
-      <Box
-        sx={(t) => ({
-          display: "flex",
-          flexDirection: "column",
-          gap: t.spacing.sm,
-        })}
-      >
-        <Link to="/">Posts</Link>
-        <Link to="/schemas">Schemas</Link>
-      </Box>
-    </Box>
+    <>
+      <Navbar.Section>
+        <Link to="/" style={{ all: "unset" }}>
+          <NavLink label="Posts" />
+        </Link>
+        <Link to="/schemas" style={{ all: "unset" }}>
+          <NavLink label="Schemas" />
+        </Link>
+      </Navbar.Section>
+      <Navbar.Section>
+        <ConnectionStatus />
+      </Navbar.Section>
+    </>
   );
 };
 

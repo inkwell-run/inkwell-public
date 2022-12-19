@@ -1,4 +1,4 @@
-import { ITheme, UIProvider } from "@manuscript/lib";
+import { ITheme, UIProvider, Shell } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createMemoryHistory,
@@ -11,8 +11,7 @@ import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { AnyZodObject } from "zod";
 import * as ManuscriptApi from "../api-client";
-import Content from "../components/content";
-import { Shell } from "../components/shell";
+import AuthProvider from "../components/auth-provider";
 import Sidebar from "../components/sidebar";
 import { GlobalStateAtom } from "../lib/store";
 import PostsPage from "./posts";
@@ -72,12 +71,11 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
     <RouterProvider router={router}>
       <QueryClientProvider client={queryClient}>
         <UIProvider _themeOverride={_themeOverride}>
-          <Shell>
-            <Sidebar />
-            <Content>
+          <AuthProvider accessToken={accessToken}>
+            <Shell navbar={<Sidebar />}>
               <Outlet />
-            </Content>
-          </Shell>
+            </Shell>
+          </AuthProvider>
         </UIProvider>
       </QueryClientProvider>
     </RouterProvider>

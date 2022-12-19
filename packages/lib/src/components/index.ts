@@ -4,3 +4,8 @@ export * from "./box";
 export * from "./notification";
 export * from "./button";
 export * from "./icons";
+export * from "./shell";
+export * from "./navbar";
+export * from "./loader";
+export * from "./alert";
+export * from "./center";

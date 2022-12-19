@@ -1,10 +1,11 @@
+import type { Story } from "@ladle/react";
 import { useLadleContext } from "@ladle/react";
 import { ManuscriptStudio } from "@manuscript/studio";
 import "@manuscript/studio/dist/index.css";
 import React from "react";
 import { z } from "zod";
 
-export const TestStudio = () => {
+export const Studio: Story<{}> = ({}) => {
   const { globalState } = useLadleContext();
   const { theme } = globalState;
 
@@ -30,4 +31,8 @@ export const TestStudio = () => {
       ]}
     />
   );
+};
+
+Studio.meta = {
+  iframed: true,
 };
