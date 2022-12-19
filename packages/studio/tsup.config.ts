@@ -12,4 +12,7 @@ export default defineConfig({
     $`tsc`;
   },
   esbuildPlugins: [cssModulesPlugin()],
+  loader: {
+    ".svg": "dataurl",
+  },
 });

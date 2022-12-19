@@ -12,6 +12,7 @@ import React, { useEffect } from "react";
 import { AnyZodObject } from "zod";
 import * as ManuscriptApi from "../api-client";
 import AuthProvider from "../components/auth-provider";
+import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { GlobalStateAtom } from "../lib/store";
 import PostsPage from "./posts";
@@ -72,7 +73,7 @@ export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
       <QueryClientProvider client={queryClient}>
         <UIProvider _themeOverride={_themeOverride}>
           <AuthProvider accessToken={accessToken}>
-            <Shell navbar={<Sidebar />}>
+            <Shell navbar={<Sidebar />} header={<Header />}>
               <Outlet />
             </Shell>
           </AuthProvider>

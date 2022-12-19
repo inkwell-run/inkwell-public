@@ -1,4 +1,11 @@
-import { Box, Navbar, NavLink } from "@manuscript/lib";
+import {
+  Alert,
+  Box,
+  IconInfoCircle,
+  Navbar,
+  NavLink,
+  Stack,
+} from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
 import { Link, linkProps } from "@tanstack/react-router";
 import React from "react";
@@ -9,7 +16,7 @@ const Sidebar = () => {
     to: "/",
   });
   return (
-    <>
+    <Stack justify="space-between" h="100%">
       <Navbar.Section>
         <Link to="/" style={{ all: "unset" }}>
           <NavLink label="Posts" />
@@ -21,7 +28,7 @@ const Sidebar = () => {
       <Navbar.Section>
         <ConnectionStatus />
       </Navbar.Section>
-    </>
+    </Stack>
   );
 };
 
@@ -43,14 +50,8 @@ const ConnectionStatus = () => {
   });
 
   return (
-    <Box
-      sx={(t) => ({
-        padding: t.spacing.sm,
-        border: "1px solid",
-        borderRadius: t.radius.md,
-      })}
-    >
-      Connected to <strong>{organization.data?.clerkOrganizationName}</strong>
-    </Box>
+    <Alert title="Connected to:" color="lime">
+      {organization.data?.clerkOrganizationName ?? <>&nbsp;</>}
+    </Alert>
   );
 };

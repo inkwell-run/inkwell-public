@@ -1,1 +1,6 @@
-export { IconCheck, IconX, IconAlertCircle } from "@tabler/icons";
+export {
+  IconCheck,
+  IconX,
+  IconAlertCircle,
+  IconInfoCircle,
+} from "@tabler/icons";
