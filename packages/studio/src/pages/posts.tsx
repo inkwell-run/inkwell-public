@@ -16,6 +16,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
 import DateCycler from "../components/date-cycler";
+import { compareDesc } from "date-fns";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -30,9 +31,13 @@ const PostsPage = () => {
       </Title>
       <p>These are all of your posts</p>
       <Stack>
-        {posts.data?.map((p) => (
-          <PostDisplay post={p} key={p.id} />
-        ))}
+        {posts.data
+          ?.sort((a, b) =>
+            compareDesc(new Date(a.createdAt), new Date(b.createdAt))
+          )
+          .map((p) => (
+            <PostDisplay post={p} key={p.id} />
+          ))}
       </Stack>
       <CreatePostButton refetch={posts.refetch} />
     </Stack>

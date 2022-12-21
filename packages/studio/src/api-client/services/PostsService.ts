@@ -15,7 +15,7 @@ export class PostsService {
         id: number;
         slug: string;
         createdAt: string;
-        updatedAt?: string;
+        updatedAt: string;
         content?: string;
     }>> {
         return __request(OpenAPI, {
@@ -35,7 +35,7 @@ export class PostsService {
         id: number;
         slug: string;
         createdAt: string;
-        updatedAt?: string;
+        updatedAt: string;
         content?: string;
     }> {
         return __request(OpenAPI, {
@@ -62,7 +62,7 @@ export class PostsService {
         id: number;
         slug: string;
         createdAt: string;
-        updatedAt?: string;
+        updatedAt: string;
         content?: string;
     }> {
         return __request(OpenAPI, {
@@ -87,7 +87,7 @@ export class PostsService {
         id: number;
         slug: string;
         createdAt: string;
-        updatedAt?: string;
+        updatedAt: string;
         content?: string;
     }> {
         return __request(OpenAPI, {
@@ -109,7 +109,7 @@ export class PostsService {
         id: number;
         slug: string;
         createdAt: string;
-        updatedAt?: string;
+        updatedAt: string;
         content?: string;
     }> {
         return __request(OpenAPI, {

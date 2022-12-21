@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { formatDistance, format } from "date-fns";
 import { Badge } from "@manuscript/lib";
+import { format, formatDistance } from "date-fns";
+import { atom, useAtom } from "jotai";
+import React from "react";
 
 interface IDateCyclerProps {
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
 }
 
 enum IDateCyclerStage {
@@ -19,11 +20,11 @@ const stages = [
   IDateCyclerStage.Relative,
 ];
 
+const dateCyclerAtom = atom<IDateCyclerStage>(IDateCyclerStage.Created);
+
 const DateCycler = (props: IDateCyclerProps) => {
   const { createdAt, updatedAt } = props;
-  const [currentStage, setCurrentStage] = useState<IDateCyclerStage>(
-    IDateCyclerStage.Created
-  );
+  const [currentStage, setCurrentStage] = useAtom(dateCyclerAtom);
 
   const onClick = () => {
     setCurrentStage((prev) => {
@@ -47,10 +48,7 @@ const DateCycler = (props: IDateCyclerProps) => {
   if (currentStage === IDateCyclerStage.Updated) {
     return (
       <Badge onClick={onClick}>
-        Updated:{" "}
-        {updatedAt
-          ? format(new Date(updatedAt), "MM/dd/yyyy")
-          : format(new Date(createdAt), "MM/dd/yyyy")}
+        Updated: {format(new Date(updatedAt), "MM/dd/yyyy")}
       </Badge>
     );
   }
