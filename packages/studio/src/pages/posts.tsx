@@ -1,14 +1,21 @@
 import {
   Box,
   Title,
+  Text,
   showNotification,
   updateNotification,
   Button,
   IconCheck,
+  Stack,
+  Affix,
+  Card,
+  Badge,
+  Group,
 } from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import * as ManuscriptApi from "../api-client";
+import DateCycler from "../components/date-cycler";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -16,24 +23,54 @@ const PostsPage = () => {
     queryFn: () => ManuscriptApi.PostsService.queryPostsFindMany(),
   });
 
+  return (
+    <Stack sx={{ gap: "sm", padding: "sm" }}>
+      <Title order={1} m={0}>
+        Posts
+      </Title>
+      <p>These are all of your posts</p>
+      <Stack>
+        {posts.data?.map((p) => (
+          <PostDisplay post={p} key={p.id} />
+        ))}
+      </Stack>
+      <CreatePostButton refetch={posts.refetch} />
+    </Stack>
+  );
+};
+
+interface IPostDisplayProps {
+  post: Awaited<
+    ReturnType<typeof ManuscriptApi.PostsService.queryPostsFindMany>
+  >[number];
+}
+const PostDisplay = (props: IPostDisplayProps) => {
+  const { post } = props;
+  return (
+    <Card shadow="sm" p="lg" radius="md" withBorder>
+      <Group>
+        <Badge>{post.slug}</Badge>
+        <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
+      </Group>
+      {JSON.stringify(post)}
+    </Card>
+  );
+};
+
+export default PostsPage;
+
+interface ICreatePostButtonProps {
+  refetch: () => Promise<any>;
+}
+
+export const CreatePostButton = (props: ICreatePostButtonProps) => {
+  const { refetch } = props;
   const postCreate = useMutation({
     mutationFn: ManuscriptApi.PostsService.mutationPostsCreate,
   });
 
   return (
-    <Box
-      sx={(t) => ({
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        gap: t.spacing.sm,
-        padding: t.spacing.sm,
-      })}
-    >
-      <Title order={1} m={0}>
-        Posts
-      </Title>
-      <p>These are all of your posts</p>
+    <Affix position={{ bottom: 20, right: 20 }}>
       <Button
         onClick={() => {
           showNotification({
@@ -50,7 +87,7 @@ const PostsPage = () => {
             },
             {
               onSuccess: async () => {
-                await posts.refetch();
+                await refetch();
                 updateNotification({
                   id: "create-post",
                   title: "Created post",
@@ -64,35 +101,8 @@ const PostsPage = () => {
           );
         }}
       >
-        Create new post
+        Create new
       </Button>
-      {posts.data?.map((p) => (
-        <PostDisplay post={p} key={p.id} />
-      ))}
-    </Box>
+    </Affix>
   );
 };
-
-interface IPostDisplayProps {
-  post: Awaited<
-    ReturnType<typeof ManuscriptApi.PostsService.queryPostsFindMany>
-  >[number];
-}
-const PostDisplay = (props: IPostDisplayProps) => {
-  const { post } = props;
-  return (
-    <Box
-      sx={(t) => ({
-        padding: t.spacing.sm,
-        borderRadius: t.radius.sm,
-        backgroundColor: t.colors.blue[6],
-      })}
-    >
-      {/* slug */}
-      <div>{post.slug}</div>
-      {JSON.stringify(post)}
-    </Box>
-  );
-};
-
-export default PostsPage;

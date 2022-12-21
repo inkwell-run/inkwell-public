@@ -113,6 +113,7 @@ importers:
       '@tanstack/react-router': 0.0.1-beta.28
       '@types/node': 18.0.0
       '@types/react': 18.0.14
+      date-fns: ^2.29.3
       esbuild-css-modules-plugin: ^2.6.2
       gray-matter: ^4.0.3
       jotai: ^1.11.0
@@ -129,6 +130,7 @@ importers:
       '@markdoc/markdoc': 0.1.13_@types+react@18.0.14
       '@tanstack/react-query': 4.19.1_react@18.2.0
       '@tanstack/react-router': 0.0.1-beta.28_react@18.2.0
+      date-fns: 2.29.3
       gray-matter: 4.0.3
       jotai: 1.11.1_react@18.2.0
       react: 18.2.0
@@ -3150,6 +3152,11 @@ packages:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
     dev: true
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}

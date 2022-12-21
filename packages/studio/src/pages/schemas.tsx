@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import React from "react";
 import { ISchema } from "./_app";
 import { GlobalStateAtom } from "../lib/store";
-import { Stack } from "@manuscript/lib";
+import { Stack, Title } from "@manuscript/lib";
 
 const SchemasPage = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
@@ -10,7 +10,9 @@ const SchemasPage = () => {
 
   return (
     <Stack sx={{ gap: "sm", padding: "sm" }}>
-      <h1 className="text-lg">Schemas</h1>
+      <Title order={1} m={0}>
+        Schemas
+      </Title>
       <p>These are all the schemas you have defined</p>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {schemas.map((s, i) => {

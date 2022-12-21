@@ -50,7 +50,7 @@ const ConnectionStatus = () => {
   });
 
   return (
-    <Alert title="Connected to:" color="lime">
+    <Alert title="Connected to:" color="lime" radius="md">
       {organization.data?.clerkOrganizationName ?? <>&nbsp;</>}
     </Alert>
   );

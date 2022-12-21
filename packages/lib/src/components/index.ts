@@ -1,12 +1,27 @@
-export * from "./ui-provider";
-export * from "./title";
-export * from "./box";
-export * from "./notification";
-export * from "./button";
-export * from "./icons";
+export {
+  Affix,
+  Alert,
+  Badge,
+  Box,
+  Button,
+  Card,
+  Center,
+  Flex,
+  Group,
+  Loader,
+  Navbar,
+  NavLink,
+  Notification,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
+export { showNotification, updateNotification } from "@mantine/notifications";
+export {
+  IconAlertCircle,
+  IconCheck,
+  IconInfoCircle,
+  IconX,
+} from "@tabler/icons";
 export * from "./shell";
-export * from "./navbar";
-export * from "./loader";
-export * from "./alert";
-export * from "./center";
-export * from "./layout";
+export * from "./ui-provider";
