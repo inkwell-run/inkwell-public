@@ -1,22 +1,22 @@
 import {
-  Box,
-  Title,
-  Text,
-  showNotification,
-  updateNotification,
-  Button,
-  IconCheck,
-  Stack,
   Affix,
-  Card,
   Badge,
+  Button,
+  Card,
   Group,
+  IconCheck,
+  showNotification,
+  Stack,
+  Title,
+  updateNotification,
 } from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React from "react";
-import * as ManuscriptApi from "../api-client";
-import DateCycler from "../components/date-cycler";
+import { Link } from "@tanstack/react-router";
 import { compareDesc } from "date-fns";
+import React from "react";
+import * as ManuscriptApi from "../../api-client";
+import DateCycler from "../../components/date-cycler";
+import { rootRoute } from "../root";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -52,13 +52,20 @@ interface IPostDisplayProps {
 const PostDisplay = (props: IPostDisplayProps) => {
   const { post } = props;
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Group>
-        <Badge>{post.slug}</Badge>
-        <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
-      </Group>
-      {JSON.stringify(post)}
-    </Card>
+    <Link
+      to="/posts/$slug"
+      params={{
+        slug: "hello",
+      }}
+    >
+      <Card shadow="sm" p="lg" radius="md" withBorder>
+        <Group>
+          <Badge>{post.slug}</Badge>
+          <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
+        </Group>
+        {JSON.stringify(post)}
+      </Card>
+    </Link>
   );
 };
 

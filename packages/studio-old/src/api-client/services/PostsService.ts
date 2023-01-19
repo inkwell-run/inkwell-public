@@ -57,6 +57,7 @@ export class PostsService {
             id: number;
             slug?: string;
             content?: string;
+            schema?: string;
         },
     ): CancelablePromise<{
         id: number;
