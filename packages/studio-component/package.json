@@ -26,29 +26,29 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "18.0.0",
-    "@types/react": "18.0.14",
+    "@types/node": "18.13.0",
+    "@types/react": "18.0.28",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
-    "rimraf": "^3.0.2",
-    "tailwindcss": "^3.2.4",
+    "rimraf": "^4.1.2",
+    "tailwindcss": "^3.2.7",
     "tailwindcss-animate": "^1.0.5",
-    "tsup": "^6.2.3",
-    "typescript": "4.7.4",
-    "wait-on": "^6.0.1",
+    "tsup": "^6.6.3",
+    "typescript": "4.9.5",
+    "wait-on": "^7.0.1",
     "zx": "^7.1.1"
   },
   "dependencies": {
     "@manuscript/api-client": "workspace:*",
     "@manuscript/lib": "workspace:*",
-    "@markdoc/markdoc": "^0.1.6",
-    "@tanstack/react-query": "^4.20.4",
+    "@markdoc/markdoc": "^0.2.2",
+    "@tanstack/react-query": "^4.24.6",
     "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
-    "jotai": "^1.11.0",
+    "jotai": "^2.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.8.1",
-    "zod": "^3.19.1"
+    "zod": "^3.20.6"
   }
 }
