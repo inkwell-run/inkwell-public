@@ -23,7 +23,7 @@ export const ConnectionStatus = () => {
     <Button variant="outline" className="flex items-center gap-4">
       {organization.isLoading ? (
         <>
-          <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
+          <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping" />
           <span>Connecting...</span>
         </>
       ) : (

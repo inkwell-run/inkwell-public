@@ -1,9 +1,9 @@
-import { useSetAtom } from "jotai";
-import React, { useEffect } from "react";
 import * as ManuscriptApi from "@manuscript/api-client";
-import { GlobalStateAtom } from "../lib/store";
-import { IconAlertCircle, Alert, Loader, Box, Center } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
+import { useSetAtom } from "jotai";
+import { AlertCircle } from "lucide-react";
+import React, { useEffect } from "react";
+import { GlobalStateAtom } from "../lib/store";
 
 interface IAuthProviderProps {
   accessToken: string;
@@ -42,33 +42,26 @@ const AuthProvider = (props: IAuthProviderProps) => {
   // if loading, show a skeleton
   if (accessTokenQuery.isLoading) {
     return (
-      <Center h="100vh">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Loader />
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
           <p>Authenticating...</p>
-        </Box>
-      </Center>
+        </div>
+      </div>
     );
   }
 
   if (accessToken === "" || !accessTokenQuery.data?.organizationId) {
     return (
-      <Center h="100vh">
-        <Alert
-          icon={<IconAlertCircle size={16} />}
-          title="Invalid access token"
-          color="red"
-        >
-          Seems like you don't have a valid access token. Please go to the
-          Manuscript dashboard to get one!
-        </Alert>
-      </Center>
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <AlertCircle className="w-8 h-8 text-red-400" />
+          <p>
+            Seems like you don't have a valid access token. Please go to the
+            Manuscript dashboard to get one!
+          </p>
+        </div>
+      </div>
     );
   }
 
