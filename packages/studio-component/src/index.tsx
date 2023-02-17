@@ -1,14 +1,20 @@
-import "./styles/globals.css";
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
+import { Root } from "./pages/root";
+import { Schemas } from "./pages/schemas/schemas";
+import "./styles/globals.css";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root />,
+    children: [
+      {
+        path: "schemas",
+        element: <Schemas />,
+      },
+    ],
   },
 ]);
 
-const ManuscriptStudio = <RouterProvider router={router} />;
-
-export default { ManuscriptStudio };
+export const ManuscriptStudio = <RouterProvider router={router} />;

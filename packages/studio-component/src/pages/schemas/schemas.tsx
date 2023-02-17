@@ -4,7 +4,7 @@ import { ISchema } from "../_app";
 import { GlobalStateAtom } from "../../lib/store";
 import { Stack, Title } from "@manuscript/lib";
 
-const SchemasPage = () => {
+export const Schemas = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
   const { schemas } = baseProps;
 
@@ -43,5 +43,3 @@ const SchemaDisplay = (props: ISchemaDisplayProps) => {
     </div>
   );
 };
-
-export default SchemasPage;
