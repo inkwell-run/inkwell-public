@@ -1,13 +1,12 @@
-import { Shell, UIProvider } from "@manuscript/lib";
+import * as ManuscriptApi from "@manuscript/api-client";
+import { UIProvider } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React from "react";
-import * as ManuscriptApi from "@manuscript/api-client";
-import AuthProvider from "../components/auth-provider";
-import Header from "../components/header";
-import Sidebar from "../components/sidebar";
-import { GlobalStateAtom } from "../lib/store";
 import { Outlet } from "react-router-dom";
+import AuthProvider from "../components/auth-provider";
+import Navigation from "../components/navigation";
+import { GlobalStateAtom } from "../lib/store";
 
 ManuscriptApi.OpenAPI.BASE = "http://localhost:3001/api";
 
@@ -21,9 +20,14 @@ export const Root = () => {
     <QueryClientProvider client={queryClient}>
       <UIProvider _themeOverride={_themeOverride}>
         <AuthProvider accessToken={accessToken}>
-          <Shell navbar={<Sidebar />} header={<Header />}>
-            <Outlet />
-          </Shell>
+          <div className="flex flex-col h-full">
+            <Navigation />
+            <div className="p-4 md:p-8">
+              <Outlet />
+            </div>
+          </div>
+          {/* <Shell navbar={<Sidebar />} header={<Header />}> */}
+          {/* </Shell> */}
         </AuthProvider>
       </UIProvider>
     </QueryClientProvider>

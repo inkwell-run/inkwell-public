@@ -1,5 +1,7 @@
-import React from "react";
+import { useSetAtom } from "jotai";
+import React, { useEffect } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+import { GlobalStateAtom } from "./lib/store";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";
 import { IManuscriptStudioProps } from "./pages/_app";
@@ -19,5 +21,13 @@ const router = createHashRouter([
 ]);
 
 export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
+  const setGlobalState = useSetAtom(GlobalStateAtom);
+  useEffect(() => {
+    setGlobalState((prev) => ({
+      ...prev,
+      baseProps: props,
+    }));
+  }, [props]);
+
   return <RouterProvider router={router} />;
 };
