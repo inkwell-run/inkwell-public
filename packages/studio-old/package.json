@@ -18,7 +18,6 @@
   },
   "scripts": {
     "build": "pnpm codegen-prod && pnpm transpile",
-    "dev": "pnpm codegen-dev && pnpm transpile --watch src",
     "transpile": "tsup --config tsup.config.ts",
     "codegen-dev": "wait-on http://localhost:3001/api/openapi.json && rimraf ./src/api-client && openapi --input http://localhost:3001/api/openapi.json --output ./src/api-client",
     "codegen-prod": "wait-on https://dashboard.manuscriptcms.com/api/openapi.json && rimraf ./src/api-client && openapi --input https://dashboard.manuscriptcms.com/api/openapi.json --output ./src/api-client"
