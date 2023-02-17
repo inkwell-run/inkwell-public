@@ -1,4 +1,3 @@
-import cssModulesPlugin from "esbuild-css-modules-plugin";
 import { defineConfig } from "tsup";
 
 export default defineConfig({
