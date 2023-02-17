@@ -1,6 +1,6 @@
 import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
-import * as ManuscriptApi from "../api-client";
+import * as ManuscriptApi from "@manuscript/api-client";
 import { GlobalStateAtom } from "../lib/store";
 import { IconAlertCircle, Alert, Loader, Box, Center } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";

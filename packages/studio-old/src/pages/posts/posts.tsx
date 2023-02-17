@@ -14,7 +14,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { compareDesc } from "date-fns";
 import React from "react";
-import * as ManuscriptApi from "../../api-client";
+import * as ManuscriptApi from "@manuscript/api-client";
 import DateCycler from "../../components/date-cycler";
 import { rootRoute } from "../root";
 

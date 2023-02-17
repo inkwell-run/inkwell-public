@@ -2,7 +2,7 @@ import { Alert, Navbar, NavLink, Stack } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import React from "react";
-import * as ManuscriptApi from "../api-client";
+import * as ManuscriptApi from "@manuscript/api-client";
 import { postsRoute } from "../pages/posts/_routes";
 import { schemasRoute } from "../pages/schemas/_routes";
 

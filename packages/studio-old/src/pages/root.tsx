@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouteConfig, Outlet } from "@tanstack/react-router";
 import { useAtomValue } from "jotai";
 import React from "react";
-import * as ManuscriptApi from "../api-client";
+import * as ManuscriptApi from "@manuscript/api-client";
 import AuthProvider from "../components/auth-provider";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";

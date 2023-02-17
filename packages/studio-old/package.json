@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@manuscript/lib": "workspace:*",
+    "@manuscript/api-client": "workspace:*",
     "@markdoc/markdoc": "^0.1.6",
     "@tanstack/react-query": "^4.20.4",
     "@tanstack/react-router": "0.0.1-beta.52",
