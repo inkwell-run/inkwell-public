@@ -1,21 +1,14 @@
+import * as ManuscriptApi from "@manuscript/api-client";
 import { Alert, Navbar, NavLink, Stack } from "@manuscript/lib";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
 import React from "react";
-import * as ManuscriptApi from "@manuscript/api-client";
-import { postsRoute } from "../pages/posts/_routes";
-import { schemasRoute } from "../pages/schemas/_routes";
 
 const Sidebar = () => {
   return (
     <Stack justify="space-between" h="100%">
       <Navbar.Section>
-        <Link to={postsRoute.fullPath} style={{ all: "unset" }}>
-          <NavLink label="Posts" />
-        </Link>
-        <Link to={schemasRoute.fullPath} style={{ all: "unset" }}>
-          <NavLink label="Schemas" />
-        </Link>
+        <NavLink label="Posts" />
+        <NavLink label="Schemas" />
       </Navbar.Section>
       <Navbar.Section>
         <ConnectionStatus />

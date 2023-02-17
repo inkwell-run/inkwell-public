@@ -1,3 +1,4 @@
+import * as ManuscriptApi from "@manuscript/api-client";
 import {
   Affix,
   Badge,
@@ -11,12 +12,9 @@ import {
   updateNotification,
 } from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
 import { compareDesc } from "date-fns";
 import React from "react";
-import * as ManuscriptApi from "@manuscript/api-client";
 import DateCycler from "../../components/date-cycler";
-import { rootRoute } from "../root";
 
 const PostsPage = () => {
   const posts = useQuery({
@@ -52,11 +50,11 @@ interface IPostDisplayProps {
 const PostDisplay = (props: IPostDisplayProps) => {
   const { post } = props;
   return (
-    <Link
-      to="/posts/$slug"
-      params={{
-        slug: "hello",
-      }}
+    <a
+      href="/posts/$slug"
+      // params={{
+      //   slug: "hello",
+      // }}
     >
       <Card shadow="sm" p="lg" radius="md" withBorder>
         <Group>
@@ -65,7 +63,7 @@ const PostDisplay = (props: IPostDisplayProps) => {
         </Group>
         {JSON.stringify(post)}
       </Card>
-    </Link>
+    </a>
   );
 };
 

@@ -1,6 +1,5 @@
 import { Shell, UIProvider } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createRouteConfig, Outlet } from "@tanstack/react-router";
 import { useAtomValue } from "jotai";
 import React from "react";
 import * as ManuscriptApi from "@manuscript/api-client";
@@ -22,14 +21,10 @@ export const RootRouteComponent = () => {
       <UIProvider _themeOverride={_themeOverride}>
         <AuthProvider accessToken={accessToken}>
           <Shell navbar={<Sidebar />} header={<Header />}>
-            <Outlet />
+            {/* outlet */}
           </Shell>
         </AuthProvider>
       </UIProvider>
     </QueryClientProvider>
   );
 };
-
-export const rootRoute = createRouteConfig({
-  component: RootRouteComponent,
-});
