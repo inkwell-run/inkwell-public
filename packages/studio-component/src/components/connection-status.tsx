@@ -2,6 +2,7 @@ import { Button } from "@doom.sh/ui";
 import * as ManuscriptApi from "@manuscript/api-client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Loader2 } from "lucide-react";
 
 export const ConnectionStatus = () => {
   const accessToken = useQuery({
@@ -19,8 +20,18 @@ export const ConnectionStatus = () => {
   });
 
   return (
-    <Button variant="outline" className="font-medium">
-      Connected to {organization.data?.clerkOrganizationName}
+    <Button variant="outline" className="flex items-center gap-4">
+      {organization.isLoading ? (
+        <>
+          <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
+          <span>Connecting...</span>
+        </>
+      ) : (
+        <>
+          <div className="w-2 h-2 bg-green-400 rounded-full" />
+          <span>Connected to {organization.data?.clerkOrganizationName}</span>
+        </>
+      )}
     </Button>
   );
 };

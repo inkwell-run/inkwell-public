@@ -1,5 +1,4 @@
 import * as ManuscriptApi from "@manuscript/api-client";
-import { UIProvider } from "@manuscript/lib";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React from "react";
@@ -18,18 +17,14 @@ export const Root = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <UIProvider _themeOverride={_themeOverride}>
-        <AuthProvider accessToken={accessToken}>
-          <div className="flex flex-col h-full">
-            <Navigation />
-            <div className="p-4 md:p-8">
-              <Outlet />
-            </div>
+      <AuthProvider accessToken={accessToken}>
+        <div className="flex flex-col h-full">
+          <Navigation />
+          <div className="p-4 md:p-8">
+            <Outlet />
           </div>
-          {/* <Shell navbar={<Sidebar />} header={<Header />}> */}
-          {/* </Shell> */}
-        </AuthProvider>
-      </UIProvider>
+        </div>
+      </AuthProvider>
     </QueryClientProvider>
   );
 };
