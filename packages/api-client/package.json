@@ -1,0 +1,32 @@
+{
+  "name": "@manuscript/api-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "pnpm codegen-prod && pnpm transpile",
+    "transpile": "tsup --config tsup.config.ts",
+    "codegen-dev": "wait-on http://localhost:3001/api/openapi.json && rimraf ./src/api-client && openapi --input http://localhost:3001/api/openapi.json --output ./src",
+    "codegen-prod": "wait-on https://dashboard.manuscriptcms.com/api/openapi.json && rimraf ./src/api-client && openapi --input https://dashboard.manuscriptcms.com/api/openapi.json --output ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.23.0",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.2.3",
+    "typescript": "^4.9.5",
+    "wait-on": "^6.0.1",
+    "zx": "^7.1.1"
+  }
+}
