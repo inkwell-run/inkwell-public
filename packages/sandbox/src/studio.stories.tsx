@@ -32,7 +32,3 @@ export const Studio: Story<{}> = ({}) => {
     />
   );
 };
-
-Studio.meta = {
-  iframed: true,
-};

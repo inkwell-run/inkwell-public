@@ -2,6 +2,7 @@ import React from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";
+import { IManuscriptStudioProps } from "./pages/_app";
 import "./styles/globals.css";
 
 const router = createHashRouter([
@@ -17,4 +18,6 @@ const router = createHashRouter([
   },
 ]);
 
-export const ManuscriptStudio = <RouterProvider router={router} />;
+export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
+  return <RouterProvider router={router} />;
+};
