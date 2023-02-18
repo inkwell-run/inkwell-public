@@ -2,24 +2,21 @@ import { useAtomValue } from "jotai";
 import React from "react";
 import { ISchema } from "../_app";
 import { GlobalStateAtom } from "../../lib/store";
-import { Stack, Title } from "@manuscript/lib";
 
 export const Schemas = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
   const { schemas } = baseProps;
 
   return (
-    <Stack sx={{ gap: "sm", padding: "sm" }}>
-      <Title order={1} m={0}>
-        Schemas
-      </Title>
+    <div className="flex flex-col gap-4">
+      <div className="text-lg font-medium">Schemas</div>
       <p>These are all the schemas you have defined</p>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {schemas.map((s, i) => {
           return <SchemaDisplay schema={s} key={`${i}-${s.name}`} />;
         })}
       </div>
-    </Stack>
+    </div>
   );
 };
 

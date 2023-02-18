@@ -16,7 +16,7 @@ import { compareDesc } from "date-fns";
 import React from "react";
 import DateCycler from "../../components/date-cycler";
 
-const PostsPage = () => {
+export const Posts = () => {
   const posts = useQuery({
     queryKey: ["posts"],
     queryFn: () => ManuscriptApi.PostsService.queryPostsFindMany(),
@@ -66,8 +66,6 @@ const PostDisplay = (props: IPostDisplayProps) => {
     </a>
   );
 };
-
-export default PostsPage;
 
 interface ICreatePostButtonProps {
   refetch: () => Promise<any>;

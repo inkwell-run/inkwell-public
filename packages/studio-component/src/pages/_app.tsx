@@ -1,4 +1,3 @@
-import { ITheme } from "@manuscript/lib";
 import { AnyZodObject } from "zod";
 
 export interface ISchema {
@@ -9,5 +8,5 @@ export interface ISchema {
 export interface IManuscriptStudioProps {
   accessToken: string;
   schemas: ISchema[];
-  _themeOverride?: ITheme;
+  _themeOverride?: "light" | "dark";
 }
