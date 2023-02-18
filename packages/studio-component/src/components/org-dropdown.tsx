@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { ConnectionStatus } from "./connection-status";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, MessageCircle } from "lucide-react";
 export const OrgDropdown = () => {
   return (
     <DropdownMenu>
@@ -17,10 +17,16 @@ export const OrgDropdown = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 my-2" align="end">
         <DropdownMenuGroup>
-          <Link to="https://dashboard.manuscriptcms.com">
+          <Link to="https://dashboard.manuscriptcms.com" target={"_blank"}>
             <DropdownMenuItem>
               <ExternalLink className="w-4 h-4 mr-2" />
               <div>Go to dashboard</div>
+            </DropdownMenuItem>
+          </Link>
+          <Link to="https://feedback.manuscriptcms.com" target={"_blank"}>
+            <DropdownMenuItem>
+              <MessageCircle className="w-4 h-4 mr-2" />
+              <div>Submit feedback</div>
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>

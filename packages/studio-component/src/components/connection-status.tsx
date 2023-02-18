@@ -2,7 +2,7 @@ import { Button } from "@doom.sh/ui";
 import * as ManuscriptApi from "@manuscript/api-client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Loader2 } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 
 export const ConnectionStatus = () => {
   const accessToken = useQuery({
@@ -32,6 +32,7 @@ export const ConnectionStatus = () => {
           <span>Connected to {organization.data?.clerkOrganizationName}</span>
         </>
       )}
+      <ChevronsUpDown className="w-4 h-4" />
     </Button>
   );
 };

@@ -7,8 +7,6 @@ import {
   Group,
   IconCheck,
   showNotification,
-  Stack,
-  Title,
   updateNotification,
 } from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -23,12 +21,10 @@ export const Posts = () => {
   });
 
   return (
-    <Stack sx={{ gap: "sm", padding: "sm" }}>
-      <Title order={1} m={0}>
-        Posts
-      </Title>
+    <div className="flex flex-col gap-4">
+      <div className="text-lg font-medium">Posts</div>
       <p>These are all of your posts</p>
-      <Stack>
+      <div className="flex flex-col gap-4">
         {posts.data
           ?.sort((a, b) =>
             compareDesc(new Date(a.createdAt), new Date(b.createdAt))
@@ -36,9 +32,9 @@ export const Posts = () => {
           .map((p) => (
             <PostDisplay post={p} key={p.id} />
           ))}
-      </Stack>
+      </div>
       <CreatePostButton refetch={posts.refetch} />
-    </Stack>
+    </div>
   );
 };
 
