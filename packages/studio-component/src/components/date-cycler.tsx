@@ -1,4 +1,3 @@
-import { Badge } from "@manuscript/lib";
 import { format, formatDistance } from "date-fns";
 import { atom, useAtom } from "jotai";
 import React from "react";
@@ -39,25 +38,25 @@ const DateCycler = (props: IDateCyclerProps) => {
 
   if (currentStage === IDateCyclerStage.Created) {
     return (
-      <Badge onClick={onClick}>
+      <div onClick={onClick}>
         Created: {format(new Date(createdAt), "MM/dd/yyyy")}
-      </Badge>
+      </div>
     );
   }
 
   if (currentStage === IDateCyclerStage.Updated) {
     return (
-      <Badge onClick={onClick}>
+      <div onClick={onClick}>
         Updated: {format(new Date(updatedAt), "MM/dd/yyyy")}
-      </Badge>
+      </div>
     );
   }
 
   if (currentStage === IDateCyclerStage.Relative) {
     return (
-      <Badge onClick={onClick}>
+      <div onClick={onClick}>
         {formatDistance(new Date(createdAt), new Date(), { addSuffix: true })}
-      </Badge>
+      </div>
     );
   }
 

@@ -1,14 +1,5 @@
+import { toast, Button } from "@doom.sh/ui";
 import * as ManuscriptApi from "@manuscript/api-client";
-import {
-  Affix,
-  Badge,
-  Button,
-  Card,
-  Group,
-  IconCheck,
-  showNotification,
-  updateNotification,
-} from "@manuscript/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import React from "react";
@@ -52,13 +43,11 @@ const PostDisplay = (props: IPostDisplayProps) => {
       //   slug: "hello",
       // }}
     >
-      <Card shadow="sm" p="lg" radius="md" withBorder>
-        <Group>
-          <Badge>{post.slug}</Badge>
-          <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
-        </Group>
+      <div className="p-4 border rounded-md shadow-sm">
+        <div>{post.slug}</div>
+        <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
         {JSON.stringify(post)}
-      </Card>
+      </div>
     </a>
   );
 };
@@ -74,16 +63,10 @@ export const CreatePostButton = (props: ICreatePostButtonProps) => {
   });
 
   return (
-    <Affix position={{ bottom: 20, right: 20 }}>
+    <div className="fixed bottom-4 right-4">
       <Button
         onClick={() => {
-          showNotification({
-            id: "create-post",
-            title: "Creating post",
-            message: "Hang tight...",
-            loading: true,
-            autoClose: false,
-          });
+          const loadingToast = toast.loading("Creating post");
           postCreate.mutate(
             {
               slug: "ewfer",
@@ -92,13 +75,8 @@ export const CreatePostButton = (props: ICreatePostButtonProps) => {
             {
               onSuccess: async () => {
                 await refetch();
-                updateNotification({
-                  id: "create-post",
-                  title: "Created post",
-                  message: "Your post has been created successfully.",
-                  loading: false,
-                  icon: <IconCheck />,
-                  autoClose: 2000,
+                toast.success("Created post", {
+                  id: loadingToast,
                 });
               },
             }
@@ -107,6 +85,6 @@ export const CreatePostButton = (props: ICreatePostButtonProps) => {
       >
         Create new
       </Button>
-    </Affix>
+    </div>
   );
 };

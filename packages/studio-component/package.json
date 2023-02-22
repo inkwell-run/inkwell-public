@@ -26,7 +26,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "18.13.0",
+    "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
@@ -39,11 +39,10 @@
     "zx": "^7.1.1"
   },
   "dependencies": {
-    "@doom.sh/ui": "^1.0.9",
+    "@doom.sh/ui": "^1.0.10",
     "@manuscript/api-client": "workspace:*",
-    "@manuscript/lib": "workspace:*",
     "@markdoc/markdoc": "^0.2.2",
-    "@tanstack/react-query": "^4.24.6",
+    "@tanstack/react-query": "^4.24.10",
     "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
     "jotai": "^2.0.2",

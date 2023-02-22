@@ -1,3 +1,4 @@
+import { Toaster, toast } from "@doom.sh/ui";
 import * as ManuscriptApi from "@manuscript/api-client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
@@ -24,6 +25,7 @@ export const Root = () => {
             <Outlet />
           </div>
         </div>
+        <Toaster position="bottom-right" />
       </AuthProvider>
     </QueryClientProvider>
   );
