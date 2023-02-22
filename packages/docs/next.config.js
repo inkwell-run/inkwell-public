@@ -1,8 +1,8 @@
-export const isDev = () => {
+const isDev = () => {
   return process.env.NODE_ENV === "development";
 };
 
-export const getApiUrl = () => {
+const getApiUrl = () => {
   if (isDev()) {
     return "http://localhost:3001/api";
   } else {
@@ -10,7 +10,7 @@ export const getApiUrl = () => {
   }
 };
 
-export const getOpenApiUrl = () => {
+const getOpenApiUrl = () => {
   return `${getApiUrl()}/openapi.json`;
 };
 
