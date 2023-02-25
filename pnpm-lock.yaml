@@ -53,8 +53,8 @@ importers:
 
   packages/sandbox:
     specifiers:
+      '@inkwell/studio': workspace:*
       '@ladle/react': ^2.4.5
-      '@manuscript/studio': workspace:*
       '@types/react': 18.0.14
       autoprefixer: ^10.4.13
       postcss: ^8.4.19
@@ -64,7 +64,7 @@ importers:
       vite: ^3.2.5
       zod: ^3.19.1
     dependencies:
-      '@manuscript/studio': link:../studio-component
+      '@inkwell/studio': link:../studio-component
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       zod: 3.19.1
@@ -79,7 +79,7 @@ importers:
   packages/studio-component:
     specifiers:
       '@doom.sh/ui': ^1.0.10
-      '@manuscript/api-client': workspace:*
+      '@inkwell/api-client': workspace:*
       '@markdoc/markdoc': ^0.2.2
       '@tailwindcss/forms': ^0.5.3
       '@tailwindcss/typography': ^0.5.9
@@ -105,7 +105,7 @@ importers:
       zx: ^7.1.1
     dependencies:
       '@doom.sh/ui': 1.0.10_6lr6pdde5jmvqljgzpiv3qv7qm
-      '@manuscript/api-client': link:../api-client
+      '@inkwell/api-client': link:../api-client
       '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       date-fns: 2.29.3
