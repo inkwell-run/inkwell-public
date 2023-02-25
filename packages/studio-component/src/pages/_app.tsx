@@ -5,7 +5,7 @@ export interface ISchema {
   validator: AnyZodObject;
 }
 
-export interface IManuscriptStudioProps {
+export interface IInkwellStudioProps {
   accessToken: string;
   schemas: ISchema[];
   _themeOverride?: "light" | "dark";

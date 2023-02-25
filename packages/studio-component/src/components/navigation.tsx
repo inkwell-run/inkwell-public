@@ -39,7 +39,7 @@ const Navigation = () => {
       <div className="flex flex-wrap-reverse items-center justify-between gap-6">
         {/* left */}
         <div className="flex items-center gap-4">
-          <div className="font-semibold">Manuscript</div>
+          <div className="font-semibold">Inkwell</div>
           <NavigationMenu className="flex-initial">
             <NavigationMenuList className="gap-4">
               {links.map((l) => {

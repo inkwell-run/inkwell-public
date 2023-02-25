@@ -5,7 +5,7 @@ import { GlobalStateAtom } from "./lib/store";
 import { Posts } from "./pages/posts/posts";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";
-import { IManuscriptStudioProps } from "./pages/_app";
+import { IInkwellStudioProps } from "./pages/_app";
 import "./styles/globals.css";
 
 const router = createHashRouter([
@@ -25,7 +25,7 @@ const router = createHashRouter([
   },
 ]);
 
-export const ManuscriptStudio = (props: IManuscriptStudioProps) => {
+export const InkwellStudio = (props: IInkwellStudioProps) => {
   const setGlobalState = useSetAtom(GlobalStateAtom);
   useEffect(() => {
     setGlobalState((prev) => ({

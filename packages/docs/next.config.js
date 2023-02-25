@@ -6,7 +6,7 @@ const getApiUrl = () => {
   if (isDev()) {
     return "http://localhost:3001/api";
   } else {
-    return "https://dashboard.manuscriptcms.com/api";
+    return "https://app.inkwell.run/api";
   }
 };
 

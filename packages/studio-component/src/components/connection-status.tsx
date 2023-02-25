@@ -1,5 +1,5 @@
 import { Button } from "@doom.sh/ui";
-import * as ManuscriptApi from "@manuscript/api-client";
+import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { ChevronsUpDown } from "lucide-react";
@@ -7,13 +7,13 @@ import { ChevronsUpDown } from "lucide-react";
 export const ConnectionStatus = () => {
   const accessToken = useQuery({
     queryKey: ["access-token"],
-    queryFn: ManuscriptApi.AccessTokensService.queryAccessTokensTest,
+    queryFn: InkwellApi.AccessTokensService.queryAccessTokensTest,
   });
 
   const organization = useQuery({
     queryKey: ["organization", accessToken.data?.organizationId!],
     queryFn: () =>
-      ManuscriptApi.OrganizationsService.queryOrganizationsFindUnique(
+      InkwellApi.OrganizationsService.queryOrganizationsFindUnique(
         accessToken.data?.organizationId!
       ),
     enabled: !!accessToken.data?.organizationId,

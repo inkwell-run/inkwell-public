@@ -1,5 +1,5 @@
-import { Toaster, toast } from "@doom.sh/ui";
-import * as ManuscriptApi from "@manuscript/api-client";
+import { Toaster } from "@doom.sh/ui";
+import * as InkwellApi from "@inkwell/api-client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React from "react";
@@ -8,7 +8,7 @@ import AuthProvider from "../components/auth-provider";
 import Navigation from "../components/navigation";
 import { GlobalStateAtom } from "../lib/store";
 
-ManuscriptApi.OpenAPI.BASE = "http://localhost:3001/api";
+InkwellApi.OpenAPI.BASE = "http://localhost:3001/api";
 
 const queryClient = new QueryClient();
 

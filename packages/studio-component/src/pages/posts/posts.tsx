@@ -1,5 +1,5 @@
 import { toast, Button } from "@doom.sh/ui";
-import * as ManuscriptApi from "@manuscript/api-client";
+import * as InkwellApi from "@inkwell/api-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import React from "react";
@@ -8,7 +8,7 @@ import DateCycler from "../../components/date-cycler";
 export const Posts = () => {
   const posts = useQuery({
     queryKey: ["posts"],
-    queryFn: () => ManuscriptApi.PostsService.queryPostsFindMany(),
+    queryFn: () => InkwellApi.PostsService.queryPostsFindMany(),
   });
 
   return (
@@ -31,7 +31,7 @@ export const Posts = () => {
 
 interface IPostDisplayProps {
   post: Awaited<
-    ReturnType<typeof ManuscriptApi.PostsService.queryPostsFindMany>
+    ReturnType<typeof InkwellApi.PostsService.queryPostsFindMany>
   >[number];
 }
 const PostDisplay = (props: IPostDisplayProps) => {
@@ -59,7 +59,7 @@ interface ICreatePostButtonProps {
 export const CreatePostButton = (props: ICreatePostButtonProps) => {
   const { refetch } = props;
   const postCreate = useMutation({
-    mutationFn: ManuscriptApi.PostsService.mutationPostsCreate,
+    mutationFn: InkwellApi.PostsService.mutationPostsCreate,
   });
 
   return (

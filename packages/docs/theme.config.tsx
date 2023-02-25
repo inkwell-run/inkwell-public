@@ -1,14 +1,12 @@
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  logo: <span>Manuscript</span>,
+  logo: <span>Inkwell</span>,
   project: {
-    link: "https://github.com/sarimabbas/manuscript",
+    link: "https://github.com/inkwell/inkwell-public",
   },
   footer: {
-    text: () => (
-      <>© {new Date().getFullYear()} Manuscript. All rights reserved.</>
-    ),
+    text: () => <>© {new Date().getFullYear()} Inkwell. All rights reserved.</>,
   },
 };
 

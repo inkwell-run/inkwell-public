@@ -17,13 +17,13 @@ export const OrgDropdown = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 my-2" align="end">
         <DropdownMenuGroup>
-          <Link to="https://dashboard.manuscriptcms.com" target={"_blank"}>
+          <Link to="https://app.inkwell.run" target={"_blank"}>
             <DropdownMenuItem>
               <ExternalLink className="w-4 h-4 mr-2" />
               <div>Go to dashboard</div>
             </DropdownMenuItem>
           </Link>
-          <Link to="https://feedback.manuscriptcms.com" target={"_blank"}>
+          <Link to="https://inkwell.canny.io" target={"_blank"}>
             <DropdownMenuItem>
               <MessageCircle className="w-4 h-4 mr-2" />
               <div>Submit feedback</div>

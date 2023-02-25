@@ -1,5 +1,5 @@
 {
-  "name": "@manuscript/studio",
+  "name": "@inkwell/studio",
   "version": "1.0.0",
   "description": "Studio component",
   "main": "dist/index.js",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@doom.sh/ui": "^1.0.10",
-    "@manuscript/api-client": "workspace:*",
+    "@inkwell/api-client": "workspace:*",
     "@markdoc/markdoc": "^0.2.2",
     "@tanstack/react-query": "^4.24.10",
     "date-fns": "^2.29.3",

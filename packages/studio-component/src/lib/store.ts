@@ -1,8 +1,8 @@
 import { atom } from "jotai";
-import { IManuscriptStudioProps } from "../pages/_app";
+import { IInkwellStudioProps } from "../pages/_app";
 
 export interface IGlobalState {
-  baseProps: IManuscriptStudioProps;
+  baseProps: IInkwellStudioProps;
 }
 
 export const GlobalStateAtom = atom<IGlobalState>({

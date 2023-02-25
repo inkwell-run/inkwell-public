@@ -1,4 +1,4 @@
-import * as ManuscriptApi from "@manuscript/api-client";
+import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { useSetAtom } from "jotai";
 import { AlertCircle } from "lucide-react";
@@ -17,7 +17,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
   console.log("auth provider");
 
   // 1. Set the access token onto the OpenAPI
-  ManuscriptApi.OpenAPI.TOKEN = accessToken;
+  InkwellApi.OpenAPI.TOKEN = accessToken;
 
   // 2. Add token to the global store
   const setGlobalState = useSetAtom(GlobalStateAtom);
@@ -36,7 +36,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
   // 3. If the access token is invalid, show an error
   const accessTokenQuery = useQuery({
     queryKey: ["access-token"],
-    queryFn: ManuscriptApi.AccessTokensService.queryAccessTokensTest,
+    queryFn: InkwellApi.AccessTokensService.queryAccessTokensTest,
   });
 
   // if loading, show a skeleton
@@ -58,7 +58,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
           <AlertCircle className="w-8 h-8 text-red-400" />
           <p>
             Seems like you don't have a valid access token. Please go to the
-            Manuscript dashboard to get one!
+            Inkwell dashboard to get one!
           </p>
         </div>
       </div>

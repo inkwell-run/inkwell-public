@@ -9,10 +9,10 @@
   },
   "dashboard": {
     "title": "Go to app dashboard",
-    "href": "https://dashboard.manuscriptcms.com"
+    "href": "https://app.inkwell.run"
   },
   "feedback": {
     "title": "Give feedback",
-    "href": "https://feedback.manuscriptcms.com"
+    "href": "https://inkwell.canny.io"
   }
 }
