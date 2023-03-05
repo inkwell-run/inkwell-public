@@ -89,6 +89,7 @@ importers:
       autoprefixer: ^10.4.13
       date-fns: ^2.29.3
       gray-matter: ^4.0.3
+      houseform: ^1.3.0
       jotai: ^2.0.3
       lucide-react: ^0.122.0
       postcss: ^8.4.19
@@ -110,6 +111,7 @@ importers:
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       date-fns: 2.29.3
       gray-matter: 4.0.3
+      houseform: 1.3.0_react@18.2.0+zod@3.21.0
       jotai: 2.0.3_react@18.2.0
       lucide-react: 0.122.0_react@18.2.0
       react: 18.2.0
@@ -5045,6 +5047,16 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
+    dev: false
+
+  /houseform/1.3.0_react@18.2.0+zod@3.21.0:
+    resolution: {integrity: sha512-zqeBo5SPzvoWUhaql2Y42/+QMPBreBlCpH8J+4CSYSvtXV2to9llkGOekeonZUePakQKnzgEUI2w5IDiCo93XA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      zod: '>=3.9.0'
+    dependencies:
+      react: 18.2.0
+      zod: 3.21.0
     dev: false
 
   /http-errors/2.0.0:

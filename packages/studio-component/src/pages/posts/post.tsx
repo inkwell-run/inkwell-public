@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import * as InkwellApi from "@inkwell/api-client";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Input, Label } from "@doom.sh/ui";
+import { Form, Field } from "houseform";
 
 export const Post = () => {
   const { postId } = useParams();
@@ -39,5 +41,27 @@ export const Post = () => {
     );
   }
 
-  return <div>Post slug {post.data?.slug}</div>;
+  return (
+    <div>
+      <Form>
+        {({ submit }) => (
+          <div>
+            <Field name="slug" initialValue={post.data.slug}>
+              {({ value, setValue, onBlur }) => (
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="slug">Slug</Label>
+                  <Input
+                    id="slug"
+                    type="text"
+                    value={value}
+                    placeholder="Post slug"
+                  />
+                </div>
+              )}
+            </Field>
+          </div>
+        )}
+      </Form>
+    </div>
+  );
 };

@@ -45,6 +45,7 @@
     "@tanstack/react-query": "^4.24.10",
     "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
+    "houseform": "^1.3.0",
     "jotai": "^2.0.3",
     "lucide-react": "^0.122.0",
     "react": "18.2.0",
