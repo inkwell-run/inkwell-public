@@ -20,7 +20,13 @@ export const ConnectionStatus = forwardRef<HTMLButtonElement>((props, ref) => {
   });
 
   return (
-    <Button variant="outline" className="flex items-center gap-4" ref={ref}>
+    <Button
+      // https://github.com/radix-ui/primitives/issues/953#issuecomment-959005835
+      {...props}
+      variant="outline"
+      className="flex items-center gap-4"
+      ref={ref}
+    >
       {organization.isLoading ? (
         <>
           <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping" />
