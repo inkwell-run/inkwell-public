@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import * as InkwellApi from "@inkwell/api-client";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Input, Label } from "@doom.sh/ui";
 import { Form, Field } from "houseform";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
+import { ArrowLeft } from "lucide-react";
 
 export const Post = () => {
   const { postId } = useParams();
@@ -51,9 +52,12 @@ export const Post = () => {
   return (
     <div className="flex flex-col gap-8">
       {/* back button */}
-      <Button variant="outline" className="w-fit">
-        Back to all posts
-      </Button>
+      <Link to={"/posts"}>
+        <Button variant="outline" className="gap-2 w-fit">
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to all posts</span>
+        </Button>
+      </Link>
       {/* slug editor */}
       <Form>
         {({ submit }) => (
