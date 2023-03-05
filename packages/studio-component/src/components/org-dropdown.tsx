@@ -12,7 +12,7 @@ import { ExternalLink, MessageCircle } from "lucide-react";
 export const OrgDropdown = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <ConnectionStatus />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 my-2" align="end">

@@ -1,10 +1,10 @@
 import { Button } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { forwardRef } from "react";
 import { ChevronsUpDown } from "lucide-react";
 
-export const ConnectionStatus = () => {
+export const ConnectionStatus = forwardRef<HTMLButtonElement>((props, ref) => {
   const accessToken = useQuery({
     queryKey: ["access-token"],
     queryFn: InkwellApi.AccessTokensService.queryAccessTokensTest,
@@ -20,7 +20,7 @@ export const ConnectionStatus = () => {
   });
 
   return (
-    <Button variant="outline" className="flex items-center gap-4">
+    <Button variant="outline" className="flex items-center gap-4" ref={ref}>
       {organization.isLoading ? (
         <>
           <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping" />
@@ -35,4 +35,4 @@ export const ConnectionStatus = () => {
       <ChevronsUpDown className="w-4 h-4" />
     </Button>
   );
-};
+});
