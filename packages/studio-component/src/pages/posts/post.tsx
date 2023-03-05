@@ -1,18 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import * as InkwellApi from "@inkwell/api-client";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Input, Label } from "@doom.sh/ui";
+import { Button, Input, Label } from "@doom.sh/ui";
 import { Form, Field } from "houseform";
 import { MarkdocEditor } from "../../components/markdoc-editor";
+import MarkdocPreview from "../../components/markdoc-preview";
 
 export const Post = () => {
   const { postId } = useParams();
 
-  const post = useQuery({
+  const getPost = useQuery({
     queryKey: ["post", postId],
     queryFn: () =>
       InkwellApi.PostsService.queryPostsFindUnique(parseInt(postId ?? "")),
+  });
+
+  const updatePost = useMutation({
+    mutationFn: InkwellApi.PostsService.mutationPostsUpdate,
   });
 
   if (typeof postId === "undefined" || isNaN(parseInt(postId))) {
@@ -24,7 +29,7 @@ export const Post = () => {
     );
   }
 
-  if (post.isLoading) {
+  if (getPost.isLoading) {
     return (
       <div className="flex flex-col items-center gap-4">
         <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
@@ -33,7 +38,7 @@ export const Post = () => {
     );
   }
 
-  if (post.isError) {
+  if (getPost.isError) {
     return (
       <div className="flex flex-col items-center gap-4">
         <div className="w-4 h-4 bg-red-400 rounded-full" />
@@ -44,11 +49,15 @@ export const Post = () => {
 
   return (
     <div className="flex flex-col gap-8">
+      {/* back button */}
+      <Button variant="outline" className="w-fit">
+        Back to all posts
+      </Button>
       {/* slug editor */}
       <Form>
         {({ submit }) => (
           <div>
-            <Field name="slug" initialValue={post.data.slug}>
+            <Field name="slug" initialValue={getPost.data.slug}>
               {({ value, setValue, onBlur }) => (
                 <div className="flex flex-col gap-2">
                   <Label htmlFor="slug">Slug</Label>
@@ -65,7 +74,18 @@ export const Post = () => {
         )}
       </Form>
       {/* markdoc editor */}
-      <MarkdocEditor initialValue="hello world!" />
+      <MarkdocEditor
+        initialValue={getPost.data.content ?? ""}
+        setValue={(newValue) => {
+          console.log({ newValue });
+          updatePost.mutate({
+            id: getPost.data.id,
+            content: newValue,
+          });
+        }}
+      />
+      {/* markdoc preview */}
+      <MarkdocPreview value={getPost.data.content ?? ""} />
     </div>
   );
 };

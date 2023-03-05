@@ -1,41 +1,55 @@
-import React from "react";
+import { markdown } from "@codemirror/lang-markdown";
 import {
-  SandpackProvider,
-  SandpackLayout,
   SandpackCodeEditor,
   SandpackFiles,
+  SandpackLayout,
+  SandpackProvider,
+  useActiveCode,
 } from "@codesandbox/sandpack-react";
-import { markdown } from "@codemirror/lang-markdown";
+import { useDebounce } from "use-debounce";
+import React, { useEffect, useState } from "react";
 
 interface IMarkdocEditorProps {
   initialValue: string;
+  setValue: (newValue: string) => void;
 }
 
 export const MarkdocEditor = (props: IMarkdocEditorProps) => {
-  const { initialValue } = props;
-
-  const files: SandpackFiles = {
+  const [files] = useState<SandpackFiles>({
     "post.markdoc": {
-      code: initialValue,
+      code: props.initialValue,
       active: true,
     },
-  };
+  });
 
   return (
     <SandpackProvider files={files} theme="light" template="vanilla-ts">
       <SandpackLayout>
-        <SandpackCodeEditor
-          showInlineErrors
-          showLineNumbers
-          additionalLanguages={[
-            {
-              name: "markdoc",
-              extensions: ["markdoc"],
-              language: markdown(),
-            },
-          ]}
-        />
+        <CodeEditor {...props} />
       </SandpackLayout>
     </SandpackProvider>
+  );
+};
+
+const CodeEditor = (props: IMarkdocEditorProps) => {
+  const { code } = useActiveCode();
+  const [debouncedCode] = useDebounce(code, 1000);
+
+  useEffect(() => {
+    props.setValue(debouncedCode);
+  }, [debouncedCode]);
+
+  return (
+    <SandpackCodeEditor
+      showInlineErrors
+      showLineNumbers
+      additionalLanguages={[
+        {
+          name: "markdoc",
+          extensions: ["markdoc"],
+          language: markdown(),
+        },
+      ]}
+    />
   );
 };
