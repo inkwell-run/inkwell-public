@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Input, Label } from "@doom.sh/ui";
 import { Form, Field } from "houseform";
+import { MarkdocEditor } from "../../components/markdoc-editor";
 
 export const Post = () => {
   const { postId } = useParams();
@@ -42,7 +43,8 @@ export const Post = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
+      {/* slug editor */}
       <Form>
         {({ submit }) => (
           <div>
@@ -62,6 +64,8 @@ export const Post = () => {
           </div>
         )}
       </Form>
+      {/* markdoc editor */}
+      <MarkdocEditor initialValue="hello world!" />
     </div>
   );
 };
