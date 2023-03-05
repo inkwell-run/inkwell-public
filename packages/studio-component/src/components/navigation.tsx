@@ -21,7 +21,7 @@ const links: NavLink[] = [
   {
     text: "Posts",
     pageLink: PageLinks.Posts,
-    isActive: (currentPathname) => currentPathname === "/posts",
+    isActive: (currentPathname) => currentPathname.startsWith("/posts"),
   },
   {
     text: "Schemas",
@@ -45,14 +45,13 @@ const Navigation = () => {
               {links.map((l) => {
                 return (
                   <NavigationMenuItem key={l.pageLink}>
-                    <Link to={l.pageLink}>
-                      <NavigationMenuLink
-                        active={l.isActive(pathname ?? "")}
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        {l.text}
-                      </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuLink
+                      asChild
+                      active={l.isActive(pathname ?? "")}
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      <Link to={l.pageLink}>{l.text}</Link>
+                    </NavigationMenuLink>
                   </NavigationMenuItem>
                 );
               })}
