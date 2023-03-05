@@ -3,6 +3,7 @@ import * as InkwellApi from "@inkwell/api-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import React from "react";
+import { Link } from "react-router-dom";
 import DateCycler from "../../components/date-cycler";
 
 export const Posts = () => {
@@ -37,18 +38,13 @@ interface IPostDisplayProps {
 const PostDisplay = (props: IPostDisplayProps) => {
   const { post } = props;
   return (
-    <a
-      href="/posts/$slug"
-      // params={{
-      //   slug: "hello",
-      // }}
-    >
-      <div className="p-4 border rounded-md shadow-sm">
+    <Link to={`/posts/${post.id}`}>
+      <div className="p-4 border shadow-sm round ed-md">
         <div>{post.slug}</div>
         <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
         {JSON.stringify(post)}
       </div>
-    </a>
+    </Link>
   );
 };
 

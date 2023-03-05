@@ -1,7 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useParams } from "react-router-dom";
 
-const PostDetailPage = () => {
-  return <div>jhegfkjerhkj</div>;
+export const Post = () => {
+  const { postId } = useParams();
+
+  return <div>{postId}</div>;
 };
-
-export default PostDetailPage;
