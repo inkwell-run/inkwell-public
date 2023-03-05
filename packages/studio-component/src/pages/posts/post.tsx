@@ -18,6 +18,7 @@ export const Post = () => {
 
   const updatePost = useMutation({
     mutationFn: InkwellApi.PostsService.mutationPostsUpdate,
+    onSuccess: () => getPost.refetch(),
   });
 
   if (typeof postId === "undefined" || isNaN(parseInt(postId))) {
