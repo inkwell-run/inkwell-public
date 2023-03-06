@@ -78,24 +78,26 @@ export const Post = () => {
           </div>
         )}
       </Form>
-      {/* markdoc editor */}
-      <div className="flex flex-col gap-2">
-        <Label>Editor</Label>
-        <MarkdocEditor
-          initialValue={getPost.data.content ?? ""}
-          setValue={(newValue) => {
-            console.log({ newValue });
-            updatePost.mutate({
-              id: getPost.data.id,
-              content: newValue,
-            });
-          }}
-        />
-      </div>
-      {/* markdoc preview */}
-      <div className="flex flex-col gap-2">
-        <Label>Preview</Label>
-        <MarkdocPreview value={getPost.data.content ?? ""} />
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {/* markdoc editor */}
+        <div className="flex flex-col gap-2">
+          <Label>Editor</Label>
+          <MarkdocEditor
+            initialValue={getPost.data.content ?? ""}
+            setValue={(newValue) => {
+              console.log({ newValue });
+              updatePost.mutate({
+                id: getPost.data.id,
+                content: newValue,
+              });
+            }}
+          />
+        </div>
+        {/* markdoc preview */}
+        <div className="flex flex-col gap-2">
+          <Label>Preview</Label>
+          <MarkdocPreview value={getPost.data.content ?? ""} />
+        </div>
       </div>
     </div>
   );

@@ -43,6 +43,7 @@ const CodeEditor = (props: IMarkdocEditorProps) => {
     <SandpackCodeEditor
       showInlineErrors
       showLineNumbers
+      wrapContent
       additionalLanguages={[
         {
           name: "markdoc",
