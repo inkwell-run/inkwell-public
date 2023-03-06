@@ -1,5 +1,6 @@
 import { markdown } from "@codemirror/lang-markdown";
 import {
+  CodeEditor as lqkfj,
   SandpackCodeEditor,
   SandpackFiles,
   SandpackLayout,
@@ -23,8 +24,13 @@ export const MarkdocEditor = (props: IMarkdocEditorProps) => {
   });
 
   return (
-    <SandpackProvider files={files} theme="light" template="vanilla-ts">
-      <SandpackLayout>
+    <SandpackProvider
+      files={files}
+      theme="light"
+      template="vanilla-ts"
+      className="h-full"
+    >
+      <SandpackLayout className="h-full">
         <CodeEditor {...props} />
       </SandpackLayout>
     </SandpackProvider>
@@ -41,6 +47,7 @@ const CodeEditor = (props: IMarkdocEditorProps) => {
 
   return (
     <SandpackCodeEditor
+      style={{ height: "100%" }}
       showInlineErrors
       showLineNumbers
       wrapContent

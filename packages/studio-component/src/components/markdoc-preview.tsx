@@ -15,10 +15,8 @@ const MarkdocPreview = (props: IMarkdocPreviewProps) => {
     components: markdocComponents,
   });
 
-  console.log({ renderedNodes });
-
   return (
-    <div className="px-4 py-8 overflow-hidden border rounded-md">
+    <div className="h-full px-4 py-8 overflow-y-auto border rounded-md">
       {renderedNodes}
     </div>
   );

@@ -78,9 +78,9 @@ export const Post = () => {
           </div>
         )}
       </Form>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 grid-rows-[500px]">
         {/* markdoc editor */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col h-full gap-2">
           <Label>Editor</Label>
           <MarkdocEditor
             initialValue={getPost.data.content ?? ""}
@@ -94,7 +94,7 @@ export const Post = () => {
           />
         </div>
         {/* markdoc preview */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col h-full gap-2">
           <Label>Preview</Label>
           <MarkdocPreview value={getPost.data.content ?? ""} />
         </div>
