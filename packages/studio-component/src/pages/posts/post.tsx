@@ -7,6 +7,7 @@ import { Form, Field } from "houseform";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
 import { ArrowLeft } from "lucide-react";
+import { z } from "zod";
 
 export const Post = () => {
   const { postId } = useParams();
@@ -52,30 +53,55 @@ export const Post = () => {
   return (
     <div className="flex flex-col gap-8">
       {/* back button */}
-      <Link to={"/posts"}>
-        <Button variant="outline" className="gap-2 w-fit">
+      <Link to={"/posts"} className="w-fit">
+        <Button variant="outline" className="gap-2">
           <ArrowLeft className="w-4 h-4" />
           <span>Back to all posts</span>
         </Button>
       </Link>
       {/* slug editor */}
-      <Form>
+      <Form
+        onSubmit={(values) => {
+          updatePost.mutate({
+            id: getPost.data.id,
+            slug: values.slug,
+          });
+        }}
+      >
         {({ submit }) => (
-          <div>
-            <Field name="slug" initialValue={getPost.data.slug}>
-              {({ value, setValue, onBlur }) => (
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="slug">Slug</Label>
-                  <Input
-                    id="slug"
-                    type="text"
-                    value={value}
-                    placeholder="Post slug"
-                  />
-                </div>
-              )}
-            </Field>
-          </div>
+          <Field<string>
+            name="slug"
+            initialValue={getPost.data.slug}
+            // todo(sarim): check for duplicate slug
+            onChangeValidate={z.string().refine((val) => {
+              try {
+                const parseUrl = new URL(val, "http://localhost");
+                return !val.includes(" ") && !!parseUrl.pathname;
+              } catch (e) {
+                return false;
+              }
+            }, "Invalid slug")}
+          >
+            {({ value, setValue, onBlur, errors }) => (
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="slug">Slug</Label>
+                <Input
+                  id="slug"
+                  type="text"
+                  value={value}
+                  placeholder="Post slug"
+                  onChange={(e) => setValue(e.target.value)}
+                  onBlur={() => {
+                    onBlur();
+                    submit();
+                  }}
+                />
+                {errors.map((error) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
+          </Field>
         )}
       </Form>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 grid-rows-[500px]">
