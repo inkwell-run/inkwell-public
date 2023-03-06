@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import * as InkwellApi from "@inkwell/api-client";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, Input, Label } from "@doom.sh/ui";
+import { Button, Input, Label, TypographySubtle } from "@doom.sh/ui";
 import { Form, Field } from "houseform";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
@@ -73,14 +73,20 @@ export const Post = () => {
             name="slug"
             initialValue={getPost.data.slug}
             // todo(sarim): check for duplicate slug
-            onChangeValidate={z.string().refine((val) => {
-              try {
-                const parseUrl = new URL(val, "http://localhost");
-                return !val.includes(" ") && !!parseUrl.pathname;
-              } catch (e) {
-                return false;
-              }
-            }, "Invalid slug")}
+            onChangeValidate={z
+              .string()
+              .min(
+                1,
+                "Invalid slug. A valid slug should be atleast 1 character long."
+              )
+              .refine((val) => {
+                try {
+                  const parseUrl = new URL(val, "http://localhost");
+                  return !val.includes(" ") && !!parseUrl.pathname;
+                } catch (e) {
+                  return false;
+                }
+              }, "Invalid slug. A valid slug looks like this (without spaces): /my-page")}
           >
             {({ value, setValue, onBlur, errors }) => (
               <div className="flex flex-col gap-2">
@@ -97,7 +103,7 @@ export const Post = () => {
                   }}
                 />
                 {errors.map((error) => (
-                  <p key={error}>{error}</p>
+                  <TypographySubtle key={error}>{error}</TypographySubtle>
                 ))}
               </div>
             )}
