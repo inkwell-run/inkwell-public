@@ -8,6 +8,7 @@ import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
 import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
+import MediaManager from "../../components/media-manager";
 
 export const Post = () => {
   const { postId } = useParams();
@@ -89,7 +90,7 @@ export const Post = () => {
               }, "Invalid slug. A valid slug looks like this (without spaces): /my-page")}
           >
             {({ value, setValue, onBlur, errors }) => (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4">
                 <Label htmlFor="slug">Slug</Label>
                 <Input
                   id="slug"
@@ -112,7 +113,7 @@ export const Post = () => {
       </Form>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 grid-rows-[500px]">
         {/* markdoc editor */}
-        <div className="flex flex-col h-full gap-2">
+        <div className="flex flex-col h-full gap-4">
           <Label>Editor</Label>
           <MarkdocEditor
             initialValue={getPost.data.content ?? ""}
@@ -126,10 +127,15 @@ export const Post = () => {
           />
         </div>
         {/* markdoc preview */}
-        <div className="flex flex-col h-full gap-2">
+        <div className="flex flex-col h-full gap-4">
           <Label>Preview</Label>
           <MarkdocPreview value={getPost.data.content ?? ""} />
         </div>
+      </div>
+      {/* media uploads */}
+      <div className="flex flex-col h-full gap-4 mt-6">
+        <Label>Media</Label>
+        <MediaManager />
       </div>
     </div>
   );
