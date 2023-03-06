@@ -80,7 +80,7 @@ importers:
     specifiers:
       '@codemirror/lang-markdown': ^6.1.0
       '@codesandbox/sandpack-react': ^2.0.29
-      '@doom.sh/ui': ^1.0.11
+      '@doom.sh/ui': ^1.0.12
       '@inkwell/api-client': workspace:*
       '@markdoc/markdoc': ^0.2.2
       '@tailwindcss/forms': ^0.5.3
@@ -110,7 +110,7 @@ importers:
     dependencies:
       '@codemirror/lang-markdown': 6.1.0
       '@codesandbox/sandpack-react': 2.0.29_biqbaboplfbrettd7655fr4n2y
-      '@doom.sh/ui': 1.0.11_6lr6pdde5jmvqljgzpiv3qv7qm
+      '@doom.sh/ui': 1.0.12_6lr6pdde5jmvqljgzpiv3qv7qm
       '@inkwell/api-client': link:../api-client
       '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
       '@tanstack/react-query': 4.26.0_biqbaboplfbrettd7655fr4n2y
@@ -1603,8 +1603,8 @@ packages:
     resolution: {integrity: sha512-RpfLEtTlyIxeNPGKcokS+p3BZII/Q3bYxryFRglh5H3A3T8q9fsLYm72VYAMEOOIBLEa8o93kFLiBDUWKrwXZA==}
     dev: true
 
-  /@doom.sh/ui/1.0.11_6lr6pdde5jmvqljgzpiv3qv7qm:
-    resolution: {integrity: sha512-xfhXMF+muzhZKeyVg9du0vwQ5CLnjznMgWDavm3HqMqeTjXE+8Sh8DRQUc9dIGyYrylJFaVEgp27P3n7xwxWFA==}
+  /@doom.sh/ui/1.0.12_6lr6pdde5jmvqljgzpiv3qv7qm:
+    resolution: {integrity: sha512-1GShbhmzlEJ0zZWb9+48odgNzrM726jyIqBplxoCZjpQBpoeivZ1DQmJ7nhxDcdw0IdZlnLZ8atZX0zPuS1Kzg==}
     dependencies:
       '@radix-ui/react-accordion': 1.1.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-alert-dialog': 1.0.2_zula6vjvt3wdocc4mwcxqa6nzi
