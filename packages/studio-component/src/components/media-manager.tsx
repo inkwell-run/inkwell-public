@@ -1,22 +1,43 @@
-import { Button, TypographySubtle } from "@doom.sh/ui";
-import React, { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useState } from "react";
+import { UploadCareWidget } from "./uploadcare";
+import * as InkwellApi from "@inkwell/api-client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { IUploadCareFile } from "./uploadcare/types";
 
-const MediaManager = () => {
+interface IMediaManagerProps {
+  postId: number;
+}
+const MediaManager = (props: IMediaManagerProps) => {
+  const { postId } = props;
   const [media, setMedia] = useState<string[]>([]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const imageUrls = acceptedFiles.map((v) => URL.createObjectURL(v));
-    // Do something with the files
-    setMedia((prev) => [...prev, ...imageUrls]);
-  }, []);
+  const getAssets = useQuery({
+    queryKey: ["assets", postId],
+    queryFn: () => InkwellApi.AssetsService.queryAssetsFindMany(postId),
+  });
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const createAsset = useMutation({
+    mutationFn: InkwellApi.AssetsService.mutationAssetsCreate,
+    onSuccess: () => {
+      getAssets.refetch();
+    },
+  });
+
+  const onUploadCallback = (files: IUploadCareFile[]) => {
+    console.log({ files });
+    files.forEach((f) => {
+      createAsset.mutate({
+        postId,
+        providerId: f.uuid,
+        providerType: "UPLOADCARE",
+      });
+    });
+  };
 
   return (
     <div className="flex flex-wrap gap-4">
       {/* dropzone */}
-      <div
+      {/* <div
         {...getRootProps({})}
         className="w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 p-4 text-center bg-gray-200 rounded-md aspect-square"
       >
@@ -29,11 +50,13 @@ const MediaManager = () => {
             <Button>Browse</Button>
           </>
         )}
-      </div>
+      </div> */}
+      <UploadCareWidget onUploadCallback={onUploadCallback} />
+      {JSON.stringify(getAssets.data, null, 2)}
       {/* files */}
       {media.map((url) => {
         return (
-          <div className="w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
+          <div className="border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
             <img src={url} alt="" className="object-cover w-full h-full" />
           </div>
         );

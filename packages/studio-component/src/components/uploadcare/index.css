@@ -1,0 +1,14 @@
+.uploaderCfg {
+  --ctx-name: "uploader";
+
+  /* DO NOT FORGET TO USE YOUR OWN PUBLIC KEY */
+  --cfg-pubkey: "c1613fccfedf0f0e8b23";
+  --cfg-multiple: 1;
+  --cfg-confirm-upload: 1;
+  --cfg-img-only: 0;
+  --cfg-accept: "";
+  --cfg-store: 1;
+  --cfg-camera-mirror: 0;
+  --cfg-source-list: "local, url, camera, dropbox, gdrive";
+  --cfg-max-files: 10;
+}

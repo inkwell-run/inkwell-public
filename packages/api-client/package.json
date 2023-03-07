@@ -13,6 +13,7 @@
     }
   },
   "scripts": {
+    "dev": "pnpm codegen-dev && pnpm transpile",
     "build": "pnpm codegen-prod && pnpm transpile",
     "transpile": "tsup --config tsup.config.ts",
     "codegen-dev": "wait-on http://localhost:3001/api/openapi.json && rimraf ./src/api-client && openapi --input http://localhost:3001/api/openapi.json --output ./src",

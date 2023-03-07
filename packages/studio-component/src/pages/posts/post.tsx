@@ -135,7 +135,7 @@ export const Post = () => {
       {/* media uploads */}
       <div className="flex flex-col h-full gap-4 mt-6">
         <Label>Media</Label>
-        <MediaManager />
+        <MediaManager postId={parseInt(postId)} />
       </div>
     </div>
   );
