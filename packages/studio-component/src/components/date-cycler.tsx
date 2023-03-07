@@ -1,4 +1,5 @@
-import { format, formatDistance } from "date-fns";
+import { TypographySubtle } from "@doom.sh/ui";
+import { formatDistance } from "date-fns";
 import { atom, useAtom } from "jotai";
 import React from "react";
 
@@ -36,31 +37,29 @@ const DateCycler = (props: IDateCyclerProps) => {
     });
   };
 
-  if (currentStage === IDateCyclerStage.Created) {
-    return (
-      <div onClick={onClick}>
-        Created: {format(new Date(createdAt), "MM/dd/yyyy")}
-      </div>
-    );
-  }
+  // if (currentStage === IDateCyclerStage.Created) {
+  //   return (
+  //     <TypographySubtle onClick={onClick}>
+  //       Created: {format(new Date(createdAt), "MM/dd/yyyy")}
+  //     </TypographySubtle>
+  //   );
+  // }
 
-  if (currentStage === IDateCyclerStage.Updated) {
-    return (
-      <div onClick={onClick}>
-        Updated: {format(new Date(updatedAt), "MM/dd/yyyy")}
-      </div>
-    );
-  }
+  // if (currentStage === IDateCyclerStage.Updated) {
+  //   return (
+  //     <TypographySubtle onClick={onClick}>
+  //       Updated: {format(new Date(updatedAt), "MM/dd/yyyy")}
+  //     </TypographySubtle>
+  //   );
+  // }
 
-  if (currentStage === IDateCyclerStage.Relative) {
-    return (
-      <div onClick={onClick}>
-        {formatDistance(new Date(createdAt), new Date(), { addSuffix: true })}
-      </div>
-    );
-  }
-
-  return <></>;
+  // if (currentStage === IDateCyclerStage.Relative) {
+  return (
+    <TypographySubtle onClick={onClick}>
+      {formatDistance(new Date(createdAt), new Date(), { addSuffix: true })}
+    </TypographySubtle>
+  );
+  // }
 };
 
 export default DateCycler;
