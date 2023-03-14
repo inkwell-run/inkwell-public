@@ -1,15 +1,24 @@
-import React, { useState } from "react";
-import { UploadCareWidget } from "./uploadcare";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell/api-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { ClipboardIcon, MoreHorizontal, TrashIcon } from "lucide-react";
+import React from "react";
+import { UploadCareWidget } from "./uploadcare";
 import { IUploadCareFile } from "./uploadcare/types";
+import { constructUploadCareUrl } from "./uploadcare/utils";
 
 interface IMediaManagerProps {
   postId: number;
 }
-const MediaManager = (props: IMediaManagerProps) => {
+
+export const MediaManager = (props: IMediaManagerProps) => {
   const { postId } = props;
-  const [media, setMedia] = useState<string[]>([]);
 
   const getAssets = useQuery({
     queryKey: ["assets", postId],
@@ -35,34 +44,51 @@ const MediaManager = (props: IMediaManagerProps) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-4">
-      {/* dropzone */}
-      {/* <div
-        {...getRootProps({})}
-        className="w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 p-4 text-center bg-gray-200 rounded-md aspect-square"
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <TypographySubtle>Drop files here</TypographySubtle>
-        ) : (
-          <>
-            <TypographySubtle>Drag files here</TypographySubtle>
-            <Button>Browse</Button>
-          </>
-        )}
-      </div> */}
+    <div className="flex flex-col gap-4">
       <UploadCareWidget onUploadCallback={onUploadCallback} />
-      {JSON.stringify(getAssets.data, null, 2)}
-      {/* files */}
-      {media.map((url) => {
-        return (
-          <div className="border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
-            <img src={url} alt="" className="object-cover w-full h-full" />
-          </div>
-        );
-      })}
+      <div className="flex flex-wrap gap-4">
+        {(getAssets.data ?? []).map((asset) => {
+          return <MediaItem asset={asset} key={asset.id} />;
+        })}
+      </div>
     </div>
   );
 };
 
-export default MediaManager;
+interface IMediaItemProps {
+  asset: Awaited<
+    ReturnType<typeof InkwellApi.AssetsService.queryAssetsFindMany>
+  >[number];
+}
+
+const MediaItem = (props: IMediaItemProps) => {
+  const { asset } = props;
+  return (
+    <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
+      <img
+        src={constructUploadCareUrl(asset.providerId)}
+        alt={"uploaded media"}
+        className="object-cover w-full h-full"
+      />
+      <div className="absolute top-2 right-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="flex items-center justify-center w-4 h-4 p-4 bg-white border rounded-full shadow-md cursor-pointer">
+            <MoreHorizontal className="w-4 h-4 shrink-0" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="my-2">
+            <DropdownMenuGroup>
+              <DropdownMenuItem className="flex items-center gap-2">
+                <ClipboardIcon className="w-4 h-4" />
+                <div>Copy</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center gap-2">
+                <TrashIcon className="w-4 h-4" />
+                <div>Delete</div>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </div>
+  );
+};
