@@ -4,6 +4,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  toast,
 } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell/api-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -63,6 +64,14 @@ interface IMediaItemProps {
 
 const MediaItem = (props: IMediaItemProps) => {
   const { asset } = props;
+
+  const handleCopyClipboard = () => {
+    toast.success("Copied to clipboard");
+    window.navigator.clipboard.writeText(
+      constructUploadCareUrl(asset.providerId)
+    );
+  };
+
   return (
     <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
       <img
@@ -77,7 +86,10 @@ const MediaItem = (props: IMediaItemProps) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="my-2">
             <DropdownMenuGroup>
-              <DropdownMenuItem className="flex items-center gap-2">
+              <DropdownMenuItem
+                className="flex items-center gap-2"
+                onClick={handleCopyClipboard}
+              >
                 <ClipboardIcon className="w-4 h-4" />
                 <div>Copy</div>
               </DropdownMenuItem>
