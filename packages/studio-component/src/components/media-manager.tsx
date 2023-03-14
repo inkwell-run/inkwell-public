@@ -89,6 +89,7 @@ const MediaItem = (props: IMediaItemProps) => {
 
   return (
     <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
+      {/* todo(sarim): offer to clean up unused assets if error during image load */}
       <img
         src={constructUploadCareUrl(asset.providerId)}
         alt={"uploaded media"}
