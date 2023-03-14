@@ -25,7 +25,7 @@ export const Root = () => {
             <Outlet />
           </div>
         </div>
-        <Toaster position="bottom-right" />
+        <Toaster position="top-center" />
       </AuthProvider>
     </QueryClientProvider>
   );

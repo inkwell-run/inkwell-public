@@ -15,7 +15,9 @@ export interface ITypographyHeaderProps
   level: number;
 }
 
-export const CustomTypographyHeader = (props: ITypographyHeaderProps) => {
+export const CustomTypographyHeader = (
+  props: ITypographyHeaderProps
+): JSX.Element => {
   switch (props.level) {
     case 1:
       return <TypographyH1 {...props} />;
@@ -45,7 +47,7 @@ export const CustomTypographyInlineCode = (
   );
 };
 
-export const markdocComponents = {
+export const markdocComponents: Record<string, React.FC<any>> = {
   TypographyHeader: CustomTypographyHeader,
   TypographyP,
   TypographyBlockquote,
