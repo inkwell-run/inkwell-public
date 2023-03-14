@@ -85,4 +85,30 @@ export class AssetsService {
         });
     }
 
+    /**
+     * @param requestBody
+     * @returns any Successful response
+     * @throws ApiError
+     */
+    public static mutationAssetsDelete(
+        requestBody: {
+            assetId: number;
+        },
+    ): CancelablePromise<{
+        id: number;
+        createdAt: string;
+        type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
+        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+        providerId: string;
+        providerIsUploaded: boolean;
+        _providerSignedUploadUrl?: string;
+    }> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/assets/delete',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
 }

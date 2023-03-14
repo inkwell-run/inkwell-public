@@ -49,7 +49,13 @@ export const MediaManager = (props: IMediaManagerProps) => {
       <UploadCareWidget onUploadCallback={onUploadCallback} />
       <div className="flex flex-wrap gap-4">
         {(getAssets.data ?? []).map((asset) => {
-          return <MediaItem asset={asset} key={asset.id} />;
+          return (
+            <MediaItem
+              asset={asset}
+              key={asset.id}
+              refetchAssets={getAssets.refetch}
+            />
+          );
         })}
       </div>
     </div>
@@ -60,6 +66,7 @@ interface IMediaItemProps {
   asset: Awaited<
     ReturnType<typeof InkwellApi.AssetsService.queryAssetsFindMany>
   >[number];
+  refetchAssets: () => void;
 }
 
 const MediaItem = (props: IMediaItemProps) => {
@@ -71,6 +78,14 @@ const MediaItem = (props: IMediaItemProps) => {
       constructUploadCareUrl(asset.providerId)
     );
   };
+
+  // todo(sarim): don't delete if used inside text
+  const assetDelete = useMutation({
+    mutationFn: InkwellApi.AssetsService.mutationAssetsDelete,
+    onSuccess: () => {
+      props.refetchAssets();
+    },
+  });
 
   return (
     <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
@@ -93,7 +108,21 @@ const MediaItem = (props: IMediaItemProps) => {
                 <ClipboardIcon className="w-4 h-4" />
                 <div>Copy</div>
               </DropdownMenuItem>
-              <DropdownMenuItem className="flex items-center gap-2">
+              <DropdownMenuItem
+                className="flex items-center gap-2"
+                onClick={() => {
+                  toast.promise(
+                    assetDelete.mutateAsync({
+                      assetId: asset.id,
+                    }),
+                    {
+                      loading: "Deleting...",
+                      success: "Deleted!",
+                      error: "Error deleting asset",
+                    }
+                  );
+                }}
+              >
                 <TrashIcon className="w-4 h-4" />
                 <div>Delete</div>
               </DropdownMenuItem>
