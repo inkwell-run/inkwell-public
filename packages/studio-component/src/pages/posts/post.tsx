@@ -8,7 +8,7 @@ import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
 import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
-import MediaManager from "../../components/media-manager";
+import { MediaManager } from "../../components/media-manager";
 
 export const Post = () => {
   const { postId } = useParams();
