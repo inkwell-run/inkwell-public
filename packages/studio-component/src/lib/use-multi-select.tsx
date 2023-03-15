@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { isHotkeyPressed } from "react-hotkeys-hook";
 
 interface IUseMultiSelectProps<T> {
@@ -19,6 +19,36 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
   );
   const [mostRecentlySelectedKey, setMostRecentlySelectedKey] =
     React.useState<string>();
+  const [localItems, setLocalItems] = useState<T[]>([]);
+
+  // how the hook should update its state with new props
+  useEffect(() => {
+    // if none of the selected items are in the list, remove them
+    const currentKeys = new Set(selectedItemKeys);
+    const incomingKeys = new Set(
+      props.items.map((it) => props.getKeyFromItem(it))
+    );
+    currentKeys.forEach((key) => {
+      if (!incomingKeys.has(key)) {
+        currentKeys.delete(key);
+      }
+    });
+    setSelectedItemKeys(currentKeys);
+
+    // if the most recently selected item is not in the list, remove it
+    if (mostRecentlySelectedKey) {
+      if (
+        !props.items.find(
+          (item) => props.getKeyFromItem(item) === mostRecentlySelectedKey
+        )
+      ) {
+        setMostRecentlySelectedKey(undefined);
+      }
+    }
+
+    // update local state
+    setLocalItems(props.items);
+  }, [props.items]);
 
   /**
    * Toggle an item
@@ -29,18 +59,18 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     // some hackery to select multiple items
     // https://stackoverflow.com/questions/659508/how-can-i-shift-select-multiple-checkboxes-like-gmail
     if (isHotkeyPressed("shift") && mostRecentlySelectedKey) {
-      const indexOfCurrentItem = props.items.findIndex(
+      const indexOfCurrentItem = localItems.findIndex(
         (it) => props.getKeyFromItem(it) === props.getKeyFromItem(item)
       );
 
-      const indexOfPreviousClosestItem = props.items.findIndex(
+      const indexOfPreviousClosestItem = localItems.findIndex(
         (it) => props.getKeyFromItem(it) === mostRecentlySelectedKey
       );
 
       if (indexOfPreviousClosestItem) {
         _toggleRange(
-          props.items[indexOfPreviousClosestItem],
-          props.items[indexOfCurrentItem],
+          localItems[indexOfPreviousClosestItem],
+          localItems[indexOfCurrentItem],
           "select"
         );
       }
@@ -51,7 +81,7 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
 
   const toggleAll = (override?: "select" | "unselect") => {
     const copy = new Set(selectedItemKeys);
-    props.items.forEach((item) => {
+    localItems.forEach((item) => {
       toggleInPlace({
         selectedKeys: copy,
         getKeyFromItem: props.getKeyFromItem,
@@ -89,10 +119,10 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     const copy = new Set(selectedItemKeys);
     const firstItemKey = props.getKeyFromItem(firstItem);
     const secondItemKey = props.getKeyFromItem(secondItem);
-    const firstItemIndex = props.items.findIndex(
+    const firstItemIndex = localItems.findIndex(
       (item) => props.getKeyFromItem(item) === firstItemKey
     );
-    const secondItemIndex = props.items.findIndex(
+    const secondItemIndex = localItems.findIndex(
       (item) => props.getKeyFromItem(item) === secondItemKey
     );
     const leftIndex =
@@ -100,7 +130,7 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     const rightIndex =
       firstItemIndex >= secondItemIndex ? firstItemIndex : secondItemIndex;
 
-    const range = props.items.slice(leftIndex, rightIndex + 1);
+    const range = localItems.slice(leftIndex, rightIndex + 1);
     range.forEach((item) => {
       toggleInPlace({
         selectedKeys: copy,
@@ -112,7 +142,7 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     setSelectedItemKeys(copy);
   };
 
-  const selectedItems = props.items.filter((item) =>
+  const selectedItems = localItems.filter((item) =>
     selectedItemKeys.has(props.getKeyFromItem(item))
   );
 
