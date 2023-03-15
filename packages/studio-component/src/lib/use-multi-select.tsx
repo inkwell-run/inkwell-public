@@ -36,14 +36,8 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     setSelectedItemKeys(currentKeys);
 
     // if the most recently selected item is not in the list, remove it
-    if (mostRecentlySelectedKey) {
-      if (
-        !props.items.find(
-          (item) => props.getKeyFromItem(item) === mostRecentlySelectedKey
-        )
-      ) {
-        setMostRecentlySelectedKey(undefined);
-      }
+    if (mostRecentlySelectedKey && !incomingKeys.has(mostRecentlySelectedKey)) {
+      setMostRecentlySelectedKey(undefined);
     }
 
     // update local state
