@@ -61,13 +61,11 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
         (it) => props.getKeyFromItem(it) === mostRecentlySelectedKey
       );
 
-      if (indexOfPreviousClosestItem) {
-        _toggleRange(
-          localItems[indexOfPreviousClosestItem],
-          localItems[indexOfCurrentItem],
-          "select"
-        );
-      }
+      _toggleRange(
+        localItems[indexOfPreviousClosestItem],
+        localItems[indexOfCurrentItem],
+        "select"
+      );
     } else {
       _toggleSingle(item, override);
     }
@@ -123,6 +121,8 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
       firstItemIndex < secondItemIndex ? firstItemIndex : secondItemIndex;
     const rightIndex =
       firstItemIndex >= secondItemIndex ? firstItemIndex : secondItemIndex;
+
+    console.log({ leftIndex, rightIndex });
 
     const range = localItems.slice(leftIndex, rightIndex + 1);
     range.forEach((item) => {
