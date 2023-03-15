@@ -153,17 +153,11 @@ export const CreatePostButton = () => {
   return (
     <Button
       onClick={() => {
-        toast.promise(
-          postCreate.mutateAsync({
-            slug: "ewfer",
-            content: "ewrflkrejflrke",
-          }),
-          {
-            loading: `Creating post...`,
-            success: `Created post successfully`,
-            error: `Failed to create post`,
-          }
-        );
+        toast.promise(postCreate.mutateAsync({}), {
+          loading: `Creating post...`,
+          success: `Created post successfully`,
+          error: `Failed to create post`,
+        });
       }}
     >
       Create new

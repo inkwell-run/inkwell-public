@@ -81,7 +81,7 @@ export class PostsService {
      */
     public static mutationPostsCreate(
         requestBody: {
-            slug: string;
+            slug?: string;
             content?: string;
         },
     ): CancelablePromise<{
