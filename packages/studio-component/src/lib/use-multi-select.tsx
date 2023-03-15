@@ -49,16 +49,31 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     }
   };
 
+  const toggleAll = (override?: "select" | "unselect") => {
+    const copy = new Set(selectedItemKeys);
+    props.items.forEach((item) => {
+      toggleInPlace({
+        selectedKeys: copy,
+        getKeyFromItem: props.getKeyFromItem,
+        item,
+        override,
+      });
+    });
+    setSelectedItemKeys(copy);
+  };
+
   const _toggleSingle = (item: T, override?: "select" | "unselect") => {
     const copy = new Set(selectedItemKeys);
-    toggleInPlace({
+    const whatHappened = toggleInPlace({
       selectedKeys: copy,
       getKeyFromItem: props.getKeyFromItem,
       item,
       override,
     });
     setSelectedItemKeys(copy);
-    setMostRecentlySelectedKey(props.getKeyFromItem(item));
+    if (whatHappened === "select") {
+      setMostRecentlySelectedKey(props.getKeyFromItem(item));
+    }
   };
 
   /**
@@ -105,6 +120,7 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     selectedItems,
     selectedItemKeys,
     toggle,
+    toggleAll,
   };
 };
 
@@ -126,18 +142,26 @@ interface IToggleInPlaceProps<T> {
  * @param props - the props
  * @returns - nothing, it modifies the selected keys
  */
-const toggleInPlace = <T,>(props: IToggleInPlaceProps<T>) => {
+const toggleInPlace = <T,>(
+  props: IToggleInPlaceProps<T>
+): "select" | "unselect" => {
   const { selectedKeys, getKeyFromItem, item, override } = props;
+  let whatHappened: "select" | "unselect";
   const itemKey = getKeyFromItem(item);
   if (selectedKeys.has(itemKey)) {
     selectedKeys.delete(itemKey);
+    whatHappened = "unselect";
   } else {
     selectedKeys.add(itemKey);
+    whatHappened = "select";
   }
   if (override === "select") {
     selectedKeys.add(itemKey);
+    whatHappened = "select";
   }
   if (override === "unselect") {
     selectedKeys.delete(itemKey);
+    whatHappened = "unselect";
   }
+  return whatHappened;
 };
