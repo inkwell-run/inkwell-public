@@ -122,8 +122,6 @@ const useMultiSelect = <T,>(props: IUseMultiSelectProps<T>) => {
     const rightIndex =
       firstItemIndex >= secondItemIndex ? firstItemIndex : secondItemIndex;
 
-    console.log({ leftIndex, rightIndex });
-
     const range = localItems.slice(leftIndex, rightIndex + 1);
     range.forEach((item) => {
       toggleInPlace({
