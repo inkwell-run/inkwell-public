@@ -140,7 +140,16 @@ export const Post = () => {
       {baseProps.schemas.length > 0 ? (
         <div className="flex flex-col h-full gap-4 mt-6">
           <Label>Schema</Label>
-          <SchemaSelector schemas={baseProps.schemas} />
+          <SchemaSelector
+            schemas={baseProps.schemas}
+            value={getPost.data.schema}
+            onValueChange={(value) => {
+              updatePost.mutate({
+                id: getPost.data.id,
+                schema: value,
+              });
+            }}
+          />
         </div>
       ) : null}
       {/* media uploads */}

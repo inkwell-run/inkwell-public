@@ -10,11 +10,13 @@ import { ISchema } from "../pages/_app";
 
 interface ISchemaSelectorProps {
   schemas: ISchema[];
+  value?: string;
+  onValueChange: (value: string) => void;
 }
 
 const SchemaSelector = (props: ISchemaSelectorProps) => {
   return (
-    <Select>
+    <Select onValueChange={props.onValueChange} defaultValue={props.value}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a schema" />
       </SelectTrigger>

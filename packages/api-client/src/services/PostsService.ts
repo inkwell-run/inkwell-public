@@ -17,6 +17,7 @@ export class PostsService {
         createdAt: string;
         updatedAt: string;
         content?: string;
+        schema?: string;
     }>> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -37,6 +38,7 @@ export class PostsService {
         createdAt: string;
         updatedAt: string;
         content?: string;
+        schema?: string;
     }> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -65,6 +67,7 @@ export class PostsService {
         createdAt: string;
         updatedAt: string;
         content?: string;
+        schema?: string;
     }> {
         return __request(OpenAPI, {
             method: 'PATCH',
@@ -90,6 +93,7 @@ export class PostsService {
         createdAt: string;
         updatedAt: string;
         content?: string;
+        schema?: string;
     }> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -112,6 +116,7 @@ export class PostsService {
         createdAt: string;
         updatedAt: string;
         content?: string;
+        schema?: string;
     }> {
         return __request(OpenAPI, {
             method: 'DELETE',
