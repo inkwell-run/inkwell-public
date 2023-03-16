@@ -9,26 +9,10 @@ export const Schemas = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
   const { schemas } = baseProps;
 
-  // check if there are any duplicate schemas
-  const schemaDuplicateChecker = schemas.reduce((prev, curr) => {
-    if (!(curr.name in prev)) {
-      prev[curr.name] = 0;
-    }
-    prev[curr.name] += 1;
-    return prev;
-  }, {} as Record<string, number>);
-
   return (
     <div className="flex flex-col gap-4">
       {/* heading */}
       <div className="text-lg font-medium">Schemas</div>
-      {/* duplicate schema checker */}
-      {Object.values(schemaDuplicateChecker).some((v) => v > 1) ? (
-        <AlertBox>
-          Duplicate schemas detected. Please make sure that all schemas have a
-          unique name.
-        </AlertBox>
-      ) : null}
       {/* display schemas */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {schemas.map((s, i) => {
