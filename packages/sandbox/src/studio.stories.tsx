@@ -22,7 +22,7 @@ export const Studio: Story<{}> = ({}) => {
           }),
         },
         {
-          name: "Posts",
+          name: "Postzs",
           validator: z.object({
             title: z.string(),
             date: z.coerce.date(),

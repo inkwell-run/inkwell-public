@@ -58,6 +58,11 @@ export const Post = () => {
     );
   }
 
+  const schemaNames = baseProps.schemas.map((s) => s.name);
+  const schemaChoices = getPost.data.schema
+    ? [getPost.data.schema, ...schemaNames]
+    : schemaNames;
+
   return (
     <div className="flex flex-col gap-8">
       {/* back button */}
@@ -144,7 +149,7 @@ export const Post = () => {
         <div className="flex flex-col h-full gap-4 mt-6">
           <Label>Schema</Label>
           <SchemaSelector
-            schemas={baseProps.schemas}
+            choices={[...new Set(schemaChoices)]}
             value={getPost.data.schema}
             onValueChange={(value) => {
               updatePost.mutate({

@@ -14,7 +14,7 @@ import { parse } from "ultramatter";
 import { CheckIcon } from "lucide-react";
 
 interface ISchemaSelectorProps {
-  schemas: ISchema[];
+  choices: string[];
   value?: string;
   onValueChange: (value: string) => void;
 }
@@ -26,10 +26,10 @@ export const SchemaSelector = (props: ISchemaSelectorProps) => {
         <SelectValue placeholder="Select a schema" />
       </SelectTrigger>
       <SelectContent>
-        {props.schemas.map((s) => {
+        {props.choices.map((c) => {
           return (
-            <SelectItem value={s.name} key={s.name}>
-              {s.name}
+            <SelectItem value={c} key={c}>
+              {c}
             </SelectItem>
           );
         })}
