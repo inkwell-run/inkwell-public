@@ -25,7 +25,7 @@ export const Studio: Story<{}> = ({}) => {
           name: "Posts",
           validator: z.object({
             title: z.string(),
-            date: z.date(),
+            date: z.coerce.date(),
           }),
         },
       ]}

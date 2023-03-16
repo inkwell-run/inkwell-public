@@ -10,7 +10,10 @@ import { z } from "zod";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
 import { MediaManager } from "../../components/media-manager";
-import SchemaSelector from "../../components/schema-selector";
+import {
+  SchemaSelector,
+  SchemaValidator,
+} from "../../components/schema-selector";
 import { GlobalStateAtom } from "../../lib/store";
 
 export const Post = () => {
@@ -149,6 +152,11 @@ export const Post = () => {
                 schema: value,
               });
             }}
+          />
+          <SchemaValidator
+            postContent={getPost.data.content ?? ""}
+            schemaName={getPost.data.schema ?? ""}
+            schemas={baseProps.schemas}
           />
         </div>
       ) : null}
