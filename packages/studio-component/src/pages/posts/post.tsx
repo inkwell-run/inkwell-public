@@ -1,17 +1,21 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { Button, Input, Label, TypographySubtle } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell/api-client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Field, Form } from "houseform";
+import { useAtomValue } from "jotai";
+import { ArrowLeft } from "lucide-react";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, Input, Label, TypographySubtle } from "@doom.sh/ui";
-import { Form, Field } from "houseform";
+import { z } from "zod";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
-import { ArrowLeft } from "lucide-react";
-import { z } from "zod";
 import { MediaManager } from "../../components/media-manager";
+import SchemaSelector from "../../components/schema-selector";
+import { GlobalStateAtom } from "../../lib/store";
 
 export const Post = () => {
   const { postId } = useParams();
+  const { baseProps } = useAtomValue(GlobalStateAtom);
 
   const getPost = useQuery({
     queryKey: ["post", postId],
@@ -132,8 +136,15 @@ export const Post = () => {
           <MarkdocPreview value={getPost.data.content ?? ""} />
         </div>
       </div>
+      {/* schema selector */}
+      {baseProps.schemas.length > 0 ? (
+        <div className="flex flex-col h-full gap-4 mt-6">
+          <Label>Schema</Label>
+          <SchemaSelector schemas={baseProps.schemas} />
+        </div>
+      ) : null}
       {/* media uploads */}
-      <div className="flex flex-col h-full gap-4 mt-6">
+      <div className="flex flex-col h-full gap-4">
         <Label>Media</Label>
         <MediaManager postId={parseInt(postId)} />
       </div>

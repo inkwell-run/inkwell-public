@@ -1,7 +1,6 @@
 import { TypographySmall, TypographySubtle } from "@doom.sh/ui";
 import { useAtomValue } from "jotai";
 import React from "react";
-import { AlertBox } from "../../components/alert-box";
 import { GlobalStateAtom } from "../../lib/store";
 import { ISchema } from "../_app";
 
