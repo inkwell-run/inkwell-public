@@ -2,6 +2,7 @@ import { useAtomValue } from "jotai";
 import React from "react";
 import { ISchema } from "../_app";
 import { GlobalStateAtom } from "../../lib/store";
+import { TypographySmall, TypographySubtle } from "@doom.sh/ui";
 
 export const Schemas = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
@@ -10,7 +11,6 @@ export const Schemas = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="text-lg font-medium">Schemas</div>
-      <p>These are all the schemas you have defined</p>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {schemas.map((s, i) => {
           return <SchemaDisplay schema={s} key={`${i}-${s.name}`} />;
@@ -27,16 +27,12 @@ const SchemaDisplay = (props: ISchemaDisplayProps) => {
   const { schema } = props;
   return (
     <div className="flex flex-col gap-2 p-4 border rounded-md shadow-sm border-color">
-      <div>{schema.name}</div>
-      <div className="flex gap-2">
-        {Object.keys(schema.validator.shape).map((k) => {
-          return (
-            <div key={k} className="px-2 py-1 bg-gray-500 rounded-md">
-              {k}
-            </div>
-          );
-        })}
-      </div>
+      <TypographySmall>{schema.name}</TypographySmall>
+      <pre className="h-[200px] overflow-y-auto rounded-md border p-4 text-xs">
+        <TypographySubtle>
+          {JSON.stringify(schema.validator.shape, null, 2)}
+        </TypographySubtle>
+      </pre>
     </div>
   );
 };
