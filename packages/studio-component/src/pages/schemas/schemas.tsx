@@ -30,7 +30,7 @@ const SchemaDisplay = (props: ISchemaDisplayProps) => {
   return (
     <div className="flex flex-col gap-2 p-4 border rounded-md shadow-sm border-color">
       <TypographySmall>{schema.name}</TypographySmall>
-      <pre className="h-[200px] overflow-y-auto rounded-md border p-4 text-xs">
+      <pre className="h-[200px] overflow-auto rounded-md border p-4 text-xs">
         <TypographySubtle>
           {JSON.stringify(schema.validator.shape, null, 2)}
         </TypographySubtle>

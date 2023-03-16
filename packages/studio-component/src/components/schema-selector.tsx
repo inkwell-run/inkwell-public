@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
   TypographyInlineCode,
+  TypographySubtle,
 } from "@doom.sh/ui";
 import React from "react";
 import { ISchema } from "../pages/_app";
@@ -59,7 +60,15 @@ export const SchemaValidator = (props: ISchemaValidatorProps) => {
 
   if (!parsedFromSchema.success) {
     return (
-      <AlertBox>
+      <AlertBox
+        addendum={
+          <pre className="h-[200px] overflow-auto rounded-md border p-4 text-xs">
+            <TypographySubtle>
+              {JSON.stringify(parsedFromSchema.error, null, 2)}
+            </TypographySubtle>
+          </pre>
+        }
+      >
         Your post does not conform to the{" "}
         <TypographyInlineCode>{props.schemaName}</TypographyInlineCode> schema.
         Double-check your frontmatter.
