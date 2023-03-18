@@ -7,8 +7,8 @@ import { Post } from "./pages/posts/post";
 import { Posts } from "./pages/posts/posts";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";
-import { IInkwellStudioProps } from "./pages/_app";
 import "./styles/globals.css";
+import { AnyZodObject } from "zod";
 
 const router = createHashRouter([
   {
@@ -34,6 +34,17 @@ const router = createHashRouter([
     ],
   },
 ]);
+
+export interface ISchema {
+  name: string;
+  validator: AnyZodObject;
+}
+
+export interface IInkwellStudioProps {
+  accessToken: string;
+  schemas: ISchema[];
+  _themeOverride?: "light" | "dark";
+}
 
 export const InkwellStudio = (props: IInkwellStudioProps) => {
   const setGlobalState = useSetAtom(GlobalStateAtom);

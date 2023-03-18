@@ -78,6 +78,7 @@ importers:
 
   packages/studio-component:
     specifiers:
+      '@clerk/clerk-react': ^4.12.8
       '@codemirror/lang-markdown': ^6.1.0
       '@codesandbox/sandpack-react': ^2.1.9
       '@doom.sh/ui': ^1.0.13
@@ -111,6 +112,7 @@ importers:
       zod: ^3.21.4
       zx: ^7.2.1
     dependencies:
+      '@clerk/clerk-react': 4.12.8_react@18.2.0
       '@codemirror/lang-markdown': 6.1.0
       '@codesandbox/sandpack-react': 2.1.9_biqbaboplfbrettd7655fr4n2y
       '@doom.sh/ui': 1.0.13_rolp4vdflvzn6ejvk6mhjopnea
@@ -407,6 +409,34 @@ packages:
 
   /@braintree/sanitize-url/6.0.0:
     resolution: {integrity: sha512-mgmE7XBYY/21erpzhexk4Cj1cyTQ9LzvnTxtzM17BJ7ERMNE6W72mQRo0I1Ud8eFJ+RVVIcBNhLFZ3GX4XFz5w==}
+    dev: false
+
+  /@clerk/clerk-react/4.12.8_react@18.2.0:
+    resolution: {integrity: sha512-1cou6ZQ8OGb1wc0M3nwTxvSVFqt8ZCgI+mBDy4+BBYhKaP5INenmg6HmEMCswq3YzsHTiHFTIYMAcM8oGkku4Q==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@clerk/shared': 0.13.5_react@18.2.0
+      '@clerk/types': 3.31.1
+      react: 18.2.0
+      swr: 1.3.0_react@18.2.0
+      tslib: 2.4.1
+    dev: false
+
+  /@clerk/shared/0.13.5_react@18.2.0:
+    resolution: {integrity: sha512-AMh9FqoBr7YIRwmAC0FwWHLIqbbqICOWrxuPOr93WXe3Cm3HZVwIpXkaS7Qc+yMKJaaeFj+M7GkVNX7NohsRsQ==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@clerk/types/3.31.1:
+    resolution: {integrity: sha512-7xQtN1vUKq5kTdIwcbypiL2Qu9OU+1zS8LtIRFKgxAWt7lO2RW3yZMRVJvoPaTXyGnszyDcOla5lAHVHmKt6aQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      csstype: 3.1.1
     dev: false
 
   /@code-hike/classer/0.0.0-e48fa74_react@18.2.0:
@@ -7261,6 +7291,14 @@ packages:
     transitivePeerDependencies:
       - encoding
       - react-native
+    dev: false
+
+  /swr/1.3.0_react@18.2.0:
+    resolution: {integrity: sha512-dkghQrOl2ORX9HYrMDtPa7LTVHJjCTeZoB1dqTbnnEDlSvN8JEKpYIYurDfvbQFUUS8Cg8PceFVZNkW0KNNYPw==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /tailwind-merge/1.10.0:

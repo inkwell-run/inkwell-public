@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { IInkwellStudioProps } from "../pages/_app";
+import { IInkwellStudioProps } from "../index";
 
 export interface IGlobalState {
   baseProps: IInkwellStudioProps;

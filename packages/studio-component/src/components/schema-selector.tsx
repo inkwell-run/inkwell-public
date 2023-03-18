@@ -8,7 +8,7 @@ import {
   TypographySubtle,
 } from "@doom.sh/ui";
 import React from "react";
-import { ISchema } from "../pages/_app";
+import { ISchema } from "../index";
 import { AlertBox } from "./alert-box";
 import { parse } from "ultramatter";
 import { CheckIcon } from "lucide-react";

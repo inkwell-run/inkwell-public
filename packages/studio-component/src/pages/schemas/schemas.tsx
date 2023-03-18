@@ -2,7 +2,7 @@ import { TypographySmall, TypographySubtle } from "@doom.sh/ui";
 import { useAtomValue } from "jotai";
 import React from "react";
 import { GlobalStateAtom } from "../../lib/store";
-import { ISchema } from "../_app";
+import { ISchema } from "../../index";
 
 export const Schemas = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);

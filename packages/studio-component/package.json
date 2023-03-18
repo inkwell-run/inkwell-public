@@ -39,6 +39,7 @@
     "zx": "^7.2.1"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.12.8",
     "@codemirror/lang-markdown": "^6.1.0",
     "@codesandbox/sandpack-react": "^2.1.9",
     "@doom.sh/ui": "^1.0.13",
