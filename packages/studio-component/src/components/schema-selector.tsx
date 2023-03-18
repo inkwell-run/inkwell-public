@@ -78,7 +78,7 @@ export const SchemaValidator = (props: ISchemaValidatorProps) => {
 
   return (
     <AlertBox iconOverride={<CheckIcon className="w-4 h-4 text-green-400" />}>
-      Your post conforms to the
+      Your post conforms to the{" "}
       <TypographyInlineCode>{props.schemaName}</TypographyInlineCode> schema.
     </AlertBox>
   );
