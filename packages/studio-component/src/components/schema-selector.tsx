@@ -45,6 +45,12 @@ interface ISchemaValidatorProps {
 }
 
 export const SchemaValidator = (props: ISchemaValidatorProps) => {
+  // if no schema, show nothing
+  if (!props.schemaName) {
+    return null;
+  }
+
+  // if schema, but not in list, show error
   const schemaFromName = props.schemas.find((s) => s.name === props.schemaName);
   if (!schemaFromName) {
     return (
