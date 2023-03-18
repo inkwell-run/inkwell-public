@@ -18,6 +18,7 @@ export class AssetsService {
         id: number;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
+        name?: string;
         providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
@@ -51,6 +52,7 @@ export class AssetsService {
         id: number;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
+        name?: string;
         providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
@@ -83,11 +85,13 @@ export class AssetsService {
             postId: number;
             providerId: string;
             providerType?: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+            name?: string;
         },
     ): CancelablePromise<{
         id: number;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
+        name?: string;
         providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
@@ -122,6 +126,7 @@ export class AssetsService {
         id: number;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
+        name?: string;
         providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;

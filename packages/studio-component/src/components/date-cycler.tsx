@@ -5,7 +5,7 @@ import React from "react";
 
 interface IDateCyclerProps {
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 enum IDateCyclerStage {

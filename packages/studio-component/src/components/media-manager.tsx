@@ -40,6 +40,7 @@ export const MediaManager = (props: IMediaManagerProps) => {
         postId,
         providerId: f.uuid,
         providerType: "UPLOADCARE",
+        name: f.name,
       });
     });
   };
@@ -75,7 +76,9 @@ const MediaItem = (props: IMediaItemProps) => {
   const handleCopyClipboard = () => {
     toast.success("Copied to clipboard");
     window.navigator.clipboard.writeText(
-      constructUploadCareUrl(asset.providerId)
+      constructUploadCareUrl({
+        uuid: asset.providerId,
+      })
     );
   };
 
@@ -91,7 +94,10 @@ const MediaItem = (props: IMediaItemProps) => {
     <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
       {/* todo(sarim): offer to clean up unused assets if error during image load */}
       <img
-        src={constructUploadCareUrl(asset.providerId)}
+        src={constructUploadCareUrl({
+          uuid: asset.providerId,
+          resizeWidth: 200,
+        })}
         alt={"uploaded media"}
         className="object-cover w-full h-full"
       />
