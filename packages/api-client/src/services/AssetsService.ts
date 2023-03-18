@@ -13,7 +13,7 @@ export class AssetsService {
      * @throws ApiError
      */
     public static queryAssetsFindMany(
-        postId: number,
+        postId?: number,
     ): CancelablePromise<Array<{
         id: number;
         createdAt: string;
@@ -22,6 +22,14 @@ export class AssetsService {
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
+        /**
+         * The posts that are linked to this asset (but don't necessarilly use it in their content)
+         */
+        linkedPostIds?: Array<number>;
+        /**
+         * The posts that use this asset in their content
+         */
+        usedInPostIds?: Array<number>;
     }>> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -47,6 +55,14 @@ export class AssetsService {
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
+        /**
+         * The posts that are linked to this asset (but don't necessarilly use it in their content)
+         */
+        linkedPostIds?: Array<number>;
+        /**
+         * The posts that use this asset in their content
+         */
+        usedInPostIds?: Array<number>;
     }> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -76,6 +92,14 @@ export class AssetsService {
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
+        /**
+         * The posts that are linked to this asset (but don't necessarilly use it in their content)
+         */
+        linkedPostIds?: Array<number>;
+        /**
+         * The posts that use this asset in their content
+         */
+        usedInPostIds?: Array<number>;
     }> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -102,6 +126,14 @@ export class AssetsService {
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
+        /**
+         * The posts that are linked to this asset (but don't necessarilly use it in their content)
+         */
+        linkedPostIds?: Array<number>;
+        /**
+         * The posts that use this asset in their content
+         */
+        usedInPostIds?: Array<number>;
     }> {
         return __request(OpenAPI, {
             method: 'POST',

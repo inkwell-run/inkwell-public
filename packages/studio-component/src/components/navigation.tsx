@@ -28,6 +28,11 @@ const links: NavLink[] = [
     pageLink: PageLinks.Schemas,
     isActive: (currentPathname) => currentPathname === "/schemas",
   },
+  {
+    text: "Assets",
+    pageLink: PageLinks.Assets,
+    isActive: (currentPathname) => currentPathname === "/assets",
+  },
 ];
 
 const Navigation = () => {

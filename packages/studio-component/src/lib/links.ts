@@ -4,6 +4,7 @@ export const PageLinks = {
   Index: "/",
   Posts: "/posts",
   Schemas: "/schemas",
+  Assets: "/assets",
 } as const;
 
 export type PageLink = ValueOf<typeof PageLinks>;

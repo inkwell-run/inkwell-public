@@ -2,8 +2,9 @@ import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { GlobalStateAtom } from "./lib/store";
-import { Posts } from "./pages/posts/posts";
+import { Assets } from "./pages/assets/assets";
 import { Post } from "./pages/posts/post";
+import { Posts } from "./pages/posts/posts";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";
 import { IInkwellStudioProps } from "./pages/_app";
@@ -25,6 +26,10 @@ const router = createHashRouter([
       {
         path: "posts/:postId",
         element: <Post />,
+      },
+      {
+        path: "assets",
+        element: <Assets />,
       },
     ],
   },
