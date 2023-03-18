@@ -15,12 +15,12 @@ const queryClient = new QueryClient();
 
 export const Root = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
-  const { accessToken, _themeOverride } = baseProps;
+  const { accessToken, _themeOverride, enableUserAuth } = baseProps;
 
   return (
     <QueryClientProvider client={queryClient}>
       <PropsValidator>
-        <AuthProvider accessToken={accessToken}>
+        <AuthProvider accessToken={accessToken} enableUserAuth={enableUserAuth}>
           <div className="flex flex-col h-full">
             <Navigation />
             <div className="p-4 md:p-8">

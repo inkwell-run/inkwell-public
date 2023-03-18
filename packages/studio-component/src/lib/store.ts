@@ -9,5 +9,6 @@ export const GlobalStateAtom = atom<IGlobalState>({
   baseProps: {
     accessToken: "",
     schemas: [],
+    enableUserAuth: false,
   },
 });

@@ -1,3 +1,9 @@
+import {
+  ClerkProvider,
+  RedirectToSignIn,
+  SignedIn,
+  SignedOut,
+} from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { useSetAtom } from "jotai";
@@ -8,13 +14,13 @@ import { GlobalStateAtom } from "../lib/store";
 interface IAuthProviderProps {
   accessToken: string;
   children: React.ReactNode;
+  enableUserAuth?: boolean;
 }
 
 // 1. Sets the access token onto the OpenAPI
 // 2. Adds token to the global store
 const AuthProvider = (props: IAuthProviderProps) => {
-  const { accessToken, children } = props;
-  console.log("auth provider");
+  const { accessToken, enableUserAuth, children } = props;
 
   // 1. Set the access token onto the OpenAPI
   InkwellApi.OpenAPI.TOKEN = accessToken;
@@ -62,6 +68,19 @@ const AuthProvider = (props: IAuthProviderProps) => {
           </p>
         </div>
       </div>
+    );
+  }
+
+  if (enableUserAuth) {
+    return (
+      <ClerkProvider
+        publishableKey={"pk_test_Y2xlcmsuaW5ub2NlbnQua3JpbGwtNjUubGNsLmRldiQ"}
+      >
+        <SignedIn>{children}</SignedIn>
+        <SignedOut>
+          <RedirectToSignIn />
+        </SignedOut>
+      </ClerkProvider>
     );
   }
 

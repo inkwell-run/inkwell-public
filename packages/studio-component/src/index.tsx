@@ -44,6 +44,7 @@ export interface IInkwellStudioProps {
   accessToken: string;
   schemas: ISchema[];
   _themeOverride?: "light" | "dark";
+  enableUserAuth?: boolean;
 }
 
 export const InkwellStudio = (props: IInkwellStudioProps) => {
