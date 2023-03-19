@@ -43,10 +43,13 @@ export interface ISchema {
 export interface IInkwellStudioProps {
   accessToken: string;
   schemas: ISchema[];
-  _themeOverride?: "light" | "dark";
 
   // enable user authentication. default: true
   enableUserAuth?: boolean;
+
+  // experimental
+  _themeOverride?: "light" | "dark";
+  _baseUrlOverride?: string;
 }
 
 export const InkwellStudio = (props: IInkwellStudioProps) => {

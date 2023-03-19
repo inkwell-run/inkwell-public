@@ -10,16 +10,15 @@ import { PropsValidator } from "../components/props-validator";
 import { UserValidator } from "../components/user-validator";
 import { GlobalStateAtom } from "../lib/store";
 
-InkwellApi.OpenAPI.BASE =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3001/api"
-    : "https://app.inkwell.run/api";
-
 const queryClient = new QueryClient();
 
 export const Root = () => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
   const { accessToken, _themeOverride, enableUserAuth } = baseProps;
+
+  // set the base url
+  InkwellApi.OpenAPI.BASE =
+    baseProps._baseUrlOverride ?? "https://app.inkwell.run/api";
 
   return (
     <QueryClientProvider client={queryClient}>
