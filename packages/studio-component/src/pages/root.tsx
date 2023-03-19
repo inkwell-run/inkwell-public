@@ -10,7 +10,10 @@ import { PropsValidator } from "../components/props-validator";
 import { UserValidator } from "../components/user-validator";
 import { GlobalStateAtom } from "../lib/store";
 
-InkwellApi.OpenAPI.BASE = "http://localhost:3001/api";
+InkwellApi.OpenAPI.BASE =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/api"
+    : "https://app.inkwell.run/api";
 
 const queryClient = new QueryClient();
 
