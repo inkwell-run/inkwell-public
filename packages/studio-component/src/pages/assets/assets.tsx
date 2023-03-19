@@ -9,7 +9,7 @@ import {
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
-import { LinkIcon } from "lucide-react";
+import { Link } from "lucide-react";
 import React from "react";
 import DateCycler from "../../components/date-cycler";
 import { constructUploadCareUrl } from "../../components/uploadcare/utils";
@@ -122,7 +122,7 @@ const LinkUseStats = (props: ILinkUseStatsProps) => {
   const { asset } = props;
   return (
     <div className="flex items-center gap-2 px-2 py-0.5 bg-slate-200 rounded-full">
-      <LinkIcon className="w-2 h-2 opacity-50" />
+      <Link className="w-2 h-2 opacity-50" />
       <div className="font-mono text-xs opacity-50">
         {asset.usedInPostIds?.length}/{asset.linkedPostIds?.length ?? 0}
       </div>

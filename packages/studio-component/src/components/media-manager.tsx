@@ -8,7 +8,7 @@ import {
 } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ClipboardIcon, MoreHorizontal, TrashIcon } from "lucide-react";
+import { Clipboard, MoreHorizontal, Trash } from "lucide-react";
 import React from "react";
 import { UploadCareWidget } from "./uploadcare";
 import { IUploadCareFile } from "./uploadcare/types";
@@ -112,7 +112,7 @@ const MediaItem = (props: IMediaItemProps) => {
                 className="flex items-center gap-2"
                 onClick={handleCopyClipboard}
               >
-                <ClipboardIcon className="w-4 h-4" />
+                <Clipboard className="w-4 h-4" />
                 <div>Copy</div>
               </DropdownMenuItem>
               <DropdownMenuItem
@@ -130,7 +130,7 @@ const MediaItem = (props: IMediaItemProps) => {
                   );
                 }}
               >
-                <TrashIcon className="w-4 h-4" />
+                <Trash className="w-4 h-4" />
                 <div>Delete</div>
               </DropdownMenuItem>
             </DropdownMenuGroup>

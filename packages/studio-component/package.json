@@ -1,6 +1,6 @@
 {
   "name": "@inkwell.run/studio",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Studio component",
   "files": [
     "dist",

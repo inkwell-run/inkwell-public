@@ -11,7 +11,7 @@ import React from "react";
 import { ISchema } from "../index";
 import { AlertBox } from "./alert-box";
 import { parse } from "ultramatter";
-import { CheckIcon } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface ISchemaSelectorProps {
   choices: string[];
@@ -83,7 +83,7 @@ export const SchemaValidator = (props: ISchemaValidatorProps) => {
   }
 
   return (
-    <AlertBox iconOverride={<CheckIcon className="w-4 h-4 text-green-400" />}>
+    <AlertBox iconOverride={<Check className="w-4 h-4 text-green-400" />}>
       Your post conforms to the{" "}
       <TypographyInlineCode>{props.schemaName}</TypographyInlineCode> schema.
     </AlertBox>
