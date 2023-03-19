@@ -15,7 +15,7 @@ export class AccessTokensService {
     public static queryAccessTokensTest(): CancelablePromise<{
         id: string;
         createdAt: string;
-        organizationId: number | null;
+        organizationId: string | null;
     }> {
         return __request(OpenAPI, {
             method: 'GET',

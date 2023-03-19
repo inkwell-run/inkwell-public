@@ -12,7 +12,7 @@ export class PostsService {
      * @throws ApiError
      */
     public static queryPostsFindMany(): CancelablePromise<Array<{
-        id: number;
+        id: string;
         slug: string;
         createdAt: string;
         updatedAt: string;
@@ -31,9 +31,9 @@ export class PostsService {
      * @throws ApiError
      */
     public static queryPostsFindUnique(
-        id: number,
+        id: string,
     ): CancelablePromise<{
-        id: number;
+        id: string;
         slug: string;
         createdAt: string;
         updatedAt: string;
@@ -56,13 +56,13 @@ export class PostsService {
      */
     public static mutationPostsUpdate(
         requestBody: {
-            id: number;
+            id: string;
             slug?: string;
             content?: string;
             schema?: string;
         },
     ): CancelablePromise<{
-        id: number;
+        id: string;
         slug: string;
         createdAt: string;
         updatedAt: string;
@@ -88,7 +88,7 @@ export class PostsService {
             content?: string;
         },
     ): CancelablePromise<{
-        id: number;
+        id: string;
         slug: string;
         createdAt: string;
         updatedAt: string;
@@ -109,9 +109,9 @@ export class PostsService {
      * @throws ApiError
      */
     public static mutationPostsDelete(
-        id: number,
+        id: string,
     ): CancelablePromise<{
-        id: number;
+        id: string;
         slug: string;
         createdAt: string;
         updatedAt: string;

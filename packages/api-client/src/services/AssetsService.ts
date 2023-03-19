@@ -13,9 +13,9 @@ export class AssetsService {
      * @throws ApiError
      */
     public static queryAssetsFindMany(
-        postId?: number,
+        postId?: string,
     ): CancelablePromise<Array<{
-        id: number;
+        id: string;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
@@ -26,11 +26,11 @@ export class AssetsService {
         /**
          * The posts that are linked to this asset (but don't necessarilly use it in their content)
          */
-        linkedPostIds?: Array<number>;
+        linkedPostIds?: Array<string>;
         /**
          * The posts that use this asset in their content
          */
-        usedInPostIds?: Array<number>;
+        usedInPostIds?: Array<string>;
     }>> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -47,9 +47,9 @@ export class AssetsService {
      * @throws ApiError
      */
     public static queryAssetsFindUnique(
-        id: number,
+        id: string,
     ): CancelablePromise<{
-        id: number;
+        id: string;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
@@ -60,11 +60,11 @@ export class AssetsService {
         /**
          * The posts that are linked to this asset (but don't necessarilly use it in their content)
          */
-        linkedPostIds?: Array<number>;
+        linkedPostIds?: Array<string>;
         /**
          * The posts that use this asset in their content
          */
-        usedInPostIds?: Array<number>;
+        usedInPostIds?: Array<string>;
     }> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -82,13 +82,13 @@ export class AssetsService {
      */
     public static mutationAssetsCreate(
         requestBody: {
-            postId: number;
+            postId: string;
             providerId: string;
             providerType?: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
             name?: string;
         },
     ): CancelablePromise<{
-        id: number;
+        id: string;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
@@ -99,11 +99,11 @@ export class AssetsService {
         /**
          * The posts that are linked to this asset (but don't necessarilly use it in their content)
          */
-        linkedPostIds?: Array<number>;
+        linkedPostIds?: Array<string>;
         /**
          * The posts that use this asset in their content
          */
-        usedInPostIds?: Array<number>;
+        usedInPostIds?: Array<string>;
     }> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -120,10 +120,10 @@ export class AssetsService {
      */
     public static mutationAssetsDelete(
         requestBody: {
-            assetId: number;
+            assetId: string;
         },
     ): CancelablePromise<{
-        id: number;
+        id: string;
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
@@ -134,11 +134,11 @@ export class AssetsService {
         /**
          * The posts that are linked to this asset (but don't necessarilly use it in their content)
          */
-        linkedPostIds?: Array<number>;
+        linkedPostIds?: Array<string>;
         /**
          * The posts that use this asset in their content
          */
-        usedInPostIds?: Array<number>;
+        usedInPostIds?: Array<string>;
     }> {
         return __request(OpenAPI, {
             method: 'POST',

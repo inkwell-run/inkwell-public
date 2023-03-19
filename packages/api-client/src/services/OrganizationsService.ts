@@ -14,9 +14,9 @@ export class OrganizationsService {
      * @throws ApiError
      */
     public static queryOrganizationsFindUnique(
-        id: number,
+        id: string,
     ): CancelablePromise<{
-        id: number;
+        id: string;
         createdAt: string;
         clerkOrganizationId: string;
         clerkOrganizationName?: string;

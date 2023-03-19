@@ -22,8 +22,7 @@ export const Post = () => {
 
   const getPost = useQuery({
     queryKey: ["post", postId],
-    queryFn: () =>
-      InkwellApi.PostsService.queryPostsFindUnique(parseInt(postId ?? "")),
+    queryFn: () => InkwellApi.PostsService.queryPostsFindUnique(postId ?? ""),
   });
 
   const updatePost = useMutation({
@@ -31,7 +30,7 @@ export const Post = () => {
     onSuccess: () => getPost.refetch(),
   });
 
-  if (typeof postId === "undefined" || isNaN(parseInt(postId))) {
+  if (typeof postId === "undefined" || !!postId) {
     return (
       <div className="flex flex-col items-center gap-4">
         <div className="w-4 h-4 bg-red-400 rounded-full" />
@@ -168,7 +167,7 @@ export const Post = () => {
       {/* media uploads */}
       <div className="flex flex-col h-full gap-4">
         <Label>Media</Label>
-        <MediaManager postId={parseInt(postId)} />
+        <MediaManager postId={postId} />
       </div>
     </div>
   );

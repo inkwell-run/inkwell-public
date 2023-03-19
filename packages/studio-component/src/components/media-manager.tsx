@@ -15,7 +15,7 @@ import { IUploadCareFile } from "./uploadcare/types";
 import { constructUploadCareUrl } from "./uploadcare/utils";
 
 interface IMediaManagerProps {
-  postId: number;
+  postId: string;
 }
 
 export const MediaManager = (props: IMediaManagerProps) => {
