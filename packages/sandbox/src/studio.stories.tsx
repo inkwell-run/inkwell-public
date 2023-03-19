@@ -12,7 +12,7 @@ export const Studio: Story<{}> = ({}) => {
   return (
     <InkwellStudio
       enableUserAuth
-      _baseUrlOverride="http://localhost:3001/api"
+      baseUrl="http://localhost:3001/api"
       _themeOverride={theme as any}
       accessToken="45dd3f96-b5b8-4fa7-924f-dd0fd09d89cf"
       schemas={[

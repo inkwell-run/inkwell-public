@@ -17,8 +17,7 @@ export const Root = () => {
   const { accessToken, _themeOverride, enableUserAuth } = baseProps;
 
   // set the base url
-  InkwellApi.OpenAPI.BASE =
-    baseProps._baseUrlOverride ?? "https://app.inkwell.run/api";
+  InkwellApi.OpenAPI.BASE = baseProps.baseUrl;
 
   return (
     <QueryClientProvider client={queryClient}>
