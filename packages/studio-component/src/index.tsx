@@ -1,8 +1,8 @@
 import { useSetAtom } from "jotai";
-import { AlertCircle } from "lucide-react";
 import React, { useEffect } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { IInkwellStudioPropsInput, ZInkwellStudioProps } from "./baseProps";
+import { AlertScreen } from "./components/alert-screen";
 import { GlobalStateAtom } from "./lib/store";
 import { Assets } from "./pages/assets/assets";
 import { Post } from "./pages/posts/post";
@@ -56,15 +56,10 @@ export const InkwellStudio = (props: IInkwellStudioPropsInput) => {
   if (!parsedProps.success) {
     console.error(parsedProps.error);
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <AlertCircle className="w-8 h-8 text-red-400" />
-          <p>
-            Something went wrong while parsing your props. Please check the
-            console for more information.
-          </p>
-        </div>
-      </div>
+      <AlertScreen type="error">
+        Something went wrong while parsing your props. Please check the console
+        for more information.
+      </AlertScreen>
     );
   }
 
@@ -82,15 +77,10 @@ export const InkwellStudio = (props: IInkwellStudioPropsInput) => {
 
   if (Object.values(schemaDuplicateChecker).some((v) => v > 1)) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <AlertCircle className="w-8 h-8 text-red-400" />
-          <p>
-            Duplicate schemas detected. Please make sure that all schemas have a
-            unique name.
-          </p>
-        </div>
-      </div>
+      <AlertScreen type="error">
+        Duplicate schemas detected. Please make sure that all schemas have a
+        unique name.
+      </AlertScreen>
     );
   }
 

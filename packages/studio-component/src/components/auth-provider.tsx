@@ -6,8 +6,8 @@ import {
 } from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
-import { AlertCircle } from "lucide-react";
 import React from "react";
+import { AlertScreen } from "./alert-screen";
 
 interface IAuthProviderProps {
   accessToken: string;
@@ -33,39 +33,24 @@ const AuthProvider = (props: IAuthProviderProps) => {
 
   // if loading, show a skeleton
   if (accessTokenQuery.isLoading || environmentQuery.isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
-          <p>Authenticating...</p>
-        </div>
-      </div>
-    );
+    return <AlertScreen type="loading">Authenticating...</AlertScreen>;
   }
 
   // check that the access token ping worked
   if (accessToken === "" || !accessTokenQuery.data?.organizationId) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <AlertCircle className="w-8 h-8 text-red-400" />
-          <p>
-            Seems like you don't have a valid access token. Please go to the
-            Inkwell dashboard to get one!
-          </p>
-        </div>
-      </div>
+      <AlertScreen type="error">
+        Seems like you don't have a valid access token. Please go to the Inkwell
+        dashboard to get one!
+      </AlertScreen>
     );
   }
 
   if (!environmentQuery.data?.userAuthPublicKey) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <AlertCircle className="w-8 h-8 text-red-400" />
-          <p>Something went wrong while setting up the studio.</p>
-        </div>
-      </div>
+      <AlertScreen type="error">
+        Something went wrong while setting up the studio.
+      </AlertScreen>
     );
   }
 
