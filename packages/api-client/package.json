@@ -1,5 +1,9 @@
 {
   "name": "@inkwell.run/client",
+  "files": [
+    "dist",
+    "src"
+  ],
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
