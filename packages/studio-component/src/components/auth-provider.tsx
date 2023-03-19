@@ -73,11 +73,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
   // set up clerk with the public key obtained from the ping
   if (enableUserAuth) {
     return (
-      <ClerkProvider
-        publishableKey={environmentQuery.data.userAuthPublicKey}
-        isSatellite
-        domain="https://inkwell.run"
-      >
+      <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
         <SignedIn>{children}</SignedIn>
         <SignedOut>
           <RedirectToSignIn />
