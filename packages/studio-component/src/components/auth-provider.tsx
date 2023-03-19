@@ -4,7 +4,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
-import * as InkwellApi from "@inkwell/api-client";
+import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
 import React from "react";

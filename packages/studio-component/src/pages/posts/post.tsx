@@ -1,5 +1,5 @@
 import { Button, Input, Label, TypographySubtle } from "@doom.sh/ui";
-import * as InkwellApi from "@inkwell/api-client";
+import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Field, Form } from "houseform";
 import { useAtomValue } from "jotai";

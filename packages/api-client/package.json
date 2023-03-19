@@ -1,5 +1,5 @@
 {
-  "name": "@inkwell/api-client",
+  "name": "@inkwell.run/client",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",

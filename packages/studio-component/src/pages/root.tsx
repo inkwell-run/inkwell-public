@@ -1,5 +1,5 @@
 import { Toaster } from "@doom.sh/ui";
-import * as InkwellApi from "@inkwell/api-client";
+import * as InkwellApi from "@inkwell.run/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React from "react";

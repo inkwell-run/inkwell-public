@@ -1,5 +1,5 @@
 {
-  "name": "@inkwell/sandbox",
+  "name": "@inkwell.run/sandbox",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@inkwell/studio": "workspace:*",
+    "@inkwell.run/studio": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "^3.21.4"

@@ -53,7 +53,7 @@ importers:
 
   packages/sandbox:
     specifiers:
-      '@inkwell/studio': workspace:*
+      '@inkwell.run/studio': workspace:*
       '@ladle/react': ^2.10.1
       '@types/react': 18.0.28
       autoprefixer: ^10.4.14
@@ -64,7 +64,7 @@ importers:
       vite: ^4.1.4
       zod: ^3.21.4
     dependencies:
-      '@inkwell/studio': link:../studio-component
+      '@inkwell.run/studio': link:../studio-component
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       zod: 3.21.4
@@ -82,7 +82,7 @@ importers:
       '@codemirror/lang-markdown': ^6.1.0
       '@codesandbox/sandpack-react': ^2.1.9
       '@doom.sh/ui': ^1.0.13
-      '@inkwell/api-client': workspace:*
+      '@inkwell.run/client': workspace:*
       '@markdoc/markdoc': ^0.2.2
       '@tailwindcss/forms': ^0.5.3
       '@tailwindcss/typography': ^0.5.9
@@ -116,7 +116,7 @@ importers:
       '@codemirror/lang-markdown': 6.1.0
       '@codesandbox/sandpack-react': 2.1.9_biqbaboplfbrettd7655fr4n2y
       '@doom.sh/ui': 1.0.13_rolp4vdflvzn6ejvk6mhjopnea
-      '@inkwell/api-client': link:../api-client
+      '@inkwell.run/client': link:../api-client
       '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
       '@tanstack/react-query': 4.27.0_biqbaboplfbrettd7655fr4n2y
       '@uploadcare/blocks': 0.18.0
@@ -4471,7 +4471,6 @@ packages:
 
   /graceful-fs/4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-    dev: true
 
   /gray-matter/4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
@@ -4980,7 +4979,7 @@ packages:
   /jsonfile/4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: false
 
   /jsonfile/6.1.0:
@@ -5063,7 +5062,6 @@ packages:
   /lilconfig/2.0.6:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
-    dev: true
 
   /lilconfig/2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -6283,7 +6281,7 @@ packages:
       ts-node:
         optional: true
     dependencies:
-      lilconfig: 2.1.0
+      lilconfig: 2.0.6
       postcss: 8.4.21
       yaml: 1.10.2
 

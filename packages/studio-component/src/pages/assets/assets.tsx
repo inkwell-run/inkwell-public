@@ -6,7 +6,7 @@ import {
   TypographyInlineCode,
   TypographyLarge,
 } from "@doom.sh/ui";
-import * as InkwellApi from "@inkwell/api-client";
+import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import { LinkIcon } from "lucide-react";

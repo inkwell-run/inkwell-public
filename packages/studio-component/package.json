@@ -1,5 +1,5 @@
 {
-  "name": "@inkwell/studio",
+  "name": "@inkwell.run/studio",
   "version": "1.0.0",
   "description": "Studio component",
   "main": "dist/index.js",
@@ -18,7 +18,8 @@
   },
   "scripts": {
     "dev": "pnpm build --watch",
-    "build": "tsup --config tsup.config.ts"
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": [],
   "author": "",
@@ -43,7 +44,7 @@
     "@codemirror/lang-markdown": "^6.1.0",
     "@codesandbox/sandpack-react": "^2.1.9",
     "@doom.sh/ui": "^1.0.13",
-    "@inkwell/api-client": "workspace:*",
+    "@inkwell.run/client": "workspace:*",
     "@markdoc/markdoc": "^0.2.2",
     "@tanstack/react-query": "^4.27.0",
     "@uploadcare/blocks": "^0.18.0",

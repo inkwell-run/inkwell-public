@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
   toast,
 } from "@doom.sh/ui";
-import * as InkwellApi from "@inkwell/api-client";
+import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ClipboardIcon, MoreHorizontal, TrashIcon } from "lucide-react";
 import React from "react";
