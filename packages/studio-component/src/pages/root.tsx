@@ -6,7 +6,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import AuthProvider from "../components/auth-provider";
 import Navigation from "../components/navigation";
-import { PropsValidator } from "../components/props-validator";
 import { UserValidator } from "../components/user-validator";
 import { GlobalStateAtom } from "../lib/store";
 
@@ -21,19 +20,17 @@ export const Root = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PropsValidator>
-        <AuthProvider accessToken={accessToken} enableUserAuth={enableUserAuth}>
-          <UserValidator>
-            <div className="flex flex-col h-full">
-              <Navigation />
-              <div className="p-4 md:p-8">
-                <Outlet />
-              </div>
+      <AuthProvider accessToken={accessToken} enableUserAuth={enableUserAuth}>
+        <UserValidator>
+          <div className="flex flex-col h-full">
+            <Navigation />
+            <div className="p-4 md:p-8">
+              <Outlet />
             </div>
-            <Toaster position="top-center" />
-          </UserValidator>
-        </AuthProvider>
-      </PropsValidator>
+          </div>
+          <Toaster position="top-center" />
+        </UserValidator>
+      </AuthProvider>
     </QueryClientProvider>
   );
 };
