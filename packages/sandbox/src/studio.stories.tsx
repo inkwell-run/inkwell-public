@@ -11,7 +11,7 @@ export const Studio: Story<{}> = ({}) => {
 
   return (
     <InkwellStudio
-      enableUserAuth={true}
+      // enableUserAuth={true}
       _themeOverride={theme as any}
       accessToken="45dd3f96-b5b8-4fa7-924f-dd0fd09d89cf"
       schemas={[

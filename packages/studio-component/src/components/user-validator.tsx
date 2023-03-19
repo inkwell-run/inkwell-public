@@ -26,21 +26,18 @@ export const UserValidator = (props: IUserValidatorProps) => {
     enabled: !!accessTokenQuery.data?.organizationId,
   });
 
-  // if loading, show a skeleton
-  if (accessTokenQuery.isLoading || organizationQuery.isLoading || !isLoaded) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
-          <p>Authorizing...</p>
-        </div>
-      </div>
-    );
+  // if loading queries, show a skeleton
+  if (accessTokenQuery.isLoading || organizationQuery.isLoading) {
+    return <AuthorizingMessage />;
   }
 
-  // if there is a user loaded, make sure the user belongs to an organization
-  // that is referenced by the access token
+  // make sure the user belongs to an organization that is referenced by the
+  // access token
   if (props.enableUserAuth) {
+    // wait for user to be loaded
+    if (!isLoaded) return <AuthorizingMessage />;
+
+    // check user org memberships
     if (
       !user?.organizationMemberships ||
       !user.organizationMemberships.find(
@@ -62,4 +59,15 @@ export const UserValidator = (props: IUserValidatorProps) => {
   }
 
   return <>{props.children}</>;
+};
+
+const AuthorizingMessage = () => {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
+        <p>Authorizing...</p>
+      </div>
+    </div>
+  );
 };

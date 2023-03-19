@@ -58,20 +58,20 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
+  if (!environmentQuery.data?.userAuthPublicKey) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <AlertCircle className="w-8 h-8 text-red-400" />
+          <p>Something went wrong while setting up the studio.</p>
+        </div>
+      </div>
+    );
+  }
+
   // enable clerk user authentication
   // set up clerk with the public key obtained from the ping
   if (enableUserAuth) {
-    if (!environmentQuery.data?.userAuthPublicKey) {
-      return (
-        <div className="flex items-center justify-center h-screen">
-          <div className="flex flex-col items-center gap-4">
-            <AlertCircle className="w-8 h-8 text-red-400" />
-            <p>Something went wrong enabling user authentication.</p>
-          </div>
-        </div>
-      );
-    }
-
     return (
       <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
         <SignedIn>{children}</SignedIn>
@@ -82,8 +82,14 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
-  // if not using user authentication, just return the children
-  return <>{children}</>;
+  // if not using user authentication, still wrap with clerk, but don't guard.
+  // we need the clerk provider so that the user button/hooks downstream don't
+  // throw errors. sadly this means we cant totally disable clerk
+  return (
+    <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
+      {children}
+    </ClerkProvider>
+  );
 };
 
 export default AuthProvider;

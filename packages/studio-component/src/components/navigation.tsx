@@ -1,4 +1,4 @@
-import React from "react";
+import { UserButton } from "@clerk/clerk-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,10 +6,10 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@doom.sh/ui";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PageLink, PageLinks } from "../lib/links";
 import { OrgDropdown } from "./org-dropdown";
-import { UserButton } from "@clerk/clerk-react";
 
 interface NavLink {
   text: string;
