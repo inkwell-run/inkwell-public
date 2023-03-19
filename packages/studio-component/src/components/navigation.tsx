@@ -9,6 +9,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { PageLink, PageLinks } from "../lib/links";
 import { OrgDropdown } from "./org-dropdown";
+import { UserButton } from "@clerk/clerk-react";
 
 interface NavLink {
   text: string;
@@ -66,6 +67,7 @@ const Navigation = () => {
         {/* right */}
         <div className="flex items-center gap-8">
           <OrgDropdown />
+          <UserButton />
         </div>
       </div>
     </div>

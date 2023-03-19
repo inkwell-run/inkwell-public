@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-react";
+import { UserButton, useUser } from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
@@ -55,6 +55,7 @@ export const UserValidator = (props: IUserValidatorProps) => {
               You are not authorized to modify this organization. Try switching
               accounts.
             </p>
+            <UserButton />
           </div>
         </div>
       );
