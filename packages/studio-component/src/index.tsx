@@ -1,7 +1,7 @@
 import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { IInkwellStudioProps } from "./baseProps";
+import { IInkwellStudioPropsInput, ZInkwellStudioProps } from "./baseProps";
 import { GlobalStateAtom } from "./lib/store";
 import { Assets } from "./pages/assets/assets";
 import { Post } from "./pages/posts/post";
@@ -35,14 +35,20 @@ const router = createHashRouter([
   },
 ]);
 
-export const InkwellStudio = (props: IInkwellStudioProps) => {
+export const InkwellStudio = (props: IInkwellStudioPropsInput) => {
+  // parse props
+  const parsedProps = ZInkwellStudioProps.safeParse(props);
+  if (!parsedProps.success) {
+    throw new Error(parsedProps.error.message);
+  }
+
   // set props on global state
   const setGlobalState = useSetAtom(GlobalStateAtom);
   useEffect(() => {
     setGlobalState((prev) => ({
       ...prev,
       baseProps: {
-        ...props,
+        ...parsedProps.data,
       },
     }));
   }, [props]);
