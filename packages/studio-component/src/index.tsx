@@ -44,6 +44,8 @@ export interface IInkwellStudioProps {
   accessToken: string;
   schemas: ISchema[];
   _themeOverride?: "light" | "dark";
+
+  // enable user authentication. default: true
   enableUserAuth?: boolean;
 }
 
