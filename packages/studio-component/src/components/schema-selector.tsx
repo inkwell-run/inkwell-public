@@ -11,7 +11,7 @@ import React from "react";
 import { AlertBox } from "./alert-box";
 import { parse } from "ultramatter";
 import { Check } from "lucide-react";
-import { ISchema } from "../baseProps";
+import { ISchema } from "../lib/base-props";
 
 interface ISchemaSelectorProps {
   choices: string[];

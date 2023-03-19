@@ -1,8 +1,11 @@
 import { useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { IInkwellStudioPropsInput, ZInkwellStudioProps } from "./baseProps";
 import { AlertScreen } from "./components/alert-screen";
+import {
+  IInkwellStudioPropsInput,
+  ZInkwellStudioProps,
+} from "./lib/base-props";
 import { GlobalStateAtom } from "./lib/store";
 import { Assets } from "./pages/assets/assets";
 import { Post } from "./pages/posts/post";
