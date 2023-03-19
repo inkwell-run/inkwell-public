@@ -3,6 +3,7 @@ import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
 import React from "react";
+import { useClerkSafe } from "./clerk-wrappers";
 
 interface IUserValidatorProps {
   children: React.ReactNode;
@@ -10,6 +11,16 @@ interface IUserValidatorProps {
 }
 
 export const UserValidator = (props: IUserValidatorProps) => {
+  const { isSafe } = useClerkSafe({
+    initialValue: props.enableUserAuth,
+  });
+  if (isSafe) {
+    return <UserValidatorInner {...props} />;
+  }
+  return <>{props.children}</>;
+};
+
+const UserValidatorInner = (props: IUserValidatorProps) => {
   const { isLoaded, user } = useUser();
 
   const accessTokenQuery = useQuery({

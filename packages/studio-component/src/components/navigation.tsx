@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PageLink, PageLinks } from "../lib/links";
+import { ClerkSafe } from "./clerk-wrappers";
 import { OrgDropdown } from "./org-dropdown";
 
 interface NavLink {
@@ -67,7 +68,9 @@ const Navigation = () => {
         {/* right */}
         <div className="flex items-center gap-8">
           <OrgDropdown />
-          <UserButton />
+          <ClerkSafe>
+            <UserButton />
+          </ClerkSafe>
         </div>
       </div>
     </div>

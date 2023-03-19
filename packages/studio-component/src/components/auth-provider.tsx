@@ -86,14 +86,8 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
-  // if not using user authentication, still wrap with clerk, but don't guard.
-  // we need the clerk provider so that the user button/hooks downstream don't
-  // throw errors. sadly this means we cant totally disable clerk
-  return (
-    <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
-      {children}
-    </ClerkProvider>
-  );
+  // if not using user authentication, pass children as normal
+  return <>{children}</>;
 };
 
 export default AuthProvider;
