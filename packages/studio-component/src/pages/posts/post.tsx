@@ -30,7 +30,7 @@ export const Post = () => {
     onSuccess: () => getPost.refetch(),
   });
 
-  if (typeof postId === "undefined" || !!postId) {
+  if (typeof postId === "undefined" || !postId) {
     return (
       <div className="flex flex-col items-center gap-4">
         <div className="w-4 h-4 bg-red-400 rounded-full" />
