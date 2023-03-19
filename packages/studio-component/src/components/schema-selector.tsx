@@ -8,10 +8,10 @@ import {
   TypographySubtle,
 } from "@doom.sh/ui";
 import React from "react";
-import { ISchema } from "../index";
 import { AlertBox } from "./alert-box";
 import { parse } from "ultramatter";
 import { Check } from "lucide-react";
+import { ISchema } from "../baseProps";
 
 interface ISchemaSelectorProps {
   choices: string[];
