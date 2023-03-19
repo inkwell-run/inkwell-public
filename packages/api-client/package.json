@@ -21,7 +21,8 @@
     "build": "pnpm codegen-prod && pnpm transpile",
     "transpile": "tsup --config tsup.config.ts",
     "codegen-dev": "wait-on http://localhost:3001/api/openapi.json && rimraf ./src/api-client && openapi --input http://localhost:3001/api/openapi.json --output ./src",
-    "codegen-prod": "wait-on https://app.inkwell.run/api/openapi.json && rimraf ./src/api-client && openapi --input https://app.inkwell.run/api/openapi.json --output ./src"
+    "codegen-prod": "wait-on https://app.inkwell.run/api/openapi.json && rimraf ./src/api-client && openapi --input https://app.inkwell.run/api/openapi.json --output ./src",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": [],
   "author": "",
