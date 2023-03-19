@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import AuthProvider from "../components/auth-provider";
 import Navigation from "../components/navigation";
 import { PropsValidator } from "../components/props-validator";
+import { UserValidator } from "../components/user-validator";
 import { GlobalStateAtom } from "../lib/store";
 
 InkwellApi.OpenAPI.BASE = "http://localhost:3001/api";
@@ -21,13 +22,15 @@ export const Root = () => {
     <QueryClientProvider client={queryClient}>
       <PropsValidator>
         <AuthProvider accessToken={accessToken} enableUserAuth={enableUserAuth}>
-          <div className="flex flex-col h-full">
-            <Navigation />
-            <div className="p-4 md:p-8">
-              <Outlet />
+          <UserValidator>
+            <div className="flex flex-col h-full">
+              <Navigation />
+              <div className="p-4 md:p-8">
+                <Outlet />
+              </div>
             </div>
-          </div>
-          <Toaster position="top-center" />
+            <Toaster position="top-center" />
+          </UserValidator>
         </AuthProvider>
       </PropsValidator>
     </QueryClientProvider>
