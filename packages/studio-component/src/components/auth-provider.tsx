@@ -6,10 +6,8 @@ import {
 } from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell/api-client";
 import { useQuery } from "@tanstack/react-query";
-import { useSetAtom } from "jotai";
 import { AlertCircle } from "lucide-react";
-import React, { useEffect } from "react";
-import { GlobalStateAtom } from "../lib/store";
+import React from "react";
 
 interface IAuthProviderProps {
   accessToken: string;
@@ -17,36 +15,24 @@ interface IAuthProviderProps {
   enableUserAuth?: boolean;
 }
 
-// 1. Sets the access token onto the OpenAPI
-// 2. Adds token to the global store
 const AuthProvider = (props: IAuthProviderProps) => {
   const { accessToken, enableUserAuth, children } = props;
 
-  // 1. Set the access token onto the OpenAPI
+  // Set the access token onto the OpenAPI
   InkwellApi.OpenAPI.TOKEN = accessToken;
 
-  // 2. Add token to the global store
-  const setGlobalState = useSetAtom(GlobalStateAtom);
-  useEffect(() => {
-    setGlobalState((prev) => {
-      return {
-        ...prev,
-        baseProps: {
-          ...prev.baseProps,
-          accessToken,
-        },
-      };
-    });
-  }, [accessToken]);
-
-  // 3. If the access token is invalid, show an error
   const accessTokenQuery = useQuery({
     queryKey: ["access-token"],
     queryFn: InkwellApi.AccessTokensService.queryAccessTokensTest,
   });
 
+  const environmentQuery = useQuery({
+    queryKey: ["environment"],
+    queryFn: InkwellApi.EnvironmentService.queryEnvironmentTest,
+  });
+
   // if loading, show a skeleton
-  if (accessTokenQuery.isLoading) {
+  if (accessTokenQuery.isLoading || environmentQuery.isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="flex flex-col items-center gap-4">
@@ -57,6 +43,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
+  // check that the access token ping worked
   if (accessToken === "" || !accessTokenQuery.data?.organizationId) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -71,11 +58,22 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
+  // enable clerk user authentication
+  // set up clerk with the public key obtained from the ping
   if (enableUserAuth) {
+    if (!environmentQuery.data?.userAuthPublicKey) {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          <div className="flex flex-col items-center gap-4">
+            <AlertCircle className="w-8 h-8 text-red-400" />
+            <p>Something went wrong enabling user authentication.</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <ClerkProvider
-        publishableKey={"pk_test_Y2xlcmsuaW5ub2NlbnQua3JpbGwtNjUubGNsLmRldiQ"}
-      >
+      <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
         <SignedIn>{children}</SignedIn>
         <SignedOut>
           <RedirectToSignIn />
@@ -84,6 +82,7 @@ const AuthProvider = (props: IAuthProviderProps) => {
     );
   }
 
+  // if not using user authentication, just return the children
   return <>{children}</>;
 };
 

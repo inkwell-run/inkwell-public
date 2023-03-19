@@ -8,5 +8,6 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export { AccessTokensService } from './services/AccessTokensService';
 export { AssetsService } from './services/AssetsService';
+export { EnvironmentService } from './services/EnvironmentService';
 export { OrganizationsService } from './services/OrganizationsService';
 export { PostsService } from './services/PostsService';
