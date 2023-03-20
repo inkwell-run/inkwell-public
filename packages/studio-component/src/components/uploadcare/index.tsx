@@ -1,13 +1,16 @@
-import * as LR from "@uploadcare/blocks";
+import { connectBlocksFrom } from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import "./index.css";
 import { IUploadCareEvent, IUploadCareFile } from "./types";
-LR.registerBlocks(LR);
 
 export interface IUploadCareWidgetProps {
   onUploadCallback: (files: IUploadCareFile[]) => void;
 }
+
+connectBlocksFrom(
+  `https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/blocks-browser.min.js`
+);
 
 const UploadCareWidget = (props: IUploadCareWidgetProps) => {
   let dataOutputRef = useRef<HTMLDivElement>(null);
