@@ -8,9 +8,14 @@ export interface IUploadCareWidgetProps {
   onUploadCallback: (files: IUploadCareFile[]) => void;
 }
 
+// https://uploadcare.github.io/blocks/get-started/installation/#dynamic-script-connection-types-support
 connectBlocksFrom(
   `https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/blocks-browser.min.js`
-);
+).then((blocks) => {
+  if (!blocks) {
+    return; // To avoid errors in SSR case
+  }
+});
 
 const UploadCareWidget = (props: IUploadCareWidgetProps) => {
   let dataOutputRef = useRef<HTMLDivElement>(null);
