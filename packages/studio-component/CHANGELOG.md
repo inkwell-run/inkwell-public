@@ -1,5 +1,11 @@
 # @inkwell.run/studio
 
+## 1.1.2
+
+### Patch Changes
+
+- Use `connectFromBlocks` for uploadcare
+
 ## 1.1.1
 
 ### Patch Changes
