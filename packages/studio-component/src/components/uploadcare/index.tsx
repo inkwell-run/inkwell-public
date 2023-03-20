@@ -5,11 +5,11 @@ import "./index.css";
 import { IUploadCareEvent, IUploadCareFile } from "./types";
 LR.registerBlocks(LR);
 
-interface IUploadCareWidgetProps {
+export interface IUploadCareWidgetProps {
   onUploadCallback: (files: IUploadCareFile[]) => void;
 }
 
-export const UploadCareWidget = (props: IUploadCareWidgetProps) => {
+const UploadCareWidget = (props: IUploadCareWidgetProps) => {
   let dataOutputRef = useRef<HTMLDivElement>(null);
 
   const handleUploaderEvent = useCallback((e: Event) => {
@@ -45,3 +45,9 @@ export const UploadCareWidget = (props: IUploadCareWidgetProps) => {
     </lr-file-uploader-regular>
   );
 };
+
+// React.lazy currently only supports default exports. If the module you want to
+// import uses named exports, you can create an intermediate module that
+// reexports it as the default. This ensures that tree shaking keeps working and
+// that you don’t pull in unused components.
+export default UploadCareWidget;

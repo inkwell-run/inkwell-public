@@ -10,9 +10,11 @@ import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Clipboard, MoreHorizontal, Trash } from "lucide-react";
 import React from "react";
-import { UploadCareWidget } from "./uploadcare";
-import { IUploadCareFile } from "./uploadcare/types";
+import type { IUploadCareFile } from "./uploadcare/types";
 import { constructUploadCareUrl } from "./uploadcare/utils";
+import { lazy } from "react";
+
+const UploadCareWidget = lazy(() => import("./uploadcare"));
 
 interface IMediaManagerProps {
   postId: string;
