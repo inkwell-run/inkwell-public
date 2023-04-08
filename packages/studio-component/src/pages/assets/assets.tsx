@@ -22,7 +22,7 @@ export const Assets = () => {
 
   if (getAssets.isLoading) {
     return (
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 p-8">
         <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
         <p>Loading assets...</p>
       </div>
@@ -30,7 +30,7 @@ export const Assets = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 p-4 md:p-8">
       {/* header */}
       <TypographyLarge>Assets</TypographyLarge>
       {/* <div className="flex flex-wrap items-center justify-between gap-4">

@@ -22,7 +22,7 @@ export const Posts = () => {
 
   if (getPosts.isLoading) {
     return (
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 p-4">
         <div className="w-4 h-4 bg-blue-400 rounded-full animate-ping" />
         <p>Loading posts...</p>
       </div>
@@ -30,7 +30,7 @@ export const Posts = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 p-8 md:p-8">
       {/* header */}
       <TypographyLarge>Posts</TypographyLarge>
       <div className="flex flex-wrap items-center justify-between gap-4">

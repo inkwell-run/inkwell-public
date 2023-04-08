@@ -9,7 +9,7 @@ export const Schemas = () => {
   const { schemas } = baseProps;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-4 md:p-8">
       {/* heading */}
       <div className="text-lg font-medium">Schemas</div>
       {/* display schemas */}
