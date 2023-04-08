@@ -1,14 +1,13 @@
 import { markdown } from "@codemirror/lang-markdown";
 import {
-  CodeEditor as lqkfj,
   SandpackCodeEditor,
   SandpackFiles,
   SandpackLayout,
   SandpackProvider,
   useActiveCode,
 } from "@codesandbox/sandpack-react";
-import { useDebounce } from "use-debounce";
 import React, { useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
 
 interface IMarkdocEditorProps {
   initialValue: string;
@@ -28,9 +27,15 @@ export const MarkdocEditor = (props: IMarkdocEditorProps) => {
       files={files}
       theme="light"
       template="vanilla-ts"
-      className="h-full"
+      style={{
+        height: "100%",
+      }}
     >
-      <SandpackLayout className="h-full">
+      <SandpackLayout
+        style={{
+          height: "100%",
+        }}
+      >
         <CodeEditor {...props} />
       </SandpackLayout>
     </SandpackProvider>

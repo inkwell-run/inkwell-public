@@ -16,9 +16,7 @@ const MarkdocPreview = (props: IMarkdocPreviewProps) => {
   });
 
   return (
-    <div className="h-full px-4 py-8 overflow-y-auto border rounded-md">
-      {renderedNodes}
-    </div>
+    <div className="h-full px-4 py-8 overflow-y-auto">{renderedNodes}</div>
   );
 };
 

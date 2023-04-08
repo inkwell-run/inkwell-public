@@ -1,24 +1,20 @@
-import { Button, Input, Label, TypographySubtle } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Field, Form } from "houseform";
+import { Allotment } from "allotment";
 import { useAtomValue } from "jotai";
-import { ArrowLeft } from "lucide-react";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { z } from "zod";
+import { useParams } from "react-router-dom";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
-import { MediaManager } from "../../components/media-manager";
-import {
-  SchemaSelector,
-  SchemaValidator,
-} from "../../components/schema-selector";
+import { RightBar } from "../../components/post/right-bar";
+import { TopBar } from "../../components/post/top-bar";
 import { GlobalStateAtom } from "../../lib/store";
 
 export const Post = () => {
   const { postId } = useParams();
   const { baseProps } = useAtomValue(GlobalStateAtom);
+  const [collapseSidebar, setCollapseSidebar] = React.useState(false);
+  const allotmentRef = React.useRef(null);
 
   const getPost = useQuery({
     queryKey: ["post", postId],
@@ -63,69 +59,20 @@ export const Post = () => {
     : schemaNames;
 
   return (
-    <div className="flex flex-col gap-8">
-      {/* back button */}
-      <Link to={"/posts"} className="w-fit">
-        <Button variant="outline" className="gap-2">
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to all posts</span>
-        </Button>
-      </Link>
-      {/* slug editor */}
-      <Form
-        onSubmit={(values) => {
-          updatePost.mutate({
+    <div className="flex flex-col h-full">
+      <TopBar
+        slug={getPost.data.slug}
+        setSlug={async (newSlug) => {
+          updatePost.mutateAsync({
             id: getPost.data.id,
-            slug: values.slug,
+            slug: newSlug,
           });
         }}
-      >
-        {({ submit }) => (
-          <Field<string>
-            name="slug"
-            initialValue={getPost.data.slug}
-            // todo(sarim): check for duplicate slug
-            onChangeValidate={z
-              .string()
-              .min(
-                1,
-                "Invalid slug. A valid slug should be atleast 1 character long."
-              )
-              .refine((val) => {
-                try {
-                  const parseUrl = new URL(val, "http://localhost");
-                  return !val.includes(" ") && !!parseUrl.pathname;
-                } catch (e) {
-                  return false;
-                }
-              }, "Invalid slug. A valid slug looks like this (without spaces): /my-page")}
-          >
-            {({ value, setValue, onBlur, errors }) => (
-              <div className="flex flex-col gap-4">
-                <Label htmlFor="slug">Slug</Label>
-                <Input
-                  id="slug"
-                  type="text"
-                  value={value}
-                  placeholder="Post slug"
-                  onChange={(e) => setValue(e.target.value)}
-                  onBlur={() => {
-                    onBlur();
-                    submit();
-                  }}
-                />
-                {errors.map((error) => (
-                  <TypographySubtle key={error}>{error}</TypographySubtle>
-                ))}
-              </div>
-            )}
-          </Field>
-        )}
-      </Form>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 grid-rows-[500px]">
-        {/* markdoc editor */}
-        <div className="flex flex-col h-full gap-4">
-          <Label>Editor</Label>
+        isSidebarCollapsed={collapseSidebar}
+        setCollapseSidebar={setCollapseSidebar}
+      />
+      <Allotment ref={allotmentRef} defaultSizes={[40, 40, 20]}>
+        <Allotment.Pane>
           <MarkdocEditor
             initialValue={getPost.data.content ?? ""}
             setValue={(newValue) => {
@@ -136,39 +83,25 @@ export const Post = () => {
               });
             }}
           />
-        </div>
-        {/* markdoc preview */}
-        <div className="flex flex-col h-full gap-4">
-          <Label>Preview</Label>
+        </Allotment.Pane>
+        <Allotment.Pane>
           <MarkdocPreview value={getPost.data.content ?? ""} />
-        </div>
-      </div>
-      {/* schema selector */}
-      {baseProps.schemas.length > 0 ? (
-        <div className="flex flex-col h-full gap-4 mt-6">
-          <Label>Schema</Label>
-          <SchemaSelector
-            choices={[...new Set(schemaChoices)]}
-            value={getPost.data.schema}
-            onValueChange={(value) => {
-              updatePost.mutate({
+        </Allotment.Pane>
+        <Allotment.Pane visible={!collapseSidebar}>
+          <RightBar
+            postContent={getPost.data.content ?? ""}
+            selectedSchema={getPost.data.schema ?? ""}
+            schemaObjects={baseProps.schemas}
+            schemaChoices={schemaChoices}
+            setSchema={async (value) => {
+              updatePost.mutateAsync({
                 id: getPost.data.id,
                 schema: value,
               });
             }}
           />
-          <SchemaValidator
-            postContent={getPost.data.content ?? ""}
-            schemaName={getPost.data.schema ?? ""}
-            schemas={baseProps.schemas}
-          />
-        </div>
-      ) : null}
-      {/* media uploads */}
-      <div className="flex flex-col h-full gap-4">
-        <Label>Media</Label>
-        <MediaManager postId={postId} />
-      </div>
+        </Allotment.Pane>
+      </Allotment>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import {
 } from "./lib/base-props";
 import { GlobalStateAtom } from "./lib/store";
 import "./styles/globals.css";
+import "allotment/dist/style.css";
 import { createHashRouter } from "react-router-dom";
 import { Root } from "./pages/root";
 import { Schemas } from "./pages/schemas/schemas";

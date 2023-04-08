@@ -159,6 +159,9 @@ importers:
       '@uploadcare/blocks':
         specifier: ^0.18.0
         version: 0.18.1
+      allotment:
+        specifier: ^1.18.1
+        version: 1.18.1(react-dom@18.2.0)(react@18.2.0)
       date-fns:
         specifier: ^2.29.3
         version: 2.29.3
@@ -174,6 +177,9 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-cool-dimensions:
+        specifier: ^3.0.1
+        version: 3.0.1(react@18.2.0)
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
@@ -186,9 +192,15 @@ importers:
       react-router-dom:
         specifier: ^6.8.2
         version: 6.8.2(react-dom@18.2.0)(react@18.2.0)
+      react-uploader:
+        specifier: ^3.13.0
+        version: 3.13.0(react@18.2.0)
       ultramatter:
         specifier: ^0.0.4
         version: 0.0.4
+      uploader:
+        specifier: ^3.13.0
+        version: 3.13.0
       use-debounce:
         specifier: ^9.0.3
         version: 9.0.3(react@18.2.0)
@@ -1423,6 +1435,10 @@ packages:
   /@jsdevtools/ono@7.1.3:
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
     dev: true
+
+  /@juggle/resize-observer@3.4.0:
+    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: false
 
   /@ladle/react-context@1.0.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-xVQ8siyOEQG6e4Knibes1uA3PTyXnqiMmfSmd5pIbkzeDty8NCBtYHhTXSlfmcDNEsw/G8OzNWo4VbyQAVDl2A==}
@@ -3346,6 +3362,10 @@ packages:
     resolution: {integrity: sha512-113D3mDkZDjo+EeUEHCFy0qniNc1ZpecGiAU7WSo7YDoSzolZIQKpYFHrPpjkB2nuyahcKfrmLXeQlh7gqJYdw==}
     dev: true
 
+  /@upload-io/upload-api-client-upload-js@2.15.0:
+    resolution: {integrity: sha512-UGqT4wxCDhTTKnTLvqtKCyPJSswA2z6/Z6/sMakWGdJBBuwCHcOyXgoWafbPILrgWp3oMMQjnTfwwMBmR0O54w==}
+    dev: false
+
   /@uploadcare/blocks@0.18.1:
     resolution: {integrity: sha512-2Ky1kCgF51pDBJDk8qrN0GMz+8nItj8w8jbyZ/ZkVPm7SoPNWGBuWqb5OKY8H/SDjxueWatPsYbJZ64NAeslYQ==}
     dependencies:
@@ -3431,6 +3451,22 @@ packages:
     resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /allotment@1.18.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ZhmpHoSvxHyPT5XjzTHeCBjzCMIFn1aGdNAzBCZhj1CcRMp31CaJCi+lfweoOLDbbjJqbFZqUk3xf+p7Mb0x5A==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      classnames: 2.3.2
+      eventemitter3: 5.0.0
+      lodash.clamp: 4.0.3
+      lodash.debounce: 4.0.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-resize-observer: 9.1.0(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /anser@1.4.10:
     resolution: {integrity: sha512-hCv9AqTQ8ycjpSd3upOJd7vFwW1JaoYQ7tpham03GJ1ca8/65rqn0RpaWpItOAd6ylW9wAw6luXYPJIyPFVOww==}
@@ -4794,6 +4830,10 @@ packages:
       through: 2.3.8
     dev: true
 
+  /eventemitter3@5.0.0:
+    resolution: {integrity: sha512-riuVbElZZNXLeLEoprfNYoDSwTBRR44X3mnhdI1YcnENpWTCsTTVZ2zFuqQcpoyqPQIUXdiPEU0ECAq0KQRaHg==}
+    dev: false
+
   /execa@0.8.0:
     resolution: {integrity: sha512-zDWS+Rb1E8BlqqhALSt9kUhss8Qq4nN3iof3gsOdyINksElaPyNBtKUMTR62qhvgVWR0CqCX7sdnKe4MnUbFEA==}
     engines: {node: '>=4'}
@@ -5925,7 +5965,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /keygrip@1.1.0:
@@ -6046,8 +6086,16 @@ packages:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
     dev: true
 
+  /lodash.clamp@4.0.3:
+    resolution: {integrity: sha512-HvzRFWjtcguTW7yd8NJBshuNaCa8aqNFtnswdT7f/cMd/1YKy5Zzoq4W/Oxvnx9l7aeY258uSdDfM793+eLsVg==}
+    dev: false
+
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+    dev: false
+
+  /lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
     dev: false
 
   /lodash.isplainobject@4.0.6:
@@ -7473,6 +7521,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
+  /preact@10.13.2:
+    resolution: {integrity: sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==}
+    dev: false
+
   /preferred-pm@3.0.3:
     resolution: {integrity: sha512-+wZgbxNES/KlJs9q40F/1sfOd/j7f1O9JaHcW5Dsn3aUUOZg3L2bjpVUcKV2jvtElYfoTuQiNeMfQJ4kwUAhCQ==}
     engines: {node: '>=10'}
@@ -7505,6 +7557,10 @@ packages:
   /prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
+    dev: false
+
+  /progress-smoother@1.4.0:
+    resolution: {integrity: sha512-ctIG/KF/3DQ1zQHMWbXjcnicggTsEzZEA2JEnJNrPtK88tmqN9cfQf01yfLWGCBF93R5XN1EUe/z/IV5NKrmCw==}
     dev: false
 
   /prop-types@15.8.1:
@@ -7597,6 +7653,14 @@ packages:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
       safe-buffer: 5.2.1
+    dev: false
+
+  /react-cool-dimensions@3.0.1(react@18.2.0):
+    resolution: {integrity: sha512-DUsDB5WUN1Qh6fJJlBtqFKCktrZCPRYcVn8NTeM6hP/5AhZNjDOa2sC2Dg0EM3WUObPDNV5nFLA34vHQfahUeg==}
+    peerDependencies:
+      react: '>= 16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-copy-to-clipboard@5.1.0(react@18.2.0):
@@ -7849,6 +7913,15 @@ packages:
       prismjs: 1.29.0
       react: 18.2.0
       refractor: 3.6.0
+    dev: false
+
+  /react-uploader@3.13.0(react@18.2.0):
+    resolution: {integrity: sha512-DAkeApJWfyU+7UZA/Pmr4mWf4jhUWoEmkwu1/6VoHL5hS4i6TisRQzHyiZf4YiMS01oAS22Q+Bj4UWv+LEx4gw==}
+    peerDependencies:
+      react: '>=16.3.0'
+    dependencies:
+      react: 18.2.0
+      uploader: 3.13.0
     dev: false
 
   /react@18.2.0:
@@ -9186,6 +9259,21 @@ packages:
       picocolors: 1.0.0
     dev: true
 
+  /upload-js@2.11.2:
+    resolution: {integrity: sha512-q6IkwFLA3kL1MbBMvzCbJC0EHjMgjJ399f5QH3Up5rkoVjYXZxTKRgyJQeRT1HpqPQ3gCJdvZuL/Cv1LjBRGMg==}
+    dependencies:
+      '@upload-io/upload-api-client-upload-js': 2.15.0
+      progress-smoother: 1.4.0
+    dev: false
+
+  /uploader@3.13.0:
+    resolution: {integrity: sha512-7ZYuX4ltWAy3WtiMyrYNp1IXZP2ILS/6evCCS5AjTeBnLgOw47K1vCjWBT1bvvXK4s/awulVLaCEFwxCXQzVSA==}
+    dependencies:
+      classnames: 2.3.2
+      preact: 10.13.2
+      upload-js: 2.11.2
+    dev: false
+
   /url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
     dependencies:
@@ -9235,6 +9323,17 @@ packages:
     dependencies:
       '@types/react': 18.0.28
       react: 18.2.0
+    dev: false
+
+  /use-resize-observer@9.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-R25VqO9Wb3asSD4eqtcxk8sJalvIOYBqS8MNZlpDSQ4l4xMQxC/J7Id9HoTqPq8FwULIn0PVW+OAqF2dyYbjow==}
+    peerDependencies:
+      react: 16.8.0 - 18
+      react-dom: 16.8.0 - 18
+    dependencies:
+      '@juggle/resize-observer': 3.4.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /use-sidecar@1.1.2(@types/react@18.0.28)(react@18.2.0):

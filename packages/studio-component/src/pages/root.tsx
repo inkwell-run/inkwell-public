@@ -24,9 +24,7 @@ export const Root = () => {
         <UserValidator>
           <div className="flex flex-col h-full">
             <Navigation />
-            <div className="p-4 md:p-8">
-              <Outlet />
-            </div>
+            <Outlet />
           </div>
           <Toaster position="top-center" />
         </UserValidator>
