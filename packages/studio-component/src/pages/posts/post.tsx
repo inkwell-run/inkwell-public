@@ -71,7 +71,15 @@ export const Post = () => {
         isSidebarCollapsed={collapseSidebar}
         setCollapseSidebar={setCollapseSidebar}
       />
-      <Allotment ref={allotmentRef} defaultSizes={[40, 40, 20]}>
+      <Allotment
+        ref={allotmentRef}
+        defaultSizes={[40, 40, 20]}
+        onVisibleChange={(idx, v) => {
+          if (idx === 2) {
+            setCollapseSidebar(!v);
+          }
+        }}
+      >
         <Allotment.Pane>
           <MarkdocEditor
             initialValue={getPost.data.content ?? ""}
@@ -87,7 +95,7 @@ export const Post = () => {
         <Allotment.Pane>
           <MarkdocPreview value={getPost.data.content ?? ""} />
         </Allotment.Pane>
-        <Allotment.Pane visible={!collapseSidebar}>
+        <Allotment.Pane visible={!collapseSidebar} snap>
           <RightBar
             postId={getPost.data.id}
             postContent={getPost.data.content ?? ""}

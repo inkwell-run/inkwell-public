@@ -31,7 +31,7 @@ export const UploadIOButton = (props: IUploadIOButtonProps) => {
       options={{
         multi: true,
         path: {
-          folderPath: `/inkwell/${accessTokenQuery.data.organizationId}`,
+          folderPath: `/projects/inkwell/${accessTokenQuery.data.organizationId}`,
         },
       }}
       onComplete={onComplete}
