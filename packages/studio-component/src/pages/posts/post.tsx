@@ -93,7 +93,10 @@ export const Post = () => {
           />
         </Allotment.Pane>
         <Allotment.Pane>
-          <MarkdocPreview value={getPost.data.content ?? ""} />
+          <MarkdocPreview
+            value={getPost.data.content ?? ""}
+            userOverrides={baseProps.markdoc ?? { components: {}, config: {} }}
+          />
         </Allotment.Pane>
         <Allotment.Pane visible={!collapseSidebar} snap>
           <RightBar

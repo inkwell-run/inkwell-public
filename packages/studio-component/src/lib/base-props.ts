@@ -1,4 +1,10 @@
 import { z, ZodObject } from "zod";
+import type { Config } from "@markdoc/markdoc";
+import React from "react";
+
+// these are "any" but we still want intellisense
+const ZMarkdocConfig: z.ZodType<Config> = z.any();
+const ZMarkdocComponents: z.ZodType<Record<string, React.FC<any>>> = z.any();
 
 export const ZSchema = z.object({
   name: z.string(),
@@ -10,6 +16,13 @@ export const ZInkwellStudioProps = z.object({
   schemas: z.array(ZSchema).default([]),
   enableUserAuth: z.boolean().default(false),
   baseUrl: z.string().url().default("https://app.inkwell.run/api"),
+  markdoc: z
+    .object({
+      config: ZMarkdocConfig,
+      components: ZMarkdocComponents,
+    })
+    .optional(),
+
   // deprecated
   _themeOverride: z.union([z.literal("light"), z.literal("dark")]).optional(),
 });
