@@ -11,8 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import { Link } from "lucide-react";
 import React from "react";
+import { constructAssetUrl } from "../../components/assets/utils";
 import DateCycler from "../../components/date-cycler";
-import { constructUploadCareUrl } from "../../components/uploadcare/utils";
 
 export const Assets = () => {
   const getAssets = useQuery({
@@ -85,8 +85,8 @@ const AssetDisplay = (props: IAssetDisplayProps) => {
           <HoverCardTrigger asChild>
             <img
               className="object-cover w-6 h-6 rounded-md cursor-pointer"
-              src={constructUploadCareUrl({
-                uuid: asset.providerId,
+              src={constructAssetUrl({
+                asset,
                 resizeWidth: 100,
               })}
             />
@@ -94,8 +94,8 @@ const AssetDisplay = (props: IAssetDisplayProps) => {
           <HoverCardContent className="p-2 w-80" align="start">
             <img
               className="object-cover w-full h-full rounded"
-              src={constructUploadCareUrl({
-                uuid: asset.providerId,
+              src={constructAssetUrl({
+                asset,
               })}
             />
           </HoverCardContent>

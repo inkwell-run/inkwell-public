@@ -10,27 +10,29 @@ export const Studio: Story<{}> = ({}) => {
   const { theme } = globalState;
 
   return (
-    <InkwellStudio
-      enableUserAuth
-      baseUrl="http://localhost:3001/api"
-      _themeOverride={theme as any}
-      accessToken="45dd3f96-b5b8-4fa7-924f-dd0fd09d89cf"
-      schemas={[
-        {
-          name: "News",
-          validator: z.object({
-            title: z.string(),
-            date: z.date(),
-          }),
-        },
-        {
-          name: "Posts",
-          validator: z.object({
-            title: z.string(),
-            date: z.coerce.date(),
-          }),
-        },
-      ]}
-    />
+    <div className="h-screen">
+      <InkwellStudio
+        enableUserAuth
+        baseUrl="http://localhost:3001/api"
+        _themeOverride={theme as any}
+        accessToken="24b1861f-893e-4c42-bdf4-870b651be285"
+        schemas={[
+          {
+            name: "News",
+            validator: z.object({
+              title: z.string(),
+              date: z.date(),
+            }),
+          },
+          {
+            name: "Posts",
+            validator: z.object({
+              title: z.string(),
+              date: z.coerce.date(),
+            }),
+          },
+        ]}
+      />
+    </div>
   );
 };

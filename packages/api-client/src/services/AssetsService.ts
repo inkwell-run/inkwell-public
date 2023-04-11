@@ -19,7 +19,7 @@ export class AssetsService {
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
-        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
@@ -53,7 +53,7 @@ export class AssetsService {
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
-        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
@@ -84,7 +84,7 @@ export class AssetsService {
         requestBody: {
             postId: string;
             providerId: string;
-            providerType?: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+            providerType?: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
             name?: string;
         },
     ): CancelablePromise<{
@@ -92,7 +92,7 @@ export class AssetsService {
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
-        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;
@@ -127,7 +127,7 @@ export class AssetsService {
         createdAt: string;
         type: 'IMAGE' | 'VIDEO' | 'AUDIO' | 'OTHER';
         name?: string;
-        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'OTHER';
+        providerType: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
         providerId: string;
         providerIsUploaded: boolean;
         _providerSignedUploadUrl?: string;

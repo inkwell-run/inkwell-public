@@ -10,11 +10,8 @@ import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Clipboard, MoreHorizontal, Trash } from "lucide-react";
 import React from "react";
-import type { IUploadCareFile } from "./uploadcare/types";
-import { constructUploadCareUrl } from "./uploadcare/utils";
-import { lazy } from "react";
-
-const UploadCareWidget = lazy(() => import("./uploadcare"));
+import { constructAssetUrl } from "./assets/utils";
+import { UploadIOButton } from "./uploadio";
 
 interface IMediaManagerProps {
   postId: string;
@@ -35,21 +32,20 @@ export const MediaManager = (props: IMediaManagerProps) => {
     },
   });
 
-  const onUploadCallback = (files: IUploadCareFile[]) => {
-    console.log({ files });
-    files.forEach((f) => {
-      createAsset.mutate({
-        postId,
-        providerId: f.uuid,
-        providerType: "UPLOADCARE",
-        name: f.name,
-      });
-    });
-  };
-
   return (
     <div className="flex flex-col gap-4">
-      <UploadCareWidget onUploadCallback={onUploadCallback} />
+      <UploadIOButton
+        onComplete={(files) => {
+          files.forEach((f) => {
+            createAsset.mutate({
+              postId,
+              providerId: f.filePath,
+              providerType: "UPLOADIO",
+              name: f.editedFile?.file.name ?? f.originalFile.file.name,
+            });
+          });
+        }}
+      />
       <div className="flex flex-wrap gap-4">
         {(getAssets.data ?? []).map((asset) => {
           return (
@@ -77,11 +73,7 @@ const MediaItem = (props: IMediaItemProps) => {
 
   const handleCopyClipboard = () => {
     toast.success("Copied to clipboard");
-    window.navigator.clipboard.writeText(
-      constructUploadCareUrl({
-        uuid: asset.providerId,
-      })
-    );
+    window.navigator.clipboard.writeText(constructAssetUrl({ asset }));
   };
 
   // todo(sarim): don't delete if used inside text
@@ -96,8 +88,8 @@ const MediaItem = (props: IMediaItemProps) => {
     <div className="relative border first-letter:w-[25%] md:w-[150px] flex flex-col items-center justify-center gap-2 overflow-hidden text-center bg-gray-200 rounded-md aspect-square">
       {/* todo(sarim): offer to clean up unused assets if error during image load */}
       <img
-        src={constructUploadCareUrl({
-          uuid: asset.providerId,
+        src={constructAssetUrl({
+          asset,
           resizeWidth: 200,
         })}
         alt={"uploaded media"}

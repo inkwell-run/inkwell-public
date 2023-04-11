@@ -1,10 +1,11 @@
 import { Label } from "@doom.sh/ui";
 import React from "react";
 import { ISchema } from "../../lib/base-props";
+import { MediaManager } from "../media-manager";
 import { SchemaSelector, SchemaValidator } from "../schema-selector";
-import { UploadIOButton } from "../uploadio";
 
 interface IRightBarProps {
+  postId: string;
   postContent: string;
   schemaChoices: string[];
   selectedSchema: string;
@@ -18,6 +19,7 @@ export const RightBar = (props: IRightBarProps) => {
     selectedSchema,
     setSchema,
     schemaObjects,
+    postId,
     postContent,
   } = props;
   return (
@@ -43,8 +45,7 @@ export const RightBar = (props: IRightBarProps) => {
       {/* media manager */}
       <div className="flex flex-col gap-4">
         <Label>Media</Label>
-        <UploadIOButton />
-        {/* <MediaManager postId={postId} /> */}
+        <MediaManager postId={postId} />
       </div>
     </div>
   );
