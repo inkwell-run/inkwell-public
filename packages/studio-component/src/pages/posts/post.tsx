@@ -1,3 +1,4 @@
+import { cn } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Allotment } from "allotment";
@@ -13,8 +14,26 @@ import { GlobalStateAtom } from "../../lib/store";
 export const Post = () => {
   const { postId } = useParams();
   const { baseProps } = useAtomValue(GlobalStateAtom);
-  const [collapseSidebar, setCollapseSidebar] = React.useState(false);
+  const [animateSidebar, setAnimateSidebar] = React.useState(false);
+  const [collapseSidebar, _setCollapseSidebar] = React.useState(false);
   const allotmentRef = React.useRef(null);
+
+  const setCollapseSidebar = (
+    value: boolean | ((prev: boolean) => boolean)
+  ) => {
+    setAnimateSidebar(true);
+    if (typeof value === "function") {
+      _setCollapseSidebar((prev) => {
+        const newValue = value(prev);
+        return newValue;
+      });
+    } else {
+      _setCollapseSidebar(value);
+    }
+    setTimeout(() => {
+      setAnimateSidebar(false);
+    }, 300);
+  };
 
   const getPost = useQuery({
     queryKey: ["post", postId],
@@ -92,13 +111,23 @@ export const Post = () => {
             }}
           />
         </Allotment.Pane>
-        <Allotment.Pane>
+        <Allotment.Pane
+          className={cn({
+            ["transition-all"]: animateSidebar,
+          })}
+        >
           <MarkdocPreview
             value={getPost.data.content ?? ""}
             userOverrides={baseProps.markdoc ?? { components: {}, config: {} }}
           />
         </Allotment.Pane>
-        <Allotment.Pane visible={!collapseSidebar} snap>
+        <Allotment.Pane
+          visible={!collapseSidebar}
+          snap
+          className={cn({
+            ["transition-all"]: animateSidebar,
+          })}
+        >
           <RightBar
             post={getPost.data}
             schemaObjects={baseProps.schemas}
