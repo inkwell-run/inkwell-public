@@ -1,4 +1,4 @@
-import { Button, Input, TypographySubtle } from "@doom.sh/ui";
+import { Button, Input, TypographySubtle, cn } from "@doom.sh/ui";
 import { Field, Form } from "houseform";
 import { ArrowLeft, SidebarClose, SidebarOpen } from "lucide-react";
 import React from "react";
@@ -75,11 +75,11 @@ export const TopBar = (props: ITopBarProps) => {
         variant="outline"
         onClick={() => setCollapseSidebar((prev) => !prev)}
       >
-        {isSidebarCollapsed ? (
-          <SidebarClose className="w-4 h-4" />
-        ) : (
-          <SidebarOpen className="w-4 h-4" />
-        )}
+        <SidebarClose
+          className={cn("w-4 h-4 transition-transform transform", {
+            "-rotate-180": !isSidebarCollapsed,
+          })}
+        />
       </Button>
     </div>
   );
