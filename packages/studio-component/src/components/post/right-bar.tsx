@@ -1,27 +1,21 @@
 import { Label } from "@doom.sh/ui";
+import * as InkwellApi from "@inkwell.run/client";
 import React from "react";
 import { ISchema } from "../../lib/base-props";
 import { MediaManager } from "../media-manager";
 import { SchemaSelector, SchemaValidator } from "../schema-selector";
 
 interface IRightBarProps {
-  postId: string;
-  postContent: string;
+  post: Awaited<
+    ReturnType<typeof InkwellApi.PostsService.queryPostsFindUnique>
+  >;
   schemaChoices: string[];
-  selectedSchema: string;
   schemaObjects: ISchema[];
   setSchema: (schema: string) => Promise<void>;
 }
 
 export const RightBar = (props: IRightBarProps) => {
-  const {
-    schemaChoices,
-    selectedSchema,
-    setSchema,
-    schemaObjects,
-    postId,
-    postContent,
-  } = props;
+  const { schemaChoices, setSchema, schemaObjects, post } = props;
   return (
     <div className="flex flex-col h-full gap-8 p-4">
       {/* schemas */}
@@ -30,14 +24,14 @@ export const RightBar = (props: IRightBarProps) => {
           <Label>Schema</Label>
           <SchemaSelector
             choices={[...new Set(schemaChoices)]}
-            value={selectedSchema}
+            value={post.schema}
             onValueChange={(value) => {
               setSchema(value);
             }}
           />
           <SchemaValidator
-            postContent={postContent}
-            schemaName={selectedSchema}
+            postContent={post.content ?? ""}
+            schemaName={post.schema ?? ""}
             schemas={schemaObjects}
           />
         </div>
@@ -45,7 +39,7 @@ export const RightBar = (props: IRightBarProps) => {
       {/* media manager */}
       <div className="flex flex-col gap-4">
         <Label>Media</Label>
-        <MediaManager postId={postId} />
+        <MediaManager postId={post.id} />
       </div>
     </div>
   );

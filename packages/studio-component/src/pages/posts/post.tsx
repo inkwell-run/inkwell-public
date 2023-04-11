@@ -97,9 +97,7 @@ export const Post = () => {
         </Allotment.Pane>
         <Allotment.Pane visible={!collapseSidebar} snap>
           <RightBar
-            postId={getPost.data.id}
-            postContent={getPost.data.content ?? ""}
-            selectedSchema={getPost.data.schema ?? ""}
+            post={getPost.data}
             schemaObjects={baseProps.schemas}
             schemaChoices={schemaChoices}
             setSchema={async (value) => {
