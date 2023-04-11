@@ -5,19 +5,28 @@ import {
   HoverCardTrigger,
   TypographyInlineCode,
   TypographyLarge,
+  toast,
 } from "@doom.sh/ui";
 import * as InkwellApi from "@inkwell.run/client";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import { Link } from "lucide-react";
 import React from "react";
 import { constructAssetUrl } from "../../components/assets/utils";
 import DateCycler from "../../components/date-cycler";
+import { UploadIOButton } from "../../components/uploadio";
 
 export const Assets = () => {
   const getAssets = useQuery({
     queryKey: ["assets"],
     queryFn: () => InkwellApi.AssetsService.queryAssetsFindMany(),
+  });
+
+  const createAsset = useMutation({
+    mutationFn: InkwellApi.AssetsService.mutationAssetsCreate,
+    onSuccess: () => {
+      getAssets.refetch();
+    },
   });
 
   if (getAssets.isLoading) {
@@ -33,9 +42,26 @@ export const Assets = () => {
     <div className="flex flex-col gap-8 p-4 md:p-8">
       {/* header */}
       <TypographyLarge>Assets</TypographyLarge>
-      {/* <div className="flex flex-wrap items-center justify-between gap-4">
-        <CreatePostButton />
-      </div> */}
+      {/* add asset */}
+      <UploadIOButton
+        className="w-fit"
+        onComplete={(files) => {
+          files.forEach((f) => {
+            toast.promise(
+              createAsset.mutateAsync({
+                providerId: f.filePath,
+                providerType: "UPLOADIO",
+                name: f.editedFile?.file.name ?? f.originalFile.file.name,
+              }),
+              {
+                loading: `Adding asset...`,
+                success: `Added asset successfully`,
+                error: `Failed to add asset`,
+              }
+            );
+          });
+        }}
+      />
       {/* assets list */}
       <AssetsList assets={getAssets.data ?? []} />
     </div>

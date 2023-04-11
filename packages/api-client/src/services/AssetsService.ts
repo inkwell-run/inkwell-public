@@ -82,9 +82,9 @@ export class AssetsService {
      */
     public static mutationAssetsCreate(
         requestBody: {
-            postId: string;
             providerId: string;
             providerType?: 'CLOUDFLARE' | 'UPLOADCARE' | 'UPLOADIO' | 'OTHER';
+            postId?: string;
             name?: string;
         },
     ): CancelablePromise<{

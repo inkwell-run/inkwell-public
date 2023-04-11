@@ -11,6 +11,7 @@ export const UploadIO = Uploader({
 
 interface IUploadIOButtonProps {
   onComplete: (files: UploadWidgetResult[]) => void;
+  className?: string;
 }
 
 export const UploadIOButton = (props: IUploadIOButtonProps) => {
@@ -36,7 +37,11 @@ export const UploadIOButton = (props: IUploadIOButtonProps) => {
       }}
       onComplete={onComplete}
     >
-      {({ onClick }) => <Button onClick={onClick}>Upload a file...</Button>}
+      {({ onClick }) => (
+        <Button className={props.className} onClick={onClick}>
+          Add asset
+        </Button>
+      )}
     </UploadButton>
   );
 };
