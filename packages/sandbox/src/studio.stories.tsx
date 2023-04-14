@@ -1,7 +1,7 @@
 import type { Story } from "@ladle/react";
 import { useLadleContext } from "@ladle/react";
 import { InkwellStudio } from "@inkwell.run/studio";
-import "@inkwell.run/studio/dist/index.css";
+import "@inkwell.run/studio/index.css";
 import React from "react";
 import { z } from "zod";
 
