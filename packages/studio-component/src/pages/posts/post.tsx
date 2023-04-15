@@ -4,15 +4,16 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Allotment } from "allotment";
 import { useAtomValue } from "jotai";
 import React from "react";
-import { useParams } from "react-router-dom";
 import { MarkdocEditor } from "../../components/markdoc-editor";
 import MarkdocPreview from "../../components/markdoc-preview";
 import { RightBar } from "../../components/post/right-bar";
 import { TopBar } from "../../components/post/top-bar";
 import { GlobalStateAtom } from "../../lib/store";
+import { useRoute } from "wouter";
 
 export const Post = () => {
-  const { postId } = useParams();
+  const [_, params] = useRoute("/posts/:postId");
+  const postId = params?.postId;
   const { baseProps } = useAtomValue(GlobalStateAtom);
   const [animateSidebar, setAnimateSidebar] = React.useState(false);
   const [collapseSidebar, _setCollapseSidebar] = React.useState(false);

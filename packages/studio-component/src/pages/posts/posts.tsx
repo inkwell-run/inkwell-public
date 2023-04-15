@@ -10,8 +10,8 @@ import * as InkwellApi from "@inkwell.run/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { compareDesc } from "date-fns";
 import React from "react";
-import { Link } from "react-router-dom";
 import DateCycler from "../../components/date-cycler";
+import { toHash } from "../../lib/hash-router";
 import useMultiSelect from "../../lib/use-multi-select";
 
 export const Posts = () => {
@@ -131,9 +131,9 @@ const PostDisplay = (props: IPostDisplayProps) => {
   const { post } = props;
   return (
     <div className="flex items-center justify-between flex-1 gap-4 px-4 py-2 border rounded-md shadow-sm">
-      <Link to={`/posts/${post.id}`}>
+      <a href={toHash(`/posts/${post.id}`)}>
         <TypographyInlineCode>{post.slug}</TypographyInlineCode>
-      </Link>
+      </a>
       <DateCycler createdAt={post.createdAt} updatedAt={post.updatedAt} />
     </div>
   );

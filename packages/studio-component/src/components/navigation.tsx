@@ -7,7 +7,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@doom.sh/ui";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useHashLocation } from "../lib/hash-router";
 import { PageLink, PageLinks } from "../lib/links";
 import { ClerkSafe } from "./clerk-wrappers";
 import { OrgDropdown } from "./org-dropdown";
@@ -38,8 +38,8 @@ const links: NavLink[] = [
 ];
 
 const Navigation = () => {
-  const { pathname } = useLocation();
-  console.log({ pathname });
+  const [location, hashNavigate] = useHashLocation();
+
   return (
     <div className="p-4 border-b md:px-8 md:py-4">
       {/* pickers */}
@@ -53,11 +53,17 @@ const Navigation = () => {
                 return (
                   <NavigationMenuItem key={l.pageLink}>
                     <NavigationMenuLink
-                      asChild
-                      active={l.isActive(pathname ?? "")}
+                      onClick={() => {
+                        if (l.isExternal) {
+                          window.open(l.pageLink, "_blank");
+                        } else {
+                          hashNavigate(l.pageLink);
+                        }
+                      }}
+                      active={l.isActive(location ?? "")}
                       className={navigationMenuTriggerStyle()}
                     >
-                      <Link to={l.pageLink}>{l.text}</Link>
+                      {l.text}
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 );

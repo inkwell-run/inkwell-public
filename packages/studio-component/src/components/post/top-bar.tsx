@@ -1,9 +1,9 @@
 import { Button, Input, TypographySubtle, cn } from "@doom.sh/ui";
 import { Field, Form } from "houseform";
-import { ArrowLeft, SidebarClose, SidebarOpen } from "lucide-react";
+import { ArrowLeft, SidebarClose } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
 import { z } from "zod";
+import { useHashLocation } from "../../lib/hash-router";
 
 interface ITopBarProps {
   slug: string;
@@ -13,16 +13,19 @@ interface ITopBarProps {
 }
 
 export const TopBar = (props: ITopBarProps) => {
+  const [_, hashNavigate] = useHashLocation();
   const { slug, setSlug, isSidebarCollapsed, setCollapseSidebar } = props;
   return (
     <div className="border-b p-2 flex items-center justify-between gap-4">
       {/* back button */}
-      <Link to={"/posts"} className="w-fit">
-        <Button variant="outline" className="gap-2">
-          <ArrowLeft className="w-4 h-4" />
-          <span>All posts</span>
-        </Button>
-      </Link>
+      <Button
+        variant="outline"
+        className="gap-2"
+        onClick={() => hashNavigate("/posts")}
+      >
+        <ArrowLeft className="w-4 h-4" />
+        <span>All posts</span>
+      </Button>
       {/* slug editor */}
       <Form
         onSubmit={(values) => {

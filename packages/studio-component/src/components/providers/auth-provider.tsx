@@ -7,7 +7,7 @@ import {
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { AlertScreen } from "./alert-screen";
+import { AlertScreen } from "../alert-screen";
 
 interface IAuthProviderProps {
   accessToken: string;
@@ -17,9 +17,6 @@ interface IAuthProviderProps {
 
 const AuthProvider = (props: IAuthProviderProps) => {
   const { accessToken, enableUserAuth, children } = props;
-
-  // Set the access token onto the OpenAPI
-  InkwellApi.OpenAPI.TOKEN = accessToken;
 
   const accessTokenQuery = useQuery({
     queryKey: ["access-token"],
