@@ -1,6 +1,6 @@
 import * as InkwellApi from "@inkwell.run/client";
 import React from "react";
-import { GlobalStateAtom } from "../../lib/store";
+import { GlobalStateAtom } from "../lib/store";
 import { useAtomValue } from "jotai";
 
 interface IOpenAPIConfiguratorProps {

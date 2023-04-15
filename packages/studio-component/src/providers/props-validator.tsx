@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { AlertScreen } from "../alert-screen";
+import { AlertScreen } from "../components/alert-screen";
 import {
   IInkwellStudioPropsInput,
   ZInkwellStudioProps,
-} from "../../lib/base-props";
+} from "../lib/base-props";
 import { useSetAtom } from "jotai";
-import { GlobalStateAtom } from "../../lib/store";
+import { GlobalStateAtom } from "../lib/store";
 
 interface IPropsValidatorProps {
   props: IInkwellStudioPropsInput;

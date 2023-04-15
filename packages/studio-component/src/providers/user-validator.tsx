@@ -2,8 +2,8 @@ import { UserButton, useUser } from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { AlertScreen } from "../alert-screen";
-import { useClerkSafe } from "../clerk-wrappers";
+import { AlertScreen } from "../components/alert-screen";
+import { useClerkSafe } from "../components/clerk-wrappers";
 
 interface IUserValidatorProps {
   children: React.ReactNode;
