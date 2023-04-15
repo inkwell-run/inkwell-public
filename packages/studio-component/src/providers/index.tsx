@@ -15,17 +15,14 @@ interface IProviderChainProps {
 
 export const ProviderChain = (props: IProviderChainProps) => {
   const { baseProps } = props;
-  const { accessToken, _themeOverride, enableUserAuth } = baseProps;
+  const { accessToken, _themeOverride } = baseProps;
 
   return (
     <PropsValidator props={baseProps}>
       <OpenAPIConfigurator>
         <QueryClientProvider client={queryClient}>
-          <AuthProvider
-            accessToken={accessToken}
-            enableUserAuth={enableUserAuth}
-          >
-            <UserValidator>{props.children}</UserValidator>
+          <AuthProvider accessToken={accessToken}>
+            {props.children}
           </AuthProvider>
         </QueryClientProvider>
       </OpenAPIConfigurator>

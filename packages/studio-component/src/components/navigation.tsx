@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/clerk-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,7 +8,6 @@ import {
 import React from "react";
 import { useHashLocation } from "../lib/hash-router";
 import { PageLink, PageLinks } from "../lib/links";
-import { ClerkSafe } from "./clerk-wrappers";
 import { OrgDropdown } from "./org-dropdown";
 
 interface NavLink {
@@ -74,9 +72,6 @@ const Navigation = () => {
         {/* right */}
         <div className="flex items-center gap-8">
           <OrgDropdown />
-          <ClerkSafe>
-            <UserButton />
-          </ClerkSafe>
         </div>
       </div>
     </div>

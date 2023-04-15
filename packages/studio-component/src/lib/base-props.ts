@@ -14,7 +14,6 @@ export const ZSchema = z.object({
 export const ZInkwellStudioProps = z.object({
   accessToken: z.string(),
   schemas: z.array(ZSchema).default([]),
-  enableUserAuth: z.boolean().default(false),
   baseUrl: z.string().url().default("https://app.inkwell.run/api"),
   markdoc: z
     .object({

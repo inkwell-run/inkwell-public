@@ -1,9 +1,3 @@
-import {
-  ClerkProvider,
-  RedirectToSignIn,
-  SignedIn,
-  SignedOut,
-} from "@clerk/clerk-react";
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
@@ -12,11 +6,10 @@ import { AlertScreen } from "../components/alert-screen";
 interface IAuthProviderProps {
   accessToken: string;
   children: React.ReactNode;
-  enableUserAuth?: boolean;
 }
 
 const AuthProvider = (props: IAuthProviderProps) => {
-  const { accessToken, enableUserAuth, children } = props;
+  const { accessToken, children } = props;
 
   const accessTokenQuery = useQuery({
     queryKey: ["access-token"],
@@ -48,19 +41,6 @@ const AuthProvider = (props: IAuthProviderProps) => {
       <AlertScreen type="error">
         Something went wrong while setting up the studio.
       </AlertScreen>
-    );
-  }
-
-  // enable clerk user authentication
-  // set up clerk with the public key obtained from the ping
-  if (enableUserAuth) {
-    return (
-      <ClerkProvider publishableKey={environmentQuery.data.userAuthPublicKey}>
-        <SignedIn>{children}</SignedIn>
-        <SignedOut>
-          <RedirectToSignIn />
-        </SignedOut>
-      </ClerkProvider>
     );
   }
 

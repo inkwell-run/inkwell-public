@@ -10,7 +10,6 @@ export const makeDefaultGlobalState = (): IGlobalState => {
     baseProps: {
       accessToken: "",
       schemas: [],
-      enableUserAuth: false,
       baseUrl: "",
     },
   };
@@ -20,7 +19,6 @@ export const GlobalStateAtom = atom<IGlobalState>({
   baseProps: {
     accessToken: "",
     schemas: [],
-    enableUserAuth: false,
     baseUrl: "",
   },
 });
