@@ -1,19 +1,27 @@
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@doom.sh/ui";
-import { FileText, LayoutDashboard, MessageCircle } from "lucide-react";
-import React from "react";
+import {
+  ChevronsUpDown,
+  FileText,
+  LayoutDashboard,
+  MessageCircle,
+} from "lucide-react";
+import React, { forwardRef } from "react";
 import { ConnectionStatus } from "./connection-status";
 
 export const OrgDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <ConnectionStatus />
+        <DropdownButton>
+          <ConnectionStatus />
+        </DropdownButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 my-2" align="end">
         <DropdownMenuGroup>
@@ -40,3 +48,21 @@ export const OrgDropdown = () => {
     </DropdownMenu>
   );
 };
+
+export const DropdownButton = forwardRef<
+  HTMLButtonElement,
+  { children: React.ReactNode }
+>((props, ref) => {
+  return (
+    <Button
+      // https://github.com/radix-ui/primitives/issues/953#issuecomment-959005835
+      {...props}
+      variant="outline"
+      className="flex items-center gap-4"
+      ref={ref}
+    >
+      {props.children}
+      <ChevronsUpDown className="w-4 h-4" />
+    </Button>
+  );
+});
