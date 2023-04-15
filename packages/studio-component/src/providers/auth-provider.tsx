@@ -7,7 +7,7 @@ import {
 import * as InkwellApi from "@inkwell.run/client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { AlertScreen } from "../alert-screen";
+import { AlertScreen } from "../components/alert-screen";
 
 interface IAuthProviderProps {
   accessToken: string;

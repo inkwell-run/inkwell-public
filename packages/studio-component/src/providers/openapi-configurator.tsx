@@ -10,11 +10,15 @@ interface IOpenAPIConfiguratorProps {
 export const OpenAPIConfigurator = (props: IOpenAPIConfiguratorProps) => {
   const { baseProps } = useAtomValue(GlobalStateAtom);
 
+  console.log({ baseProps });
+
   // set the base url
   InkwellApi.OpenAPI.BASE = baseProps.baseUrl;
 
   // Set the access token
   InkwellApi.OpenAPI.TOKEN = baseProps.accessToken;
+
+  console.log("API BASE PATH IS SET");
 
   // if not using user authentication, pass children as normal
   return <>{props.children}</>;

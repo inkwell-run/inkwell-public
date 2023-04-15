@@ -1,8 +1,6 @@
-import { Toaster } from "@doom.sh/ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
-import { IInkwellStudioPropsInput } from "../../lib/base-props";
-import Navigation from "../navigation";
+import { IInkwellStudioPropsInput } from "../lib/base-props";
 import AuthProvider from "./auth-provider";
 import { OpenAPIConfigurator } from "./openapi-configurator";
 import { PropsValidator } from "./props-validator";
@@ -27,13 +25,7 @@ export const ProviderChain = (props: IProviderChainProps) => {
             accessToken={accessToken}
             enableUserAuth={enableUserAuth}
           >
-            <UserValidator>
-              <div className="flex flex-col h-full">
-                <Navigation />
-                {props.children}
-              </div>
-              <Toaster position="top-center" />
-            </UserValidator>
+            <UserValidator>{props.children}</UserValidator>
           </AuthProvider>
         </QueryClientProvider>
       </OpenAPIConfigurator>

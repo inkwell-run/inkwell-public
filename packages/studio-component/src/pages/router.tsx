@@ -6,27 +6,35 @@ import { Assets } from "./assets/assets";
 import { Post } from "./posts/post";
 import { Posts } from "./posts/posts";
 import { Schemas } from "./schemas/schemas";
+import Navigation from "../components/navigation";
+import { Toaster } from "@doom.sh/ui";
 
 export const PageRouter = () => {
   return (
-    <Router hook={useHashLocation}>
-      <Switch>
-        <Route path="/schemas">
-          <Schemas />
-        </Route>
-        <Route path="/posts">
-          <Posts />
-        </Route>
-        <Route path="/posts/:postId">
-          <Post />
-        </Route>
-        <Route path="/assets">
-          <Assets />
-        </Route>
-        <Route>
-          <AlertScreen type="error">Page not found</AlertScreen>
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <div className="flex flex-col h-full">
+        <Navigation />
+        <Router hook={useHashLocation}>
+          <Switch>
+            <Route path="/schemas">
+              <Schemas />
+            </Route>
+            <Route path="/posts">
+              <Posts />
+            </Route>
+            <Route path="/posts/:postId">
+              <Post />
+            </Route>
+            <Route path="/assets">
+              <Assets />
+            </Route>
+            <Route>
+              <AlertScreen type="error">Page not found</AlertScreen>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+      <Toaster position="top-center" />
+    </>
   );
 };
