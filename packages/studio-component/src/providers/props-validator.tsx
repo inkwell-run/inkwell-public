@@ -1,33 +1,23 @@
-import React, { useEffect } from "react";
+import type { WritableAtom } from "jotai";
+import { Provider } from "jotai";
+import { useHydrateAtoms } from "jotai/utils";
+import React from "react";
 import { AlertScreen } from "../components/alert-screen";
 import {
   IInkwellStudioPropsInput,
   ZInkwellStudioProps,
 } from "../lib/base-props";
-import { useSetAtom } from "jotai";
-import { GlobalStateAtom } from "../lib/store";
+import { GlobalStateAtom, makeDefaultGlobalState } from "../lib/store";
 
 interface IPropsValidatorProps {
   props: IInkwellStudioPropsInput;
   children: React.ReactNode;
 }
 
+// checks props and loads them into the global state
 export const PropsValidator = ({ children, props }: IPropsValidatorProps) => {
   // parse props
   const parsedProps = ZInkwellStudioProps.safeParse(props);
-
-  // set props on global state
-  const setGlobalState = useSetAtom(GlobalStateAtom);
-  useEffect(() => {
-    if (parsedProps.success) {
-      setGlobalState((prev) => ({
-        ...prev,
-        baseProps: {
-          ...parsedProps.data,
-        },
-      }));
-    }
-  }, [props]);
 
   if (!parsedProps.success) {
     console.error(parsedProps.error);
@@ -60,5 +50,32 @@ export const PropsValidator = ({ children, props }: IPropsValidatorProps) => {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <Provider>
+      <HydrateAtoms
+        initialValues={[
+          [
+            GlobalStateAtom,
+            {
+              ...makeDefaultGlobalState(),
+              baseProps: parsedProps.data,
+            },
+          ],
+        ]}
+      >
+        {children}
+      </HydrateAtoms>
+    </Provider>
+  );
+};
+
+interface IHydrateAtomsProps {
+  initialValues: Array<[WritableAtom<any, any, any>, any]>;
+  children: React.ReactNode;
+}
+
+const HydrateAtoms = (props: IHydrateAtomsProps) => {
+  // initialising on state with prop on render here
+  useHydrateAtoms(props.initialValues);
+  return <>{props.children}</>;
 };
