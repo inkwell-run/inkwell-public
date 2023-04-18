@@ -17,10 +17,7 @@
     "nextra-theme-docs": "^2.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "swagger-ui-react": "^4.15.5",
     "typescript": "4.7.4"
   },
-  "devDependencies": {
-    "@types/swagger-ui-react": "^4.11.0"
-  }
+  "devDependencies": {}
 }
